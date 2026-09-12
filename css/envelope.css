@@ -1,6 +1,6 @@
 /* ==========================================================================
    Akash & Pranshi Wedding Invitation (#APForever)
-   3D Wax Seal & Envelope Interaction Styling
+   3D Wax Seal & Lush Botanical Envelope Interaction Styling
    ========================================================================== */
 
 .envelope-screen-wrapper {
@@ -9,27 +9,115 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 20px 16px;
+  padding: 30px 16px 40px;
   position: relative;
   z-index: 100;
   transition: opacity 0.8s ease, transform 0.8s ease;
+  overflow: hidden;
+  background: 
+    radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(250, 246, 240, 0.95) 100%);
 }
 
 .envelope-screen-wrapper.opened {
   opacity: 0;
-  transform: scale(1.04);
+  transform: scale(1.05);
   pointer-events: none;
   display: none;
+}
+
+/* ==========================================================================
+   Lush Viewport Corner Floral Garlands (SVG Botanicals)
+   ========================================================================== */
+.screen-floral-corner {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.88;
+  filter: drop-shadow(0 4px 12px rgba(74, 93, 78, 0.08));
+}
+
+.screen-floral-corner.top-left {
+  top: 0;
+  left: 0;
+}
+
+.screen-floral-corner.top-right {
+  top: 0;
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.screen-floral-corner.bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: scaleY(-1);
+}
+
+.screen-floral-corner.bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: scale(-1);
+}
+
+/* Header above Envelope */
+.envelope-intro-header {
+  text-align: center;
+  margin-bottom: 25px;
+  z-index: 10;
+  position: relative;
+}
+
+.envelope-hashtag-crest {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 10px 30px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(194, 157, 89, 0.38);
+  box-shadow: 
+    0 8px 25px rgba(194, 157, 89, 0.18),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.envelope-hashtag-crest:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(194, 157, 89, 0.28);
+}
+
+.envelope-hashtag {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  background: linear-gradient(135deg, #b88f42 0%, #e6cb89 50%, #946f29 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.hashtag-flourish {
+  color: var(--color-gold);
+  font-size: 0.85rem;
+  opacity: 0.85;
 }
 
 /* Perspective Stage */
 .envelope-stage {
   perspective: 1400px;
   width: 100%;
-  max-width: 360px;
-  height: 480px;
+  max-width: 350px;
+  height: 470px;
   position: relative;
   margin: 0 auto;
+  z-index: 10;
 }
 
 /* Envelope Container */
@@ -38,11 +126,11 @@
   width: 100%;
   height: 100%;
   background: #fbf9f5;
-  border-radius: 14px;
+  border-radius: 16px;
   box-shadow: 
-    0 20px 50px rgba(50, 40, 30, 0.15),
-    0 4px 15px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e8e2d8;
+    0 25px 60px rgba(50, 40, 30, 0.18),
+    0 8px 20px rgba(0, 0, 0, 0.06);
+  border: 1.5px solid #e5ded2;
   overflow: visible;
   transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -54,13 +142,13 @@
   left: 0;
   width: 0;
   height: 0;
-  border-left: 180px solid transparent;
-  border-right: 180px solid transparent;
-  border-top: 240px solid #f5efe6;
+  border-left: 175px solid transparent;
+  border-right: 175px solid transparent;
+  border-top: 235px solid #f6efe4;
   transform-origin: top;
   z-index: 25;
   transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.06));
+  filter: drop-shadow(0 5px 8px rgba(0,0,0,0.08));
 }
 
 .envelope.unsealed .flap-top {
@@ -74,9 +162,9 @@
   left: 0;
   width: 0;
   height: 0;
-  border-top: 240px solid transparent;
-  border-bottom: 240px solid transparent;
-  border-left: 180px solid #eee7db;
+  border-top: 235px solid transparent;
+  border-bottom: 235px solid transparent;
+  border-left: 175px solid #ece4d7;
   z-index: 15;
 }
 
@@ -86,9 +174,9 @@
   right: 0;
   width: 0;
   height: 0;
-  border-top: 240px solid transparent;
-  border-bottom: 240px solid transparent;
-  border-right: 180px solid #eee7db;
+  border-top: 235px solid transparent;
+  border-bottom: 235px solid transparent;
+  border-right: 175px solid #ece4d7;
   z-index: 15;
 }
 
@@ -98,39 +186,61 @@
   left: 0;
   width: 0;
   height: 0;
-  border-left: 180px solid transparent;
-  border-right: 180px solid transparent;
-  border-bottom: 250px solid #fbf9f5;
+  border-left: 175px solid transparent;
+  border-right: 175px solid transparent;
+  border-bottom: 245px solid #fbf9f5;
   z-index: 20;
-  filter: drop-shadow(0 -3px 5px rgba(0,0,0,0.03));
+  filter: drop-shadow(0 -3px 6px rgba(0,0,0,0.04));
 }
 
-/* Botanical Watercolor Accents on Envelope Front */
-.envelope-foliage-top {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 220px;
-  height: 60px;
-  background-image: radial-gradient(ellipse at center, rgba(142, 169, 146, 0.45) 0%, transparent 70%);
-  z-index: 26;
-  pointer-events: none;
-}
+/* ==========================================================================
+   Stationery Embellishments: Silk Ribbon & Botanical Foliage
+   ========================================================================== */
 
-.envelope-foliage-bottom {
+/* Silk Ribbon Belly Band */
+.envelope-ribbon-band {
   position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 260px;
-  height: 80px;
-  background-image: radial-gradient(ellipse at center, rgba(142, 169, 146, 0.4) 0%, transparent 70%);
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 52px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, #ecd3be 0%, #f4e7d9 50%, #ecd3be 100%);
+  border-top: 1px solid rgba(194, 157, 89, 0.45);
+  border-bottom: 1px solid rgba(194, 157, 89, 0.45);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   z-index: 22;
   pointer-events: none;
 }
 
-/* 3D Wax Seal */
+/* Botanical Sprigs behind the seal */
+.seal-botanical-wings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 90px;
+  z-index: 23;
+  pointer-events: none;
+}
+
+/* Botanical Sprigs on Flap Bottom */
+.envelope-bottom-garland {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 60px;
+  z-index: 22;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   3D Wax Seal
+   ========================================================================== */
 .wax-seal-wrapper {
   position: absolute;
   top: 50%;
@@ -145,44 +255,44 @@
 }
 
 .wax-seal-wrapper:hover {
-  transform: translate(-50%, -50%) scale(1.06);
+  transform: translate(-50%, -50%) scale(1.07);
 }
 
 .wax-seal-stamp {
-  width: 84px;
-  height: 84px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #ecc980, #c29d59 60%, #876527 100%);
+  background: radial-gradient(circle at 35% 35%, #f1d392, #c29d59 55%, #7a581e 100%);
   box-shadow: 
-    0 10px 25px rgba(135, 101, 39, 0.45),
-    inset 0 2px 4px rgba(255, 255, 255, 0.6),
-    inset 0 -3px 6px rgba(0, 0, 0, 0.3);
+    0 12px 28px rgba(122, 88, 30, 0.5),
+    inset 0 2px 5px rgba(255, 255, 255, 0.7),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  border: 3px solid rgba(220, 185, 115, 0.5);
+  border: 3px solid rgba(235, 203, 140, 0.6);
   animation: gentlePulse 2.4s infinite ease-in-out;
 }
 
 @keyframes gentlePulse {
   0%, 100% {
-    box-shadow: 0 10px 25px rgba(135, 101, 39, 0.45), 0 0 0 0 rgba(194, 157, 89, 0.4);
+    box-shadow: 0 12px 28px rgba(122, 88, 30, 0.5), 0 0 0 0 rgba(194, 157, 89, 0.4);
   }
   50% {
-    box-shadow: 0 14px 30px rgba(135, 101, 39, 0.55), 0 0 0 10px rgba(194, 157, 89, 0);
+    box-shadow: 0 16px 34px rgba(122, 88, 30, 0.65), 0 0 0 12px rgba(194, 157, 89, 0);
   }
 }
 
 /* Debossed Monogram */
 .seal-monogram {
   font-family: var(--font-serif);
-  font-size: 1.45rem;
+  font-size: 1.55rem;
   font-weight: 700;
-  color: #614616;
+  color: #553c12;
   text-shadow: 
-    0 1px 1px rgba(255, 255, 255, 0.6),
-    0 -1px 1px rgba(0, 0, 0, 0.3);
+    0 1px 1px rgba(255, 255, 255, 0.65),
+    0 -1px 1px rgba(0, 0, 0, 0.35);
   letter-spacing: 0.05em;
   display: flex;
   align-items: center;
@@ -191,32 +301,32 @@
 
 .seal-ring {
   position: absolute;
-  width: 68px;
-  height: 68px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
-  border: 1px dashed rgba(255, 255, 255, 0.4);
+  border: 1.5px dashed rgba(255, 255, 255, 0.45);
   pointer-events: none;
 }
 
 /* Prompt Hint */
 .seal-prompt {
-  margin-top: 14px;
+  margin-top: 16px;
   font-family: var(--font-serif);
   font-size: 1.15rem;
   font-weight: 600;
   color: var(--color-gold-dark);
   letter-spacing: 0.06em;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  padding: 4px 18px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  padding: 6px 22px;
   border-radius: var(--radius-pill);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-  border: 1px solid var(--color-border);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  border: 1px solid rgba(194, 157, 89, 0.3);
   animation: fadeBounce 2s infinite ease-in-out;
 }
 
 @keyframes fadeBounce {
-  0%, 100% { transform: translateY(0); opacity: 0.9; }
+  0%, 100% { transform: translateY(0); opacity: 0.95; }
   50% { transform: translateY(-4px); opacity: 1; }
 }
 
@@ -228,7 +338,7 @@
   right: 20px;
   bottom: 20px;
   background: #ffffff;
-  border-radius: 10px;
+  border-radius: 12px;
   z-index: 10;
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
   display: flex;
@@ -236,13 +346,14 @@
   align-items: center;
   padding: 24px 16px;
   text-align: center;
+  border: 1px solid var(--color-border);
   transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .envelope.unsealed .inner-card-sneak {
-  transform: translateY(-220px);
+  transform: translateY(-230px);
   z-index: 30;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.18);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
 }
 
 /* Seal Breaking Animation */
@@ -252,6 +363,6 @@
 
 @keyframes sealBreak {
   0% { transform: scale(1); }
-  40% { transform: scale(1.18) rotate(6deg); }
+  40% { transform: scale(1.2) rotate(6deg); }
   100% { transform: scale(0); opacity: 0; }
 }

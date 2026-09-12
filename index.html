@@ -27,14 +27,22 @@
   <canvas id="petal-canvas"></canvas>
 
   <!-- Ambient Audio Floating Pill -->
-  <div class="audio-control-pill" id="audio-pill" title="Toggle Auspicious Flute Melody">
-    <div class="music-bars">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <span class="audio-label">♫ Flute</span>
+  <div class="audio-control-pill muted" id="audio-pill" title="Click to Play Music">
+    <span class="audio-icon-muted">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#b54a55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <line x1="23" y1="9" x2="17" y2="15"></line>
+        <line x1="17" y1="9" x2="23" y2="15"></line>
+      </svg>
+    </span>
+    <span class="audio-label">Muted</span>
   </div>
+
+  <!-- Background Wedding Music Audio Element -->
+  <audio id="wedding-audio" loop preload="auto">
+    <source src="assets/audio/wedding_music.mp3" type="audio/mpeg">
+    <source src="assets/audio/bg-music.mp3" type="audio/mpeg">
+  </audio>
 
   <!-- Toast Notification Container -->
   <div class="toast-notification" id="toast">Address copied to clipboard!</div>
@@ -45,12 +53,86 @@
          Stage 1: 3D Wax Seal & Envelope (Interactive Opening)
          ====================================================================== -->
     <div class="envelope-screen-wrapper" id="envelope-screen">
+      
+      <!-- Lush Botanical Corner Garlands (SVG) -->
+      <svg class="screen-floral-corner top-left" viewBox="0 0 160 160" fill="none">
+        <path d="M10 10 C45 30 70 65 80 120 C85 100 110 75 140 60" stroke="#8ea992" stroke-width="2" stroke-linecap="round"/>
+        <!-- Eucalyptus Leaves -->
+        <ellipse cx="40" cy="35" rx="16" ry="10" transform="rotate(-30 40 35)" fill="#a3bfa7" opacity="0.85"/>
+        <ellipse cx="65" cy="55" rx="18" ry="11" transform="rotate(-40 65 55)" fill="#8ea992" opacity="0.9"/>
+        <ellipse cx="78" cy="90" rx="17" ry="10" transform="rotate(-65 78 90)" fill="#78967c" opacity="0.9"/>
+        <ellipse cx="105" cy="70" rx="16" ry="9" transform="rotate(-20 105 70)" fill="#a3bfa7" opacity="0.85"/>
+        <ellipse cx="130" cy="62" rx="13" ry="8" transform="rotate(-15 130 62)" fill="#8ea992" opacity="0.8"/>
+        <!-- Blush Flower Buds -->
+        <circle cx="50" cy="20" r="11" fill="#f0c8cb" opacity="0.95"/>
+        <circle cx="50" cy="20" r="7" fill="#e5adb1" opacity="0.9"/>
+        <circle cx="95" cy="45" r="9" fill="#f0c8cb" opacity="0.9"/>
+        <!-- Golden Branch Accents -->
+        <path d="M15 15 C35 50 60 70 95 85" stroke="#d8ba78" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="98" cy="86" r="3" fill="#c29d59"/>
+        <circle cx="68" cy="75" r="2.5" fill="#c29d59"/>
+      </svg>
+
+      <svg class="screen-floral-corner top-right" viewBox="0 0 160 160" fill="none">
+        <path d="M10 10 C45 30 70 65 80 120 C85 100 110 75 140 60" stroke="#8ea992" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="40" cy="35" rx="16" ry="10" transform="rotate(-30 40 35)" fill="#a3bfa7" opacity="0.85"/>
+        <ellipse cx="65" cy="55" rx="18" ry="11" transform="rotate(-40 65 55)" fill="#8ea992" opacity="0.9"/>
+        <ellipse cx="78" cy="90" rx="17" ry="10" transform="rotate(-65 78 90)" fill="#78967c" opacity="0.9"/>
+        <ellipse cx="105" cy="70" rx="16" ry="9" transform="rotate(-20 105 70)" fill="#a3bfa7" opacity="0.85"/>
+        <circle cx="50" cy="20" r="11" fill="#f0c8cb" opacity="0.95"/>
+        <circle cx="50" cy="20" r="7" fill="#e5adb1" opacity="0.9"/>
+        <path d="M15 15 C35 50 60 70 95 85" stroke="#d8ba78" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="98" cy="86" r="3" fill="#c29d59"/>
+      </svg>
+
+      <svg class="screen-floral-corner bottom-left" viewBox="0 0 160 160" fill="none">
+        <path d="M10 10 C45 30 70 65 80 120 C85 100 110 75 140 60" stroke="#8ea992" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="40" cy="35" rx="16" ry="10" transform="rotate(-30 40 35)" fill="#a3bfa7" opacity="0.85"/>
+        <ellipse cx="65" cy="55" rx="18" ry="11" transform="rotate(-40 65 55)" fill="#8ea992" opacity="0.9"/>
+        <ellipse cx="78" cy="90" rx="17" ry="10" transform="rotate(-65 78 90)" fill="#78967c" opacity="0.9"/>
+        <circle cx="50" cy="20" r="11" fill="#f0c8cb" opacity="0.95"/>
+        <path d="M15 15 C35 50 60 70 95 85" stroke="#d8ba78" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="98" cy="86" r="3" fill="#c29d59"/>
+      </svg>
+
+      <svg class="screen-floral-corner bottom-right" viewBox="0 0 160 160" fill="none">
+        <path d="M10 10 C45 30 70 65 80 120 C85 100 110 75 140 60" stroke="#8ea992" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="40" cy="35" rx="16" ry="10" transform="rotate(-30 40 35)" fill="#a3bfa7" opacity="0.85"/>
+        <ellipse cx="65" cy="55" rx="18" ry="11" transform="rotate(-40 65 55)" fill="#8ea992" opacity="0.9"/>
+        <ellipse cx="78" cy="90" rx="17" ry="10" transform="rotate(-65 78 90)" fill="#78967c" opacity="0.9"/>
+        <circle cx="50" cy="20" r="11" fill="#f0c8cb" opacity="0.95"/>
+        <path d="M15 15 C35 50 60 70 95 85" stroke="#d8ba78" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="98" cy="86" r="3" fill="#c29d59"/>
+      </svg>
+
+      <!-- Elegant Hashtag Crest above Envelope -->
+      <div class="envelope-intro-header">
+        <div class="envelope-hashtag-crest">
+          <span class="hashtag-flourish">✤</span>
+          <span class="envelope-hashtag">#APForever</span>
+          <span class="hashtag-flourish">✤</span>
+        </div>
+      </div>
+
       <div class="envelope-stage">
         <div class="envelope" id="main-envelope">
           
-          <!-- Botanical Foliage Overlays -->
-          <div class="envelope-foliage-top"></div>
-          <div class="envelope-foliage-bottom"></div>
+          <!-- Silk Ribbon Belly Band -->
+          <div class="envelope-ribbon-band"></div>
+
+          <!-- Botanical Sprigs flanking the Seal -->
+          <svg class="seal-botanical-wings" viewBox="0 0 240 80" fill="none">
+            <!-- Left Wing Leaves -->
+            <path d="M60 40 C35 38 20 28 8 18" stroke="#78967c" stroke-width="1.5" stroke-linecap="round"/>
+            <ellipse cx="40" cy="32" rx="12" ry="7" transform="rotate(-20 40 32)" fill="#8ea992" opacity="0.9"/>
+            <ellipse cx="22" cy="24" rx="10" ry="6" transform="rotate(-35 22 24)" fill="#a3bfa7" opacity="0.85"/>
+            <circle cx="34" cy="24" r="3" fill="#e5adb1"/>
+            <!-- Right Wing Leaves -->
+            <path d="M180 40 C205 38 220 28 232 18" stroke="#78967c" stroke-width="1.5" stroke-linecap="round"/>
+            <ellipse cx="200" cy="32" rx="12" ry="7" transform="rotate(20 200 32)" fill="#8ea992" opacity="0.9"/>
+            <ellipse cx="218" cy="24" rx="10" ry="6" transform="rotate(35 218 24)" fill="#a3bfa7" opacity="0.85"/>
+            <circle cx="206" cy="24" r="3" fill="#e5adb1"/>
+          </svg>
 
           <!-- 3D Envelope Flaps -->
           <div class="flap-top"></div>
@@ -64,7 +146,8 @@
               <path d="M50 12 C44 12 40 16 40 22 C40 25 42 27 44 29 C38 33 34 40 34 48 C34 56 40 62 48 64 L48 78 C48 81 50 83 53 83 C56 83 58 81 58 78 L58 64 C64 62 70 56 70 48 C70 42 67 36 62 32 C65 29 67 25 67 21 C67 16 63 12 58 12 C56 12 55 13 54 14 C53 13 52 12 50 12 Z M50 20 C52 20 54 22 54 24 C54 26 52 28 50 28 C48 28 46 26 46 24 C46 22 48 20 50 20 Z M45 42 C47 40 53 40 55 42 C57 44 57 48 55 50 C53 52 47 52 45 50 C43 48 43 44 45 42 Z" />
             </svg>
             <span style="font-family: var(--font-hindi); font-size: 0.88rem; color: var(--color-gold-dark); margin: 6px 0;">॥ श्री गणेशाय नमः ॥</span>
-            <span style="font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; color: #202b23;">Akash & Pranshi</span>
+            <span style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700; color: #202b23;">Akash & Pranshi</span>
+            <span style="font-size: 0.8rem; color: var(--color-gold); font-weight: 600; margin-top: 4px;">18 & 20 November 2026</span>
           </div>
 
           <!-- 3D Gold Wax Seal Monogram -->
@@ -161,8 +244,9 @@
           <h2 class="section-heading">Ceremony Itinerary</h2>
         </div>
 
-        <!-- Tab Pills -->
-        <div class="tab-pills-wrapper">
+        <!-- Tab Pills with Smooth Sliding Indicator -->
+        <div class="tab-pills-wrapper" id="tab-pills-wrapper" data-active-tab="tab-haldi">
+          <div class="tab-slider-indicator" id="tab-slider-indicator"></div>
           <button class="tab-pill-btn active" data-tab="tab-haldi">
             Haldi & Mehndi
           </button>

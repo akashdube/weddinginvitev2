@@ -4,23 +4,35 @@
  */
 
 (function () {
-  // Tab Switching
+  // Tab Switching with Smooth Sliding Indicator & Direction-Aware Slide
+  const pillsWrapper = document.getElementById('tab-pills-wrapper');
   const tabButtons = document.querySelectorAll('.tab-pill-btn');
   const tabContents = document.querySelectorAll('.tab-content-card');
+  let currentTabIndex = 0;
 
-  tabButtons.forEach((btn) => {
+  tabButtons.forEach((btn, index) => {
     btn.addEventListener('click', () => {
       const targetId = btn.getAttribute('data-tab');
+      if (btn.classList.contains('active')) return;
+
+      const isSlidingRight = index > currentTabIndex;
+      currentTabIndex = index;
+
+      // Update pills wrapper attribute to trigger CSS slider translate animation
+      if (pillsWrapper) {
+        pillsWrapper.setAttribute('data-active-tab', targetId);
+      }
 
       // Update button states
       tabButtons.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
 
-      // Update card content states
+      // Update card content states with directional slide
       tabContents.forEach((card) => {
-        card.classList.remove('active');
+        card.classList.remove('active', 'slide-left', 'slide-right');
         if (card.id === targetId) {
           card.classList.add('active');
+          card.classList.add(isSlidingRight ? 'slide-left' : 'slide-right');
         }
       });
     });

@@ -1,0 +1,257 @@
+/* ==========================================================================
+   Akash & Pranshi Wedding Invitation (#APForever)
+   3D Wax Seal & Envelope Interaction Styling
+   ========================================================================== */
+
+.envelope-screen-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px 16px;
+  position: relative;
+  z-index: 100;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.envelope-screen-wrapper.opened {
+  opacity: 0;
+  transform: scale(1.04);
+  pointer-events: none;
+  display: none;
+}
+
+/* Perspective Stage */
+.envelope-stage {
+  perspective: 1400px;
+  width: 100%;
+  max-width: 360px;
+  height: 480px;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* Envelope Container */
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fbf9f5;
+  border-radius: 14px;
+  box-shadow: 
+    0 20px 50px rgba(50, 40, 30, 0.15),
+    0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e8e2d8;
+  overflow: visible;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Envelope Flaps */
+.flap-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 180px solid transparent;
+  border-right: 180px solid transparent;
+  border-top: 240px solid #f5efe6;
+  transform-origin: top;
+  z-index: 25;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.06));
+}
+
+.envelope.unsealed .flap-top {
+  transform: rotateX(180deg);
+  z-index: 5;
+}
+
+.flap-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 240px solid transparent;
+  border-bottom: 240px solid transparent;
+  border-left: 180px solid #eee7db;
+  z-index: 15;
+}
+
+.flap-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 240px solid transparent;
+  border-bottom: 240px solid transparent;
+  border-right: 180px solid #eee7db;
+  z-index: 15;
+}
+
+.flap-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 180px solid transparent;
+  border-right: 180px solid transparent;
+  border-bottom: 250px solid #fbf9f5;
+  z-index: 20;
+  filter: drop-shadow(0 -3px 5px rgba(0,0,0,0.03));
+}
+
+/* Botanical Watercolor Accents on Envelope Front */
+.envelope-foliage-top {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 60px;
+  background-image: radial-gradient(ellipse at center, rgba(142, 169, 146, 0.45) 0%, transparent 70%);
+  z-index: 26;
+  pointer-events: none;
+}
+
+.envelope-foliage-bottom {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  height: 80px;
+  background-image: radial-gradient(ellipse at center, rgba(142, 169, 146, 0.4) 0%, transparent 70%);
+  z-index: 22;
+  pointer-events: none;
+}
+
+/* 3D Wax Seal */
+.wax-seal-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 35;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wax-seal-wrapper:hover {
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.wax-seal-stamp {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ecc980, #c29d59 60%, #876527 100%);
+  box-shadow: 
+    0 10px 25px rgba(135, 101, 39, 0.45),
+    inset 0 2px 4px rgba(255, 255, 255, 0.6),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 3px solid rgba(220, 185, 115, 0.5);
+  animation: gentlePulse 2.4s infinite ease-in-out;
+}
+
+@keyframes gentlePulse {
+  0%, 100% {
+    box-shadow: 0 10px 25px rgba(135, 101, 39, 0.45), 0 0 0 0 rgba(194, 157, 89, 0.4);
+  }
+  50% {
+    box-shadow: 0 14px 30px rgba(135, 101, 39, 0.55), 0 0 0 10px rgba(194, 157, 89, 0);
+  }
+}
+
+/* Debossed Monogram */
+.seal-monogram {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #614616;
+  text-shadow: 
+    0 1px 1px rgba(255, 255, 255, 0.6),
+    0 -1px 1px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.seal-ring {
+  position: absolute;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+}
+
+/* Prompt Hint */
+.seal-prompt {
+  margin-top: 14px;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-gold-dark);
+  letter-spacing: 0.06em;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 4px 18px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  border: 1px solid var(--color-border);
+  animation: fadeBounce 2s infinite ease-in-out;
+}
+
+@keyframes fadeBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.9; }
+  50% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Envelope Card Preview (Inside) */
+.inner-card-sneak {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+  text-align: center;
+  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.envelope.unsealed .inner-card-sneak {
+  transform: translateY(-220px);
+  z-index: 30;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.18);
+}
+
+/* Seal Breaking Animation */
+.wax-seal-wrapper.cracked .wax-seal-stamp {
+  animation: sealBreak 0.6s forwards ease-in-out;
+}
+
+@keyframes sealBreak {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.18) rotate(6deg); }
+  100% { transform: scale(0); opacity: 0; }
+}

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Akash & Pranshi Wedding Invitation | #APForever</title>
+  
+  <!-- SEO & Social Sharing (WhatsApp / iMessage Preview) -->
+  <meta name="description" content="With the heavenly blessings of our elders, Akash & Pranshi cordially invite you to celebrate their wedding on 18th & 20th November 2026." />
+  <meta property="og:title" content="Akash & Pranshi are Getting Married! #APForever" />
+  <meta property="og:description" content="Tap to open the 3D wedding invitation and explore celebrations." />
+  <meta property="og:image" content="./previews/modern_botanical_hybrid_mockup_1789224368327.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700&family=Rozha+One&family=Noto+Serif+Devanagari:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/envelope.css" />
+</head>
+<body>
+
+  <!-- Floating Falling Rose & Eucalyptus Petals Canvas -->
+  <canvas id="petal-canvas"></canvas>
+
+  <!-- Ambient Audio Floating Pill -->
+  <div class="audio-control-pill" id="audio-pill" title="Toggle Auspicious Flute Melody">
+    <div class="music-bars">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <span class="audio-label">♫ Flute</span>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-notification" id="toast">Address copied to clipboard!</div>
+
+  <div class="app-container">
+
+    <!-- ======================================================================
+         Stage 1: 3D Wax Seal & Envelope (Interactive Opening)
+         ====================================================================== -->
+    <div class="envelope-screen-wrapper" id="envelope-screen">
+      <div class="envelope-stage">
+        <div class="envelope" id="main-envelope">
+          
+          <!-- Botanical Foliage Overlays -->
+          <div class="envelope-foliage-top"></div>
+          <div class="envelope-foliage-bottom"></div>
+
+          <!-- 3D Envelope Flaps -->
+          <div class="flap-top"></div>
+          <div class="flap-left"></div>
+          <div class="flap-right"></div>
+          <div class="flap-bottom"></div>
+
+          <!-- Inside Card Sneak Peek -->
+          <div class="inner-card-sneak">
+            <svg class="ganesha-icon-svg" style="width:36px; height:36px;" viewBox="0 0 100 100">
+              <path d="M50 12 C44 12 40 16 40 22 C40 25 42 27 44 29 C38 33 34 40 34 48 C34 56 40 62 48 64 L48 78 C48 81 50 83 53 83 C56 83 58 81 58 78 L58 64 C64 62 70 56 70 48 C70 42 67 36 62 32 C65 29 67 25 67 21 C67 16 63 12 58 12 C56 12 55 13 54 14 C53 13 52 12 50 12 Z M50 20 C52 20 54 22 54 24 C54 26 52 28 50 28 C48 28 46 26 46 24 C46 22 48 20 50 20 Z M45 42 C47 40 53 40 55 42 C57 44 57 48 55 50 C53 52 47 52 45 50 C43 48 43 44 45 42 Z" />
+            </svg>
+            <span style="font-family: var(--font-hindi); font-size: 0.88rem; color: var(--color-gold-dark); margin: 6px 0;">॥ श्री गणेशाय नमः ॥</span>
+            <span style="font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; color: #202b23;">Akash & Pranshi</span>
+          </div>
+
+          <!-- 3D Gold Wax Seal Monogram -->
+          <div class="wax-seal-wrapper" id="wax-seal-wrapper">
+            <div class="wax-seal-stamp">
+              <div class="seal-ring"></div>
+              <div class="seal-monogram">A & P</div>
+            </div>
+            <div class="seal-prompt">Tap to Unseal</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         Stage 2: Full Wedding Invitation Card & Celebrations
+         ====================================================================== -->
+    <main id="wedding-card-view">
+      
+      <!-- Auspicious Hero Card -->
+      <section class="hero-invitation-card">
+        
+        <!-- Lord Ganesha Auspicious Crest -->
+        <div class="ganesha-crest">
+          <svg class="ganesha-icon-svg" viewBox="0 0 100 100">
+            <path d="M50 10 C42 10 38 16 38 23 C38 28 41 31 44 33 C37 38 33 46 33 55 C33 66 41 73 50 74 L50 86 C50 88 52 90 54 90 C56 90 58 88 58 86 L58 74 C66 73 73 66 73 55 C73 47 69 40 63 35 C66 32 68 28 68 23 C68 16 63 10 56 10 C54 10 52 11 51 12 C50 11 48 10 46 10 Z M52 20 C54 20 56 22 56 25 C56 28 54 30 52 30 C50 30 48 28 48 25 C48 22 50 20 52 20 Z M46 44 C49 41 57 41 60 44 C62 47 62 52 59 55 C56 58 48 58 45 55 C42 52 43 47 46 44 Z" />
+          </svg>
+          <div class="ganesha-shloka">॥ श्री गणेशाय नमः ॥</div>
+        </div>
+
+        <span class="hashtag-pill">#APForever</span>
+
+        <p class="invite-prose" style="font-size: 0.92rem; margin-bottom: 8px;">
+          With the heavenly blessings of our beloved elders and families, we joyfully invite you to celebrate the wedding of
+        </p>
+
+        <!-- Couple Names Typography -->
+        <div class="couple-names-block">
+          <span class="couple-name">Akash</span>
+          <span class="ampersand">&</span>
+          <span class="couple-name">Pranshi</span>
+        </div>
+
+        <div class="gold-flourish-divider">
+          <span class="flourish-symbol">✤</span>
+        </div>
+
+        <p class="invite-prose">
+          Two souls, two families, united in love and lifelong companionship.
+        </p>
+
+        <!-- Live Countdown Timer -->
+        <div class="countdown-container">
+          <div class="countdown-title">Counting Down to Our Auspicious Union</div>
+          <div class="countdown-grid">
+            <div class="countdown-slot">
+              <div class="countdown-number" id="cd-days">00</div>
+              <div class="countdown-unit">Days</div>
+            </div>
+            <div class="countdown-slot">
+              <div class="countdown-number" id="cd-hours">00</div>
+              <div class="countdown-unit">Hours</div>
+            </div>
+            <div class="countdown-slot">
+              <div class="countdown-number" id="cd-minutes">00</div>
+              <div class="countdown-unit">Mins</div>
+            </div>
+            <div class="countdown-slot">
+              <div class="countdown-number" id="cd-seconds">00</div>
+              <div class="countdown-unit">Secs</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons Grid -->
+        <div class="cta-actions-group">
+          <button class="btn-gold" id="btn-add-calendar">
+            <span>📅 Add to Google Calendar</span>
+          </button>
+          <button class="btn-whatsapp" id="btn-share-whatsapp">
+            <span>💬 Share Invite on WhatsApp</span>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- ======================================================================
+           Section: Interactive Itinerary Tabs (No Sangeet)
+           ====================================================================== -->
+      <section class="section-container" id="schedule-section">
+        <div class="section-header">
+          <span class="section-label">Wedding Festivities</span>
+          <h2 class="section-heading">Ceremony Itinerary</h2>
+        </div>
+
+        <!-- Tab Pills -->
+        <div class="tab-pills-wrapper">
+          <button class="tab-pill-btn active" data-tab="tab-haldi">
+            Haldi & Mehndi
+          </button>
+          <button class="tab-pill-btn" data-tab="tab-wedding">
+            The Wedding
+          </button>
+        </div>
+
+        <!-- Tab Content 1: Haldi & Mehndi -->
+        <div class="tab-content-card active" id="tab-haldi">
+          <span class="ceremony-badge">Day 1 • Auspicious Vibrance</span>
+          <h3 class="ceremony-title">Haldi & Mehndi Ceremony</h3>
+          <div class="ceremony-datetime">
+            <span>🗓️ Wednesday, 18th November 2026</span>
+          </div>
+
+          <!-- Event Schedule Milestones -->
+          <div class="timeline-milestones">
+            <div class="milestone-item">
+              <span class="milestone-time">11:00 AM</span>
+              <div class="milestone-content">
+                <strong>Haldi Ceremony</strong>
+                <span>Cleansing with fragrant turmeric & marigolds</span>
+              </div>
+            </div>
+            <div class="milestone-item">
+              <span class="milestone-time">01:30 PM</span>
+              <div class="milestone-content">
+                <strong>Festive Family Lunch</strong>
+                <span>Traditional Indian culinary delicacies</span>
+              </div>
+            </div>
+            <div class="milestone-item">
+              <span class="milestone-time">04:30 PM onwards</span>
+              <div class="milestone-content">
+                <strong>Mehndi & Musical Beats</strong>
+                <span>Intricate henna artistry, dholak & evening tea</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ceremony-venue-box">
+            <div class="venue-header-row">
+              <span class="venue-name">📍 Pranshi's Residence</span>
+              <button class="btn-copy-address" onclick="copyAddress('Govindnagar, Moradabad, Uttar Pradesh')">📋 Copy</button>
+            </div>
+            Govindnagar, Moradabad, Uttar Pradesh
+          </div>
+
+          <!-- Dress Code Swatches -->
+          <div class="attire-palette-box">
+            <span class="attire-label">Attire Color Palette • Festive & Joyful</span>
+            <div class="swatches-row">
+              <div class="swatch-item">
+                <div class="swatch-dot" style="background: #F4C430;"></div>
+                <span class="swatch-name">Haldi Gold</span>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch-dot" style="background: #E67E22;"></div>
+                <span class="swatch-name">Marigold</span>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch-dot" style="background: #27AE60;"></div>
+                <span class="swatch-name">Mehendi Green</span>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch-dot" style="background: #E8A7A1;"></div>
+                <span class="swatch-name">Blush Rose</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-gold" onclick="openDirections('haldi')">
+            <span>🗺️ Get Directions on Google Maps</span>
+          </button>
+        </div>
+
+        <!-- Tab Content 2: The Wedding & Reception -->
+        <div class="tab-content-card" id="tab-wedding">
+          <span class="ceremony-badge">Day 2 • Sacred Union & Pheras</span>
+          <h3 class="ceremony-title">The Wedding & Reception</h3>
+          <div class="ceremony-datetime">
+            <span>🗓️ Friday, 20th November 2026</span>
+          </div>
+
+          <!-- Event Schedule Milestones -->
+          <div class="timeline-milestones">
+            <div class="milestone-item">
+              <span class="milestone-time">06:30 PM</span>
+              <div class="milestone-content">
+                <strong>Baraat Arrival & Swagat</strong>
+                <span>Welcoming the groom with joy and drums</span>
+              </div>
+            </div>
+            <div class="milestone-item">
+              <span class="milestone-time">08:00 PM</span>
+              <div class="milestone-content">
+                <strong>Jaimala (Varmala)</strong>
+                <span>Exchange of sacred floral garlands</span>
+              </div>
+            </div>
+            <div class="milestone-item">
+              <span class="milestone-time">08:45 PM onwards</span>
+              <div class="milestone-content">
+                <strong>Royal Dinner Banquet</strong>
+                <span>Celebratory dinner feast with loved ones</span>
+              </div>
+            </div>
+            <div class="milestone-item">
+              <span class="milestone-time">10:30 PM</span>
+              <div class="milestone-content">
+                <strong>Auspicious Pheras & Kanyadaan</strong>
+                <span>Seven sacred vows around the holy fire</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ceremony-venue-box">
+            <div class="venue-header-row">
+              <span class="venue-name">📍 HB Klyde Premier</span>
+              <button class="btn-copy-address" onclick="copyAddress('HB Klyde Premier, Rampur Road, Near Arcadia Greens, Zero Point, Moradabad, Uttar Pradesh 244001')">📋 Copy</button>
+            </div>
+            Rampur Road, Near Arcadia Greens, Zero Point,<br>
+            Moradabad, Uttar Pradesh 244001
+          </div>
+
+          <!-- Dress Code Swatches -->
+          <div class="attire-palette-box">
+            <span class="attire-label">Attire Color Palette • Regal & Traditional</span>
+            <div class="swatches-row">
+              <div class="swatch-item">
+                <div class="swatch-dot" style="background: #800020;"></div>
+                <span class="swatch-name">Royal Maroon</span>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch-dot" style="background: #C29D59;"></div>
+                <span class="swatch-name">Gold Silk</span>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch-dot" style="background: #1B263B;"></div>
+                <span class="swatch-name">Midnight Blue</span>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch-dot" style="background: #FAF7F2; border-color: #ddd;"></div>
+                <span class="swatch-name">Ivory Cream</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-gold" onclick="openDirections('wedding')">
+            <span>🗺️ Get Directions on Google Maps</span>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- ======================================================================
+           Section: Digital "Shower Blessings" Guestbook
+           ====================================================================== -->
+      <section class="section-container" id="guestbook-section">
+        <div class="section-header">
+          <span class="section-label">Your Love & Prayers</span>
+          <h2 class="section-heading">Shower Blessings</h2>
+        </div>
+
+        <div class="guestbook-card">
+          <form class="blessing-form" id="blessing-form">
+            <input 
+              type="text" 
+              id="guest-name" 
+              class="input-field" 
+              placeholder="Your Name (e.g., Sharma Family, Uncle Rajiv)" 
+              required 
+            />
+            <textarea 
+              id="guest-message" 
+              class="textarea-field" 
+              placeholder="Share your heartfelt blessing or warm message for Akash & Pranshi..." 
+              required
+            ></textarea>
+            <button type="submit" class="btn-shower">
+              <span>🌸 Shower Blessings on Akash & Pranshi</span>
+            </button>
+          </form>
+
+          <!-- Wishes Stream -->
+          <div class="wishes-stream" id="wishes-stream">
+            <!-- Dynamically populated by guestbook.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <span class="footer-monogram">A & P</span>
+        <p style="font-weight: 600; color: var(--color-primary); margin-bottom: 4px;">#APForever</p>
+        <p>With love, blessings, and warm gratitude from both families.</p>
+        <p style="font-size: 0.78rem; margin-top: 14px; opacity: 0.75;">18th & 20th November 2026 • Moradabad</p>
+      </footer>
+
+    </main>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="./js/petals.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/envelope.js"></script>
+  <script src="./js/countdown.js"></script>
+  <script src="./js/schedule.js"></script>
+  <script src="./js/guestbook.js"></script>
+
+</body>
+</html>

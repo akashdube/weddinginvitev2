@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akash & Pranshi's Wedding Invite — Design & Experience Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fbf9f6;
+      --card-bg: #ffffff;
+      --primary: #4a5d4e;
+      --gold: #c29d59;
+      --gold-light: #dfbe7d;
+      --text: #2c302e;
+      --text-muted: #727a75;
+      --border: #e8e3dc;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 30px 20px 80px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    /* Floating Canvas for Petals */
+    #petal-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 18px;
+      background: #eef2ed;
+      color: var(--primary);
+      border-radius: 99px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hashtag {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #243328;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    .audio-pill-bar {
+      display: flex;
+      justify-content: center;
+      margin: 25px 0 10px;
+    }
+    .audio-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1.5px solid var(--gold);
+      padding: 10px 24px;
+      border-radius: 99px;
+      box-shadow: 0 8px 25px rgba(194, 157, 89, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .audio-pill:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 30px rgba(194, 157, 89, 0.3);
+    }
+    .music-note {
+      color: var(--gold);
+      font-size: 1.2rem;
+      animation: bounce 1.6s infinite ease-in-out;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      text-align: center;
+      margin: 60px 0 25px;
+      color: #243328;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 2px;
+      background: var(--gold);
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.09);
+    }
+    .selected-card {
+      border: 2px solid var(--gold);
+    }
+    .status-badge {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: linear-gradient(135deg, #c29d59, #dfbe7d);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 5px 14px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(194, 157, 89, 0.4);
+      z-index: 10;
+    }
+    .image-container {
+      position: relative;
+      width: 100%;
+      background: #ede8e1;
+      overflow: hidden;
+      aspect-ratio: 9 / 16;
+    }
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      padding: 6px 14px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .card-body {
+      padding: 26px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #243328;
+    }
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 18px;
+      flex-grow: 1;
+    }
+    .details-box {
+      background: #f7f9f6;
+      border-left: 3px solid var(--gold);
+      padding: 14px 16px;
+      border-radius: 0 12px 12px 0;
+      font-size: 0.9rem;
+      color: #354238;
+      margin-bottom: 16px;
+    }
+    .details-box strong {
+      color: #243328;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .features-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: #4a544e;
+      border-top: 1px dashed var(--border);
+      padding-top: 16px;
+    }
+    .features-list li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .features-list li::before {
+      content: '✦';
+      color: var(--gold);
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .ceremonies-preview {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+    @media (max-width: 768px) {
+      .ceremonies-preview {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 2.4rem; }
+    }
+    .ceremony-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+      position: relative;
+    }
+    .ceremony-card.highlight {
+      border-color: var(--gold);
+    }
+    .ceremony-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+      display: block;
+    }
+    .ceremony-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #243328;
+      margin-bottom: 8px;
+    }
+    .ceremony-time {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .ceremony-venue {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .color-swatches {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .swatch {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Falling Petals Canvas -->
+  <canvas id="petal-canvas"></canvas>
+
+  <header>
+    <div class="badge">Atelier Digital • Custom Wedding Suite</div>
+    <span class="hashtag">#APForever</span>
+    <h1>Akash & Pranshi</h1>
+    <p class="subtitle">The complete confirmed invitation architecture and personalized event itinerary, ready to be coded into your mobile-first website.</p>
+    
+    <div class="audio-pill-bar">
+      <div class="audio-pill" id="audioToggle">
+        <span class="music-note">♫</span>
+        <span style="font-weight: 500; font-size: 0.95rem;">Auspicious Shehnai / Flute (Interactive Audio Active)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ceremony Itinerary Preview -->
+  <h2 class="section-title">Your Confirmed Event Itinerary</h2>
+  <div class="ceremonies-preview">
+    <!-- Haldi & Mehndi -->
+    <div class="ceremony-card">
+      <span class="ceremony-tag">Day 1 • Celebrations</span>
+      <h3 class="ceremony-title">Haldi & Mehndi Ceremony</h3>
+      <div class="ceremony-time">🗓️ Wednesday, 18th November 2026</div>
+      <div class="ceremony-venue">
+        📍 <strong>Venue:</strong> Pranshi's Residence, Govindnagar
+      </div>
+      <div>
+        <span style="font-size: 0.85rem; font-weight: 600; color: #4a544e;">Attire Palette (Festive & Vibrant):</span>
+        <div class="color-swatches">
+          <div class="swatch" style="background: #F4C430;" title="Sunshine Yellow"></div>
+          <div class="swatch" style="background: #E67E22;" title="Marigold Orange"></div>
+          <div class="swatch" style="background: #27AE60;" title="Mehendi Green"></div>
+          <div class="swatch" style="background: #E8A7A1;" title="Blush Rose"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Wedding -->
+    <div class="ceremony-card highlight">
+      <span class="ceremony-tag">Day 2 • Auspicious Union</span>
+      <h3 class="ceremony-title">The Wedding Ceremony & Reception</h3>
+      <div class="ceremony-time">🗓️ Friday, 20th November 2026</div>
+      <div class="ceremony-venue">
+        📍 <strong>Venue:</strong> HB Klyde Premier, Rampur Road, Near Arcadia Greens, Zero Point, Moradabad, UP 244001
+      </div>
+      <div>
+        <span style="font-size: 0.85rem; font-weight: 600; color: #4a544e;">Attire Palette (Regal & Traditional):</span>
+        <div class="color-swatches">
+          <div class="swatch" style="background: #7B1113;" title="Crimson Red"></div>
+          <div class="swatch" style="background: #C29D59;" title="Champagne Gold"></div>
+          <div class="swatch" style="background: #2E4057;" title="Midnight Blue"></div>
+          <div class="swatch" style="background: #FDFBF7; border-color: #ddd;" title="Ivory Silk"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmed Interactive Features -->
+  <h2 class="section-title">The 4-Pillar Interactive Experience</h2>
+  <div class="grid">
+    
+    <!-- 1. The 3D Wax Seal with A & P -->
+    <div class="card selected-card">
+      <div class="status-badge">Confirmed</div>
+      <div class="image-container">
+        <span class="tag">Opening Gesture</span>
+        <img src="./previews/wax_seal_envelope_concept_1789224422808.jpg" alt="A & P Gold Wax Seal Envelope" />
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">1. The 3D Wax Seal ("A & P")</h3>
+        <p class="card-desc">Linen ivory envelope with botanical eucalyptus and a tactile gold wax seal debossed with <strong>A & P</strong>. Tap to crack open with haptic sound and particle burst.</p>
+        <div class="details-box">
+          <strong>Initials:</strong> A & P (Akash & Pranshi)
+        </div>
+        <ul class="features-list">
+          <li>Interactive 3D wax seal break animation</li>
+          <li>Envelope flap smoothly flips open</li>
+          <li>Invitation card slides upward into full view</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 2. Auspicious Lord Ganesha Blessing Card -->
+    <div class="card selected-card">
+      <div class="status-badge">Confirmed</div>
+      <div class="image-container">
+        <span class="tag">Card Reveal</span>
+        <img src="./previews/ganesha_card_concept_1789224770203.jpg" alt="Lord Ganesha Blessing Card" />
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">2. Auspicious Lord Ganesha Crest</h3>
+        <p class="card-desc">The crown of the card carries an auspicious gold Lord Ganesha motif with <em>“|| Shri Ganeshaya Namah ||”</em>, followed by Akash & Pranshi's wedding details.</p>
+        <div class="details-box">
+          <strong>Hashtag:</strong> #APForever<br>
+          <strong>Countdown:</strong> Live to 20 Nov 2026
+        </div>
+        <ul class="features-list">
+          <li>Minimalist gold-embossed Ganesha blessing</li>
+          <li>Live countdown timer (Days, Hours, Minutes, Secs)</li>
+          <li>1-tap "Add to Google Calendar" button</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 3. Interactive Event Tabs (No Sangeet) -->
+    <div class="card selected-card">
+      <div class="status-badge">Confirmed</div>
+      <div class="image-container">
+        <span class="tag">Event Tabs</span>
+        <img src="./previews/events_timeline_tabs_concept_1789224783611.jpg" alt="Interactive Day & Event Tabs" />
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">3. Interactive Event Tabs</h3>
+        <p class="card-desc">Custom tabs for Haldi & Mehndi (Nov 18) and The Wedding & Reception (Nov 20). Zero clutter with instant tab switching.</p>
+        <div class="details-box">
+          <strong>Govindnagar & Moradabad Venues</strong><br>
+          Direct Google Maps pin integration
+        </div>
+        <ul class="features-list">
+          <li>Haldi & Mehndi Tab (Pranshi's Residence)</li>
+          <li>The Wedding Tab (HB Klyde Premier, Moradabad)</li>
+          <li>Interactive dress-code color swatches</li>
+          <li>1-tap Google Maps directions button</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 4. Digital Shower Blessings Guestbook -->
+    <div class="card selected-card">
+      <div class="status-badge">Confirmed</div>
+      <div class="image-container">
+        <span class="tag">Guestbook</span>
+        <img src="./previews/guestbook_wishes_concept_1789225007925.jpg" alt="Shower Blessings Guestbook" />
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">4. "Shower Blessings" Guestbook</h3>
+        <p class="card-desc">An interactive digital guestbook where friends and family send warm wishes and blessings to Akash & Pranshi.</p>
+        <div class="details-box">
+          <strong>Celebratory Petal Confetti:</strong> Triggers on every blessing submitted!
+        </div>
+        <ul class="features-list">
+          <li>"Shower Blessings" celebratory particle burst</li>
+          <li>Live wish cards with heart-like counters</li>
+          <li>Lightweight local storage & exportable</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Interactive Falling Petals Script for Live Demo in Preview -->
+  <script>
+    const canvas = document.getElementById('petal-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const petalCount = 28;
+    const petals = [];
+    const colors = [
+      'rgba(240, 192, 192, 0.65)', // Blush rose
+      'rgba(235, 175, 175, 0.55)', // Soft pink
+      'rgba(142, 169, 146, 0.5)',  // Sage eucalyptus
+      'rgba(223, 190, 125, 0.45)'  // Gold glimmer
+    ];
+
+    for (let i = 0; i < petalCount; i++) {
+      petals.push({
+        x: Math.random() * width,
+        y: Math.random() * height - height,
+        r: Math.random() * 8 + 6,
+        d: Math.random() * petalCount,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        tilt: Math.floor(Math.random() * 10) - 10,
+        tiltAngleIncremental: (Math.random() * 0.07) + 0.05,
+        tiltAngle: 0
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < petalCount; i++) {
+        const p = petals[i];
+        ctx.beginPath();
+        ctx.lineWidth = p.r / 2;
+        ctx.strokeStyle = p.color;
+        ctx.fillStyle = p.color;
+        
+        ctx.moveTo(p.x + p.tilt + (p.r / 4), p.y);
+        ctx.quadraticCurveTo(p.x + p.tilt, p.y + p.r, p.x + p.tilt - (p.r / 4), p.y + p.r * 1.5);
+        ctx.quadraticCurveTo(p.x + p.tilt + (p.r / 2), p.y + p.r * 2, p.x + p.tilt + (p.r / 4), p.y);
+        ctx.fill();
+
+        p.tiltAngle += p.tiltAngleIncremental;
+        p.y += (Math.cos(p.d) + 1.2 + p.r / 4) * 0.6;
+        p.x += Math.sin(p.d) * 0.8;
+        p.tilt = Math.sin(p.tiltAngle - (i / 3)) * 12;
+
+        if (p.y > height) {
+          petals[i] = {
+            x: Math.random() * width,
+            y: -20,
+            r: p.r,
+            d: p.d,
+            color: p.color,
+            tilt: Math.floor(Math.random() * 10) - 10,
+            tiltAngleIncremental: p.tiltAngleIncremental,
+            tiltAngle: p.tiltAngle
+          };
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+    // Audio pill feedback
+    const audioBtn = document.getElementById('audioToggle');
+    audioBtn.addEventListener('click', () => {
+      alert('♫ In the full website, this plays an authentic, soothing Indian Flute & Shehnai instrumental track.');
+    });
+  </script>
+
+</body>
+</html>

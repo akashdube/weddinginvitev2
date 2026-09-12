@@ -1,0 +1,870 @@
+/* ==========================================================================
+   Akash & Pranshi Wedding Invitation (#APForever)
+   Design System: Modern Botanical Editorial
+   ========================================================================== */
+
+:root {
+  /* Color Tokens */
+  --color-bg: #fcfaf7;
+  --color-card-bg: #ffffff;
+  --color-primary: #3d5042;
+  --color-primary-light: #526857;
+  --color-sage: #8ea992;
+  --color-sage-soft: rgba(142, 169, 146, 0.15);
+  --color-gold: #c29d59;
+  --color-gold-light: #e5cd96;
+  --color-gold-dark: #9e7a36;
+  --color-gold-gradient: linear-gradient(135deg, #c29d59 0%, #ecd399 50%, #9e7a36 100%);
+  --color-blush: #eac5c8;
+  --color-blush-soft: rgba(234, 197, 200, 0.25);
+  --color-text: #262927;
+  --color-text-muted: #676e69;
+  --color-border: #ede7dd;
+  --color-border-gold: rgba(194, 157, 89, 0.35);
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-hindi: 'Rozha One', 'Noto Serif Devanagari', serif;
+
+  /* Shadows & Glassmorphism */
+  --shadow-subtle: 0 8px 30px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 15px 45px rgba(50, 40, 30, 0.08);
+  --shadow-gold: 0 8px 25px rgba(194, 157, 89, 0.28);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.7);
+  --glass-blur: blur(14px);
+
+  /* Layout */
+  --container-width: 480px; /* Mobile optimal width */
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-pill: 999px;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(234, 197, 200, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(142, 169, 146, 0.12) 0px, transparent 50%);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Background Petals Canvas */
+#petal-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* App Wrapper */
+.app-container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Floating Audio Control Pill */
+.audio-control-pill {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 999;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--color-border-gold);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.audio-control-pill:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-gold);
+}
+
+.audio-control-pill.playing .music-bars span {
+  animation: equalize 1.2s infinite ease-in-out;
+}
+
+.music-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 14px;
+}
+
+.music-bars span {
+  width: 2.5px;
+  height: 100%;
+  background: var(--color-gold);
+  border-radius: 2px;
+  transform-origin: bottom;
+}
+
+.music-bars span:nth-child(1) { height: 40%; }
+.music-bars span:nth-child(2) { height: 90%; }
+.music-bars span:nth-child(3) { height: 60%; }
+
+@keyframes equalize {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+.audio-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Main Wedding Card & Sections
+   ========================================================================== */
+
+#wedding-card-view {
+  display: none;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  padding: 16px 16px 80px;
+  width: 100%;
+}
+
+#wedding-card-view.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Botanical Hero Card */
+.hero-invitation-card {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  padding: 40px 24px 34px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+/* Subtle corner botanical watermarks */
+.hero-invitation-card::before,
+.hero-invitation-card::after {
+  content: '';
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+.hero-invitation-card::before {
+  top: 0;
+  left: 0;
+  background-image: radial-gradient(circle at top left, rgba(142, 169, 146, 0.4), transparent 70%);
+}
+
+.hero-invitation-card::after {
+  bottom: 0;
+  right: 0;
+  background-image: radial-gradient(circle at bottom right, rgba(234, 197, 200, 0.4), transparent 70%);
+}
+
+/* Auspicious Lord Ganesha Header */
+.ganesha-crest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ganesha-icon-svg {
+  width: 58px;
+  height: 58px;
+  fill: var(--color-gold);
+  filter: drop-shadow(0 2px 8px rgba(194, 157, 89, 0.3));
+  margin-bottom: 8px;
+  transition: transform 0.4s ease;
+}
+
+.ganesha-icon-svg:hover {
+  transform: scale(1.06);
+}
+
+.ganesha-shloka {
+  font-family: var(--font-hindi);
+  color: var(--color-gold-dark);
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(194, 157, 89, 0.15);
+}
+
+/* Hashtag Pill */
+.hashtag-pill {
+  display: inline-block;
+  padding: 4px 14px;
+  background: var(--color-sage-soft);
+  color: var(--color-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  border-radius: var(--radius-pill);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+/* Couple Names Typography */
+.couple-names-block {
+  margin: 10px 0 18px;
+}
+
+.couple-name {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 8vw, 3rem);
+  font-weight: 700;
+  color: #202b23;
+  line-height: 1.1;
+  display: block;
+  letter-spacing: 0.02em;
+}
+
+.ampersand {
+  font-family: var(--font-script);
+  font-size: clamp(2rem, 6vw, 2.6rem);
+  color: var(--color-gold);
+  display: block;
+  margin: -4px 0;
+  font-weight: 400;
+}
+
+/* Invitation Text */
+.invite-prose {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  max-width: 320px;
+  margin: 0 auto 22px;
+  line-height: 1.6;
+}
+
+.gold-flourish-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.gold-flourish-divider::before,
+.gold-flourish-divider::after {
+  content: '';
+  height: 1px;
+  width: 50px;
+  background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+}
+
+.flourish-symbol {
+  color: var(--color-gold);
+  font-size: 0.9rem;
+}
+
+/* Live Countdown Box */
+.countdown-container {
+  background: rgba(253, 251, 248, 0.9);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 18px 12px;
+  margin: 20px 0 24px;
+}
+
+.countdown-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.countdown-grid {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.countdown-slot {
+  background: #ffffff;
+  border: 1px solid rgba(194, 157, 89, 0.25);
+  border-radius: 12px;
+  padding: 10px 8px;
+  min-width: 60px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.countdown-number {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--color-gold-dark);
+  line-height: 1;
+}
+
+.countdown-unit {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+/* Action Buttons */
+.btn-gold {
+  background: var(--color-gold-gradient);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-gold);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  width: 100%;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(194, 157, 89, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background: var(--color-sage-soft);
+}
+
+/* ==========================================================================
+   Section: Interactive Event Tabs (Schedule)
+   ========================================================================== */
+
+.section-container {
+  margin-bottom: 30px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: #202b23;
+  font-weight: 700;
+}
+
+/* Tab Navigation Buttons */
+.tab-pills-wrapper {
+  display: flex;
+  background: #f1ede6;
+  padding: 5px;
+  border-radius: var(--radius-pill);
+  gap: 6px;
+  margin-bottom: 18px;
+  border: 1px solid var(--color-border);
+}
+
+.tab-pill-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 10px 14px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.tab-pill-btn.active {
+  background: #ffffff;
+  color: var(--color-primary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Tab Content Cards */
+.tab-content-card {
+  display: none;
+  background: var(--color-card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  padding: 28px 22px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.tab-content-card.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ceremony-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  margin-bottom: 8px;
+}
+
+.ceremony-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #202b23;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.ceremony-datetime {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 14px;
+}
+
+.ceremony-venue-box {
+  background: #fbfaf7;
+  border-left: 3px solid var(--color-gold);
+  border-radius: 0 10px 10px 0;
+  padding: 14px;
+  margin-bottom: 18px;
+  font-size: 0.92rem;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.venue-name {
+  font-weight: 700;
+  color: #202b23;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* Attire Palette Section */
+.attire-palette-box {
+  margin: 18px 0;
+  padding-top: 16px;
+  border-top: 1px dashed var(--color-border);
+}
+
+.attire-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.swatches-row {
+  display: flex;
+  gap: 12px;
+}
+
+.swatch-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.swatch-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.swatch-name {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   Section: Shower Blessings Guestbook
+   ========================================================================== */
+
+.guestbook-card {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  padding: 28px 22px;
+}
+
+.blessing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.input-field,
+.textarea-field {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background: #fdfcfb;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus,
+.textarea-field:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(194, 157, 89, 0.15);
+  background: #ffffff;
+}
+
+.textarea-field {
+  resize: vertical;
+  min-height: 85px;
+}
+
+.btn-shower {
+  background: linear-gradient(135deg, #c29d59 0%, #e0c182 100%);
+  color: #ffffff;
+  border: none;
+  padding: 14px 20px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-shower:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(194, 157, 89, 0.35);
+}
+
+/* Live Wish Cards List */
+.wishes-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wish-item {
+  background: #fcfaf7;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.wish-item:hover {
+  transform: translateY(-1px);
+}
+
+.wish-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.wish-author {
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+}
+
+.wish-time {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.wish-text {
+  font-size: 0.9rem;
+  color: #3b423d;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.wish-heart-btn {
+  background: rgba(234, 197, 200, 0.3);
+  border: 1px solid rgba(234, 197, 200, 0.6);
+  color: #b54a55;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+}
+
+.wish-heart-btn:hover,
+.wish-heart-btn.liked {
+  background: #b54a55;
+  color: #ffffff;
+  border-color: #b54a55;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px 16px 20px;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.footer-monogram {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* CTA Buttons Group */
+.cta-actions-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btn-whatsapp {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 14px 24px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.28);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  width: 100%;
+}
+
+.btn-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.38);
+}
+
+/* Timeline Milestones */
+.timeline-milestones {
+  margin: 18px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-left: 2px solid rgba(194, 157, 89, 0.25);
+  padding-left: 14px;
+  margin-left: 6px;
+}
+
+.milestone-item {
+  position: relative;
+}
+
+.milestone-item::before {
+  content: '';
+  position: absolute;
+  left: -19px;
+  top: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px rgba(194, 157, 89, 0.4);
+}
+
+.milestone-time {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--color-gold-dark);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: block;
+}
+
+.milestone-content strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #202b23;
+  margin: 1px 0;
+}
+
+.milestone-content span {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  display: block;
+}
+
+/* Venue Header & Copy Button */
+.venue-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.btn-copy-address {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-copy-address:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold-dark);
+  background: #fdfaf4;
+}
+
+/* Toast Notification */
+.toast-notification {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #242c26;
+  color: #ffffff;
+  border: 1px solid var(--color-gold);
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+.toast-notification.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+

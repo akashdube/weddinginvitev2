@@ -1,0 +1,16 @@
+# Restored chat history & local notes
+RESTORED_CHAT_HISTORY.md
+*.chat.md
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor & IDE configurations
+.vscode/
+.idea/
+
+# Temporary / Log files
+*.tmp
+*.log

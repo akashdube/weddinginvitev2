@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Akash & Pranshi's Wedding Invite — Design & Experience Preview</title>
+  <title>Pranshi & Akash's Wedding Invite — Design & Experience Preview</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Monsieur+La+Doulaise&family=Outfit:wght@300;400;500;600;700&family=Parisienne&family=Pinyon+Script&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --bg: #fbf9f6;
@@ -18,11 +21,13 @@
       --text-muted: #727a75;
       --border: #e8e3dc;
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
       font-family: 'Outfit', sans-serif;
       background: var(--bg);
@@ -32,6 +37,7 @@
       position: relative;
       overflow-x: hidden;
     }
+
     /* Floating Canvas for Petals */
     #petal-canvas {
       position: fixed;
@@ -42,11 +48,13 @@
       pointer-events: none;
       z-index: 9999;
     }
+
     header {
       text-align: center;
       max-width: 800px;
       margin: 0 auto 40px;
     }
+
     .badge {
       display: inline-block;
       padding: 6px 18px;
@@ -59,6 +67,7 @@
       text-transform: uppercase;
       margin-bottom: 12px;
     }
+
     .hashtag {
       font-family: 'Outfit', sans-serif;
       font-weight: 600;
@@ -68,6 +77,7 @@
       margin-bottom: 8px;
       display: block;
     }
+
     h1 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 3rem;
@@ -76,17 +86,20 @@
       line-height: 1.15;
       margin-bottom: 12px;
     }
+
     p.subtitle {
       color: var(--text-muted);
       font-size: 1.1rem;
       max-width: 650px;
       margin: 0 auto;
     }
+
     .audio-pill-bar {
       display: flex;
       justify-content: center;
       margin: 25px 0 10px;
     }
+
     .audio-pill {
       display: inline-flex;
       align-items: center;
@@ -99,19 +112,30 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
+
     .audio-pill:hover {
       transform: scale(1.03);
       box-shadow: 0 12px 30px rgba(194, 157, 89, 0.3);
     }
+
     .music-note {
       color: var(--gold);
       font-size: 1.2rem;
       animation: bounce 1.6s infinite ease-in-out;
     }
+
     @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-3px); }
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-3px);
+      }
     }
+
     .section-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.2rem;
@@ -120,6 +144,7 @@
       color: #243328;
       position: relative;
     }
+
     .section-title::after {
       content: '';
       display: block;
@@ -129,6 +154,7 @@
       margin: 10px auto 0;
       border-radius: 2px;
     }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -136,24 +162,28 @@
       max-width: 1200px;
       margin: 0 auto;
     }
+
     .card {
       background: var(--card-bg);
       border-radius: 22px;
       overflow: hidden;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.06);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
       border: 1px solid var(--border);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
       position: relative;
     }
+
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 18px 45px rgba(0,0,0,0.09);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.09);
     }
+
     .selected-card {
       border: 2px solid var(--gold);
     }
+
     .status-badge {
       position: absolute;
       top: -12px;
@@ -169,6 +199,7 @@
       box-shadow: 0 4px 12px rgba(194, 157, 89, 0.4);
       z-index: 10;
     }
+
     .image-container {
       position: relative;
       width: 100%;
@@ -176,12 +207,14 @@
       overflow: hidden;
       aspect-ratio: 9 / 16;
     }
+
     .image-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
+
     .tag {
       position: absolute;
       top: 14px;
@@ -193,14 +226,16 @@
       font-size: 0.8rem;
       font-weight: 600;
       color: var(--primary);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
+
     .card-body {
       padding: 26px;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
     }
+
     .card-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.6rem;
@@ -208,12 +243,14 @@
       margin-bottom: 10px;
       color: #243328;
     }
+
     .card-desc {
       color: var(--text-muted);
       font-size: 0.98rem;
       margin-bottom: 18px;
       flex-grow: 1;
     }
+
     .details-box {
       background: #f7f9f6;
       border-left: 3px solid var(--gold);
@@ -223,11 +260,13 @@
       color: #354238;
       margin-bottom: 16px;
     }
+
     .details-box strong {
       color: #243328;
       display: block;
       margin-bottom: 4px;
     }
+
     .features-list {
       list-style: none;
       font-size: 0.9rem;
@@ -235,18 +274,21 @@
       border-top: 1px dashed var(--border);
       padding-top: 16px;
     }
+
     .features-list li {
       margin-bottom: 8px;
       display: flex;
       align-items: flex-start;
       gap: 10px;
     }
+
     .features-list li::before {
       content: '✦';
       color: var(--gold);
       font-size: 0.9rem;
       line-height: 1.4;
     }
+
     .ceremonies-preview {
       max-width: 1000px;
       margin: 0 auto;
@@ -254,23 +296,30 @@
       grid-template-columns: 1fr 1fr;
       gap: 25px;
     }
+
     @media (max-width: 768px) {
       .ceremonies-preview {
         grid-template-columns: 1fr;
       }
-      h1 { font-size: 2.4rem; }
+
+      h1 {
+        font-size: 2.4rem;
+      }
     }
+
     .ceremony-card {
       background: #fff;
       border: 1.5px solid var(--border);
       border-radius: 18px;
       padding: 24px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
       position: relative;
     }
+
     .ceremony-card.highlight {
       border-color: var(--gold);
     }
+
     .ceremony-tag {
       font-size: 0.75rem;
       font-weight: 700;
@@ -280,6 +329,7 @@
       margin-bottom: 6px;
       display: block;
     }
+
     .ceremony-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.6rem;
@@ -287,33 +337,456 @@
       color: #243328;
       margin-bottom: 8px;
     }
+
     .ceremony-time {
       font-size: 0.95rem;
       font-weight: 600;
       color: var(--primary);
       margin-bottom: 12px;
     }
+
     .ceremony-venue {
       font-size: 0.92rem;
       color: var(--text-muted);
       line-height: 1.5;
       margin-bottom: 14px;
     }
+
     .color-swatches {
       display: flex;
       align-items: center;
       gap: 10px;
       margin-top: 10px;
     }
+
     .swatch {
       width: 24px;
       height: 24px;
       border-radius: 50%;
       border: 2px solid #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ======================================================================
+       Interactive Wax Seal & Cursive Typography Design Studio
+       ====================================================================== */
+    .seal-studio-section {
+      max-width: 1100px;
+      margin: 0 auto 55px;
+      background: #ffffff;
+      border: 2px solid var(--gold);
+      border-radius: 26px;
+      padding: 38px 28px 45px;
+      box-shadow: 0 16px 50px rgba(194, 157, 89, 0.16);
+      position: relative;
+    }
+
+    .studio-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #c29d59, #dfbe7d);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 18px;
+      border-radius: 99px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(194, 157, 89, 0.35);
+    }
+
+    .studio-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.3rem;
+      color: #243328;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .studio-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 780px;
+      margin: 0 auto 28px;
+      text-align: center;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background: #fbf9f5;
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 16px 24px;
+      margin-bottom: 35px;
+    }
+
+    .controls-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .controls-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .btn-toggle-group {
+      display: inline-flex;
+      background: #eee8de;
+      padding: 4px;
+      border-radius: 99px;
+      gap: 4px;
+    }
+
+    .btn-toggle {
+      border: none;
+      background: transparent;
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: #636d65;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-toggle.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+    }
+
+    /* Side-by-side Seal Options Grid */
+    .seal-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+      margin-bottom: 35px;
+    }
+
+    .seal-option-card {
+      background: #fcfaf7;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 24px 16px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .seal-option-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      border-color: var(--gold);
+    }
+
+    .seal-option-card.selected {
+      border-color: var(--gold);
+      background: #ffffff;
+      box-shadow: 0 12px 35px rgba(194, 157, 89, 0.28);
+    }
+
+    .seal-option-card.selected::after {
+      content: '✓ Active Choice';
+      position: absolute;
+      top: -12px;
+      right: 14px;
+      background: linear-gradient(135deg, #c29d59, #dfbe7d);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 99px;
+      box-shadow: 0 3px 8px rgba(194, 157, 89, 0.4);
+    }
+
+    .seal-display-stage {
+      height: 145px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+
+    .seal-spec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #243328;
+      margin-bottom: 4px;
+    }
+
+    .seal-spec-font {
+      font-size: 0.82rem;
+      color: var(--gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+
+    .seal-spec-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* 3D Wax Seal Render Component */
+    .wax-seal-sample {
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #f5db9e, #c29d59 52%, #75521b 100%);
+      box-shadow:
+        0 14px 32px rgba(117, 82, 27, 0.45),
+        inset 0 2px 6px rgba(255, 255, 255, 0.75),
+        inset 0 -5px 10px rgba(0, 0, 0, 0.38);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 3.5px solid rgba(240, 215, 160, 0.65);
+      transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+      user-select: none;
+    }
+
+    .wax-seal-sample .inner-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(255, 255, 255, 0.52);
+      pointer-events: none;
+      transition: all 0.35s ease;
+    }
+
+    .wax-seal-sample .monogram-text {
+      color: #4a320c;
+      text-shadow:
+        0 1px 1px rgba(255, 255, 255, 0.75),
+        0 -1px 2px rgba(0, 0, 0, 0.42);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      transition: all 0.35s ease;
+    }
+
+    .wax-seal-sample .monogram-text .amp {
+      font-size: 0.62em;
+      opacity: 0.85;
+      margin: 0 4px;
+      font-family: 'Great Vibes', cursive !important;
+      position: relative;
+      top: 1px;
+    }
+
+    /* Dynamic Size Classes */
+    .seal-size-default {
+      width: 88px;
+      height: 88px;
+    }
+
+    .seal-size-default .inner-ring {
+      width: 72px;
+      height: 72px;
+    }
+
+    .seal-size-default .monogram-text {
+      font-size: 1.85rem;
+    }
+
+    .seal-size-majestic {
+      width: 112px;
+      height: 112px;
+    }
+
+    .seal-size-majestic .inner-ring {
+      width: 92px;
+      height: 92px;
+    }
+
+    .seal-size-majestic .monogram-text {
+      font-size: 2.45rem;
+    }
+
+    .seal-size-grand {
+      width: 128px;
+      height: 128px;
+    }
+
+    .seal-size-grand .inner-ring {
+      width: 106px;
+      height: 106px;
+    }
+
+    .seal-size-grand .monogram-text {
+      font-size: 2.85rem;
+    }
+
+    /* Exact Reference Match */
+    .wax-seal-sample.seal-reference-matched {
+      background: url('./assets/wax_seal_pa.png') center/contain no-repeat !important;
+      border: none !important;
+      box-shadow: none !important;
+      filter: drop-shadow(0 14px 28px rgba(117, 82, 27, 0.45));
+    }
+    .wax-seal-sample.seal-reference-matched .inner-ring,
+    .wax-seal-sample.seal-reference-matched .monogram-text {
+      display: none !important;
+    }
+
+    /* Font Variations */
+    .font-pinyon {
+      font-family: 'Pinyon Script', cursive !important;
+    }
+
+    .font-greatvibes {
+      font-family: 'Great Vibes', cursive !important;
+    }
+
+    .font-alexbrush {
+      font-family: 'Alex Brush', cursive !important;
+    }
+
+    .font-doulise {
+      font-family: 'Monsieur La Doulaise', cursive !important;
+    }
+
+    .font-original {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 700;
+    }
+
+    /* Live Interactive Envelope Simulator Box */
+    .envelope-simulator-box {
+      margin-top: 10px;
+      background: #fbf9f5;
+      border: 1.5px solid var(--border);
+      border-radius: 22px;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .envelope-sim-header {
+      margin-bottom: 22px;
+    }
+
+    .envelope-sim-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      color: #243328;
+      font-weight: 700;
+    }
+
+    .envelope-sim-header p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .mock-envelope-wrapper {
+      perspective: 1200px;
+      margin: 10px 0 16px;
+    }
+
+    .mock-envelope {
+      width: 320px;
+      height: 250px;
+      background: #fbf9f5;
+      border: 1.5px solid #e2dad0;
+      border-radius: 16px;
+      box-shadow:
+        0 20px 50px rgba(50, 40, 30, 0.16),
+        0 4px 12px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: visible;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mock-flap-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-top: 125px solid #f6efe4;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.06));
+      z-index: 10;
+    }
+
+    .mock-flap-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-bottom: 130px solid #fbf9f5;
+      z-index: 8;
+    }
+
+    .mock-ribbon {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 56px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, #ecd3be 0%, #f4e7d9 50%, #ecd3be 100%);
+      border-top: 1px solid rgba(194, 157, 89, 0.45);
+      border-bottom: 1px solid rgba(194, 157, 89, 0.45);
+      z-index: 12;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    .mock-seal-anchor {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 20;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.25s ease;
+    }
+
+    .mock-seal-anchor:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    .sim-hint {
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: var(--gold-dark);
+      font-weight: 600;
     }
   </style>
 </head>
+
 <body>
 
   <!-- Floating Falling Petals Canvas -->
@@ -321,10 +794,11 @@
 
   <header>
     <div class="badge">Atelier Digital • Custom Wedding Suite</div>
-    <span class="hashtag">#APForever</span>
-    <h1>Akash & Pranshi</h1>
-    <p class="subtitle">The complete confirmed invitation architecture and personalized event itinerary, ready to be coded into your mobile-first website.</p>
-    
+    <span class="hashtag">#PAForever</span>
+    <h1>Pranshi & Akash</h1>
+    <p class="subtitle">The complete confirmed invitation architecture and personalized event itinerary, ready to be
+      coded into your mobile-first website.</p>
+
     <div class="audio-pill-bar">
       <div class="audio-pill" id="audioToggle">
         <span class="music-note">♫</span>
@@ -332,6 +806,123 @@
       </div>
     </div>
   </header>
+
+  <!-- ======================================================================
+       INTERACTIVE DESIGN LAB: Wax Seal Size & Cursive Typography Options
+       ====================================================================== -->
+  <section class="seal-studio-section" id="seal-studio">
+    <div style="text-align: center;">
+      <span class="studio-badge">Custom Seal Studio</span>
+      <h2 class="studio-title">Wax Seal Design & Monogram Options (P &amp; A)</h2>
+      <p class="studio-desc">
+        Compare the <strong>exact match to your reference image</strong> alongside alternative elegant cursive options below. Click any card to preview how it looks directly on the envelope.
+      </p>
+    </div>
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+      <div class="controls-group">
+        <span class="controls-label">Seal Diameter Size:</span>
+        <div class="btn-toggle-group" id="size-toggle-group">
+          <button class="btn-toggle" data-size="seal-size-default">Original (88px)</button>
+          <button class="btn-toggle active" data-size="seal-size-majestic">Majestic (112px) • Recommended</button>
+          <button class="btn-toggle" data-size="seal-size-grand">Grand Royal (128px)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 Typography & Monogram Options -->
+    <div class="seal-options-grid" id="seal-options-grid">
+
+      <!-- Option 1: Reference Match - Laurel Wreath & P & A (Recommended) -->
+      <div class="seal-option-card selected" data-font="font-reference" data-is-ref="true" data-name="Option 1: Reference Laurel Wreath Crest" data-desc="Exact match to your reference: Organic melted gold rim, symmetrical botanical laurel wreath, and debossed Roman serif P &amp; A with cursive ampersand.">
+        <div class="seal-display-stage">
+          <div class="wax-seal-sample seal-size-majestic seal-reference-matched">
+            <div class="inner-ring"></div>
+            <div class="monogram-text"></div>
+          </div>
+        </div>
+        <h3 class="seal-spec-title">Option 1: Reference Match</h3>
+        <span class="seal-spec-font">Laurel Wreath &amp; P &amp; A Monogram • Recommended</span>
+        <p class="seal-spec-desc">Exact match to your reference: Organic melted rim, botanical laurel wreath, and debossed serif P &amp; A with cursive ampersand.</p>
+      </div>
+
+      <!-- Option 2: Pinyon Script Calligraphy -->
+      <div class="seal-option-card" data-font="font-pinyon" data-is-ref="false" data-name="Option 2: Pinyon Script" data-desc="Aristocratic French calligraphy with dramatic slanted capitals and graceful flourishes.">
+        <div class="seal-display-stage">
+          <div class="wax-seal-sample seal-size-majestic">
+            <div class="inner-ring"></div>
+            <div class="monogram-text font-pinyon">
+              <span>P</span><span class="amp">&amp;</span><span>A</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="seal-spec-title">Option 2: Pinyon Script</h3>
+        <span class="seal-spec-font">French Royal Calligraphy</span>
+        <p class="seal-spec-desc">High-society luxury script with dramatic slanted capitals, fine hair-lines, and elegant romantic poise.</p>
+      </div>
+
+      <!-- Option 3: Great Vibes -->
+      <div class="seal-option-card" data-font="font-greatvibes" data-is-ref="false" data-name="Option 3: Great Vibes" data-desc="Sweeping classic royal calligraphy with balanced, flowing curves on both P and A.">
+        <div class="seal-display-stage">
+          <div class="wax-seal-sample seal-size-majestic">
+            <div class="inner-ring"></div>
+            <div class="monogram-text font-greatvibes">
+              <span>P</span><span class="amp">&amp;</span><span>A</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="seal-spec-title">Option 3: Great Vibes</h3>
+        <span class="seal-spec-font">Classic Sweeping Script</span>
+        <p class="seal-spec-desc">Formal traditional wedding calligraphy with sweeping, open ascenders and fluid graceful loops.</p>
+      </div>
+
+      <!-- Option 4: Alex Brush -->
+      <div class="seal-option-card" data-font="font-alexbrush" data-is-ref="false" data-name="Option 4: Alex Brush" data-desc="Smooth flowing signature calligraphy with exceptional legibility and modern elegance.">
+        <div class="seal-display-stage">
+          <div class="wax-seal-sample seal-size-majestic">
+            <div class="inner-ring"></div>
+            <div class="monogram-text font-alexbrush">
+              <span>P</span><span class="amp">&amp;</span><span>A</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="seal-spec-title">Option 4: Alex Brush</h3>
+        <span class="seal-spec-font">Graceful Signature Script</span>
+        <p class="seal-spec-desc">Soft, flowing, clean signature strokes that remain crisp, highly legible, and beautifully poised.</p>
+      </div>
+
+    </div>
+
+    <!-- Live Envelope Simulator -->
+    <div class="envelope-simulator-box">
+      <div class="envelope-sim-header">
+        <h3>Live Envelope Appearance</h3>
+        <p>Previewing current selection: <strong id="sim-font-label" style="color: var(--primary);">Option 1: Reference Match (Laurel Wreath)</strong> at <strong id="sim-size-label" style="color: var(--gold-dark);">Majestic (112px)</strong></p>
+      </div>
+
+      <div class="mock-envelope-wrapper">
+        <div class="mock-envelope">
+          <div class="mock-flap-top"></div>
+          <div class="mock-ribbon"></div>
+          <div class="mock-flap-bottom"></div>
+
+          <!-- Active Simulated Wax Seal -->
+          <div class="mock-seal-anchor" id="sim-seal-anchor">
+            <div class="wax-seal-sample seal-size-majestic seal-reference-matched" id="sim-seal-sample">
+              <div class="inner-ring"></div>
+              <div class="monogram-text font-pinyon" id="sim-monogram-text">
+                <span>P</span><span class="amp">&amp;</span><span>A</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <span class="sim-hint">✦ Click any option card or size above to update this preview in real-time</span>
+    </div>
+
+  </section>
 
   <!-- Ceremony Itinerary Preview -->
   <h2 class="section-title">Your Confirmed Event Itinerary</h2>
@@ -378,19 +969,21 @@
   <!-- Confirmed Interactive Features -->
   <h2 class="section-title">The 4-Pillar Interactive Experience</h2>
   <div class="grid">
-    
-    <!-- 1. The 3D Wax Seal with A & P -->
+
+    <!-- 1. The 3D Wax Seal with P & A -->
     <div class="card selected-card">
       <div class="status-badge">Confirmed</div>
       <div class="image-container">
         <span class="tag">Opening Gesture</span>
-        <img src="./previews/wax_seal_envelope_concept_1789224422808.jpg" alt="A & P Gold Wax Seal Envelope" />
+        <img src="./previews/wax_seal_envelope_concept_1789224422808.jpg" alt="P & A Gold Wax Seal Envelope" />
       </div>
       <div class="card-body">
-        <h3 class="card-title">1. The 3D Wax Seal ("A & P")</h3>
-        <p class="card-desc">Linen ivory envelope with botanical eucalyptus and a tactile gold wax seal debossed with <strong>A & P</strong>. Tap to crack open with haptic sound and particle burst.</p>
+        <h3 class="card-title">1. The 3D Wax Seal ("P & A")</h3>
+        <p class="card-desc">Linen ivory envelope with botanical eucalyptus and a tactile gold wax seal debossed with
+          <strong>P & A</strong>. Tap to crack open with haptic sound and particle burst.
+        </p>
         <div class="details-box">
-          <strong>Initials:</strong> A & P (Akash & Pranshi)
+          <strong>Initials:</strong> P & A (Pranshi & Akash)
         </div>
         <ul class="features-list">
           <li>Interactive 3D wax seal break animation</li>
@@ -409,9 +1002,10 @@
       </div>
       <div class="card-body">
         <h3 class="card-title">2. Auspicious Lord Ganesha Crest</h3>
-        <p class="card-desc">The crown of the card carries an auspicious gold Lord Ganesha motif with <em>“|| Shri Ganeshaya Namah ||”</em>, followed by Akash & Pranshi's wedding details.</p>
+        <p class="card-desc">The crown of the card carries an auspicious gold Lord Ganesha motif with <em>“|| Shri
+            Ganeshaya Namah ||”</em>, followed by Pranshi & Akash's wedding details.</p>
         <div class="details-box">
-          <strong>Hashtag:</strong> #APForever<br>
+          <strong>Hashtag:</strong> #PAForever<br>
           <strong>Countdown:</strong> Live to 20 Nov 2026
         </div>
         <ul class="features-list">
@@ -431,7 +1025,8 @@
       </div>
       <div class="card-body">
         <h3 class="card-title">3. Interactive Event Tabs</h3>
-        <p class="card-desc">Custom tabs for Haldi & Mehndi (Nov 18) and The Wedding & Reception (Nov 20). Zero clutter with instant tab switching.</p>
+        <p class="card-desc">Custom tabs for Haldi & Mehndi (Nov 18) and The Wedding & Reception (Nov 20). Zero clutter
+          with instant tab switching.</p>
         <div class="details-box">
           <strong>Govindnagar & Moradabad Venues</strong><br>
           Direct Google Maps pin integration
@@ -454,7 +1049,8 @@
       </div>
       <div class="card-body">
         <h3 class="card-title">4. "Shower Blessings" Guestbook</h3>
-        <p class="card-desc">An interactive digital guestbook where friends and family send warm wishes and blessings to Akash & Pranshi.</p>
+        <p class="card-desc">An interactive digital guestbook where friends and family send warm wishes and blessings to
+          Pranshi & Akash.</p>
         <div class="details-box">
           <strong>Celebratory Petal Confetti:</strong> Triggers on every blessing submitted!
         </div>
@@ -510,7 +1106,7 @@
         ctx.lineWidth = p.r / 2;
         ctx.strokeStyle = p.color;
         ctx.fillStyle = p.color;
-        
+
         ctx.moveTo(p.x + p.tilt + (p.r / 4), p.y);
         ctx.quadraticCurveTo(p.x + p.tilt, p.y + p.r, p.x + p.tilt - (p.r / 4), p.y + p.r * 1.5);
         ctx.quadraticCurveTo(p.x + p.tilt + (p.r / 2), p.y + p.r * 2, p.x + p.tilt + (p.r / 4), p.y);
@@ -538,6 +1134,78 @@
     }
     draw();
 
+    // ======================================================================
+    // Seal Design Studio Interactive Script
+    // ======================================================================
+    (function initSealStudio() {
+      let currentSizeClass = 'seal-size-majestic';
+      let currentFontClass = 'font-reference';
+
+      const sizeButtons = document.querySelectorAll('#size-toggle-group .btn-toggle');
+      const optionCards = document.querySelectorAll('.seal-option-card');
+      const allSealSamples = document.querySelectorAll('.wax-seal-sample');
+      const simSealSample = document.getElementById('sim-seal-sample');
+      const simMonogramText = document.getElementById('sim-monogram-text');
+      const simFontLabel = document.getElementById('sim-font-label');
+      const simSizeLabel = document.getElementById('sim-size-label');
+
+      // Update Size handler
+      sizeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          sizeButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const newSize = btn.getAttribute('data-size');
+          allSealSamples.forEach(seal => {
+            seal.classList.remove('seal-size-default', 'seal-size-majestic', 'seal-size-grand');
+            seal.classList.add(newSize);
+          });
+          currentSizeClass = newSize;
+
+          const sizeNames = {
+            'seal-size-default': 'Original (88px)',
+            'seal-size-majestic': 'Majestic (112px)',
+            'seal-size-grand': 'Grand Royal (128px)'
+          };
+          if (simSizeLabel) simSizeLabel.textContent = sizeNames[newSize] || newSize;
+        });
+      });
+
+      // Update Font Option handler
+      optionCards.forEach(card => {
+        card.addEventListener('click', () => {
+          optionCards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+
+          const fontClass = card.getAttribute('data-font');
+          const isRef = card.getAttribute('data-is-ref') === 'true';
+
+          if (isRef) {
+            simSealSample.classList.add('seal-reference-matched');
+          } else {
+            simSealSample.classList.remove('seal-reference-matched');
+            if (simMonogramText) {
+              simMonogramText.className = 'monogram-text ' + fontClass;
+            }
+          }
+          if (simFontLabel) {
+            simFontLabel.textContent = card.querySelector('.seal-spec-title').textContent;
+          }
+        });
+      });
+
+      // Interactive unseal shake test on simulator seal
+      const simSealAnchor = document.getElementById('sim-seal-anchor');
+      if (simSealAnchor) {
+        simSealAnchor.addEventListener('click', () => {
+          simSealAnchor.style.transform = 'translate(-50%, -50%) scale(1.15) rotate(4deg)';
+          setTimeout(() => {
+            simSealAnchor.style.transform = 'translate(-50%, -50%) scale(1)';
+          }, 300);
+        });
+      }
+    })();
+
     // Audio pill feedback
     const audioBtn = document.getElementById('audioToggle');
     audioBtn.addEventListener('click', () => {
@@ -546,4 +1214,5 @@
   </script>
 
 </body>
+
 </html>

@@ -1,5 +1,5 @@
 /**
- * Akash & Pranshi Wedding (#APForever)
+ * Pranshi & Akash Wedding (#PAForever)
  * Live Google Sheets Guestbook Integration with LocalStorage Fallback
  */
 
@@ -53,7 +53,7 @@
       wishesStream.innerHTML = `
         <div class="empty-wishes-state">
           <span class="empty-icon">🌸</span>
-          <p class="empty-title">Be the first to shower blessings on Akash & Pranshi!</p>
+          <p class="empty-title">Be the first to shower blessings on Pranshi & Akash!</p>
           <span class="empty-subtitle">Leave your love and warm wishes above.</span>
         </div>
       `;

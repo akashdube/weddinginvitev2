@@ -1,5 +1,5 @@
 /**
- * Akash & Pranshi Wedding Invitation (#APForever)
+ * Pranshi & Akash Wedding Invitation (#PAForever)
  * Canvas Petals & Celebratory Confetti Engine
  */
 

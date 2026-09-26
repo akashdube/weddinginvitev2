@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Akash & Pranshi Wedding Invitation (#APForever)
+   Pranshi & Akash Wedding Invitation (#PAForever)
    3D Wax Seal & Lush Botanical Envelope Interaction Styling
    ========================================================================== */
 
@@ -203,7 +203,7 @@
   top: 50%;
   left: 0;
   right: 0;
-  height: 52px;
+  height: 58px;
   transform: translateY(-50%);
   background: linear-gradient(90deg, #ecd3be 0%, #f4e7d9 50%, #ecd3be 100%);
   border-top: 1px solid rgba(194, 157, 89, 0.45);
@@ -219,8 +219,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 250px;
-  height: 90px;
+  width: 270px;
+  height: 95px;
   z-index: 23;
   pointer-events: none;
 }
@@ -239,7 +239,7 @@
 }
 
 /* ==========================================================================
-   3D Wax Seal
+   3D Wax Seal (112px Majestic - Reference Matched Laurel Wreath P & A)
    ========================================================================== */
 .wax-seal-wrapper {
   position: absolute;
@@ -255,54 +255,43 @@
 }
 
 .wax-seal-wrapper:hover {
-  transform: translate(-50%, -50%) scale(1.07);
+  transform: translate(-50%, -50%) scale(1.06);
 }
 
 .wax-seal-stamp {
-  width: 88px;
-  height: 88px;
+  width: 112px;
+  height: 112px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #f1d392, #c29d59 55%, #7a581e 100%);
-  box-shadow: 
-    0 12px 28px rgba(122, 88, 30, 0.5),
-    inset 0 2px 5px rgba(255, 255, 255, 0.7),
-    inset 0 -4px 8px rgba(0, 0, 0, 0.35);
+  background-image: url('../assets/wax_seal_pa.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: drop-shadow(0 14px 28px rgba(117, 82, 27, 0.45));
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  border: 3px solid rgba(235, 203, 140, 0.6);
+  border: none;
   animation: gentlePulse 2.4s infinite ease-in-out;
+  user-select: none;
 }
 
 @keyframes gentlePulse {
   0%, 100% {
-    box-shadow: 0 12px 28px rgba(122, 88, 30, 0.5), 0 0 0 0 rgba(194, 157, 89, 0.4);
+    filter: drop-shadow(0 14px 28px rgba(117, 82, 27, 0.45));
+    transform: scale(1);
   }
   50% {
-    box-shadow: 0 16px 34px rgba(122, 88, 30, 0.65), 0 0 0 12px rgba(194, 157, 89, 0);
+    filter: drop-shadow(0 18px 36px rgba(194, 157, 89, 0.65));
+    transform: scale(1.03);
   }
 }
 
-/* Debossed Monogram */
-.seal-monogram {
-  font-family: var(--font-serif);
-  font-size: 1.55rem;
-  font-weight: 700;
-  color: #553c12;
-  text-shadow: 
-    0 1px 1px rgba(255, 255, 255, 0.65),
-    0 -1px 1px rgba(0, 0, 0, 0.35);
-  letter-spacing: 0.05em;
-  display: flex;
-  align-items: center;
-  gap: 2px;
+/* Hide fallback text when image asset is loaded */
+.wax-seal-stamp .seal-monogram,
+.wax-seal-stamp .seal-ring {
+  display: none;
 }
-
-.seal-ring {
-  position: absolute;
-  width: 72px;
-  height: 72px;
   border-radius: 50%;
   border: 1.5px dashed rgba(255, 255, 255, 0.45);
   pointer-events: none;

@@ -1,5 +1,5 @@
 /**
- * Akash & Pranshi Wedding (#APForever)
+ * Pranshi & Akash Wedding (#PAForever)
  * 3D Wax Seal Unsealing & Card Emergence Orchestration
  */
 

@@ -46,7 +46,7 @@
       
       const title = encodeURIComponent("Pranshi & Akash's Wedding Celebration (#PAForever)");
       const details = encodeURIComponent(
-        "Join us to celebrate the wedding ceremony & reception of Pranshi & Akash!\n\nVenue: HB Klyde Premier, Rampur Road, Moradabad\nHashtag: #PAForever"
+        "Join us to celebrate the wedding of Pranshi & Akash!\n\nVenue: HB Klyde Premier, Rampur Road, Moradabad\nHashtag: #PAForever"
       );
       const location = encodeURIComponent("HB Klyde Premier, Rampur Road, Near Arcadia Greens, Zero Point, Moradabad, UP 244001");
       const startDate = "20261120T113000Z"; // 17:00 IST is 11:30 UTC

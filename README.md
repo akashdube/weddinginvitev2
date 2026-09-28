@@ -18,7 +18,7 @@ A bespoke, lightweight, mobile-first, interactive wedding invitation website cra
   * 1-Tap **"Add to Google Calendar"** button.
 * **Interactive Event Itinerary Tabs (No Sangeet):**
   * **Day 1:** Haldi & Mehndi Ceremony (Wednesday, 18 Nov 2026 at Pranshi's Residence, Govindnagar) with festive attire palette swatches and Google Maps navigation.
-  * **Day 2:** The Wedding Ceremony & Reception (Friday, 20 Nov 2026 at HB Klyde Premier, Rampur Road, Moradabad) with regal attire swatches and Google Maps navigation.
+  * **Day 2:** The Wedding (Friday, 20 Nov 2026 at HB Klyde Premier, Rampur Road, Moradabad) with Google Maps navigation.
 * **Digital "Shower Blessings" Guestbook:**
   * Friends and family can write heartfelt messages.
   * Tapping **"Shower Blessings"** bursts an explosion of golden petals and celebratory confetti across the mobile screen!

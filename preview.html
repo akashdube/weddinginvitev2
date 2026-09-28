@@ -778,11 +778,274 @@
       transform: translate(-50%, -50%) scale(1.05);
     }
 
-    .sim-hint {
+    /* ==========================================================================
+       Day 1 Per-Function Palette Studio Styles
+       ========================================================================== */
+    .palette-studio-section {
+      max-width: 1200px;
+      margin: 60px auto 40px;
+      padding: 36px 24px;
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+    }
+
+    .studio-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .option-mobile-frame {
+      background: #fbfaf7;
+      border-radius: 18px;
+      border: 2px solid #ecd8b6;
+      padding: 22px 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .option-mobile-frame:hover {
+      border-color: var(--gold);
+      box-shadow: 0 12px 30px rgba(194, 157, 89, 0.2);
+    }
+
+    .option-header-badge {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(194, 157, 89, 0.25);
+    }
+
+    .option-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #243328;
+    }
+
+    .option-pill-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 99px;
+      background: #eef2ed;
+      color: var(--primary);
+    }
+
+    .option-pill-tag.recommended {
+      background: #fdf3df;
+      color: #94691e;
+      border: 1px solid #dfbe7d;
+    }
+
+    /* Timeline Base in Preview Frame */
+    .demo-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border-left: 2px solid rgba(194, 157, 89, 0.3);
+      padding-left: 14px;
+      margin-left: 6px;
       margin-top: 14px;
-      font-size: 0.85rem;
-      color: var(--gold-dark);
+    }
+
+    .demo-milestone {
+      position: relative;
+    }
+
+    .demo-milestone::before {
+      content: '';
+      position: absolute;
+      left: -19px;
+      top: 4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #c29d59;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 0 2px rgba(194, 157, 89, 0.4);
+    }
+
+    .demo-time {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #94691e;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .demo-mtitle {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: #202b23;
+      margin: 1px 0;
+      display: block;
+    }
+
+    .demo-desc {
+      font-size: 0.8rem;
+      color: #727a75;
+      line-height: 1.35;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* --- Option 1: Inline Chips with Dots & Labels (Recommended) --- */
+    .opt1-palette {
+      margin-top: 6px;
+      padding: 7px 10px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(194, 157, 89, 0.22);
+      border-radius: 8px;
+    }
+
+    .opt1-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #8c6a28;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 5px;
+    }
+
+    .opt1-swatches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .opt1-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #ffffff;
+      border: 1px solid #e8e3dc;
+      border-radius: 99px;
+      padding: 3px 8px 3px 4px;
+      font-size: 0.72rem;
       font-weight: 600;
+      color: #3f4743;
+    }
+
+    .opt1-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.12);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* --- Option 2: Inset Ribbon Pill Bar --- */
+    .opt2-ribbon {
+      margin-top: 7px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px dashed rgba(194, 157, 89, 0.4);
+    }
+
+    .opt2-ribbon.haldi-ribbon {
+      background: #fffdf2;
+    }
+
+    .opt2-ribbon.mehndi-ribbon {
+      background: #f5fbf7;
+    }
+
+    .opt2-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .opt2-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #243328;
+    }
+
+    .opt2-sub {
+      font-size: 0.68rem;
+      color: #727a75;
+    }
+
+    .opt2-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .opt2-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .opt2-circle:hover {
+      transform: scale(1.18);
+    }
+
+    /* --- Option 3: Minimalist Overlapping Halo Rings + Tag --- */
+    .opt3-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+      padding: 4px 8px;
+      background: #ffffff;
+      border-radius: 6px;
+      border: 1px solid #eee8df;
+    }
+
+    .opt3-text {
+      font-size: 0.73rem;
+      font-weight: 600;
+      color: #556259;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .opt3-discs {
+      display: flex;
+      align-items: center;
+    }
+
+    .opt3-disc {
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      margin-left: -6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.14);
+      transition: transform 0.2s ease;
+    }
+
+    .opt3-disc:first-child {
+      margin-left: 0;
+    }
+
+    .opt3-disc:hover {
+      transform: translateY(-2px) scale(1.15);
+      z-index: 10;
     }
   </style>
 </head>
@@ -924,47 +1187,187 @@
 
   </section>
 
-  <!-- Ceremony Itinerary Preview -->
-  <h2 class="section-title">Your Confirmed Event Itinerary</h2>
-  <div class="ceremonies-preview">
-    <!-- Haldi & Mehndi -->
-    <div class="ceremony-card">
-      <span class="ceremony-tag">Day 1 • Celebrations</span>
-      <h3 class="ceremony-title">Haldi & Mehndi Ceremony</h3>
-      <div class="ceremony-time">🗓️ Wednesday, 18th November 2026</div>
-      <div class="ceremony-venue">
-        📍 <strong>Venue:</strong> Pranshi's Residence, Govindnagar
-      </div>
-      <div>
-        <span style="font-size: 0.85rem; font-weight: 600; color: #4a544e;">Attire Palette (Festive & Vibrant):</span>
-        <div class="color-swatches">
-          <div class="swatch" style="background: #F4C430;" title="Sunshine Yellow"></div>
-          <div class="swatch" style="background: #E67E22;" title="Marigold Orange"></div>
-          <div class="swatch" style="background: #27AE60;" title="Mehendi Green"></div>
-          <div class="swatch" style="background: #E8A7A1;" title="Blush Rose"></div>
-        </div>
-      </div>
+  <!-- ======================================================================
+       INTERACTIVE DESIGN LAB: Day 1 Per-Function Color Palette Options
+       ====================================================================== -->
+  <section class="palette-studio-section" id="palette-studio">
+    <div style="text-align: center;">
+      <span class="badge" style="background: #fdf3df; color: #94691e; border: 1px solid #dfbe7d;">Design Consultation</span>
+      <h2 class="studio-title" style="margin-top: 6px;">Day 1: Per-Function Attire Color Palette UI Options</h2>
+      <p class="studio-desc" style="max-width: 780px; margin: 0 auto; color: var(--text-muted); font-size: 0.95rem;">
+        The bottom palette block has been removed. Below are <strong>3 distinct UI treatments</strong> for embedding the dress code directly inside each milestone event row (<strong>Yellow Haldi Shades</strong> for Haldi, and <strong>Pastel Colors</strong> for Mehndi).
+      </p>
     </div>
 
-    <!-- The Wedding -->
-    <div class="ceremony-card highlight">
-      <span class="ceremony-tag">Day 2 • Auspicious Union</span>
-      <h3 class="ceremony-title">The Wedding Ceremony & Reception</h3>
-      <div class="ceremony-time">🗓️ Friday, 20th November 2026</div>
-      <div class="ceremony-venue">
-        📍 <strong>Venue:</strong> HB Klyde Premier, Rampur Road, Near Arcadia Greens, Zero Point, Moradabad, UP 244001
-      </div>
-      <div>
-        <span style="font-size: 0.85rem; font-weight: 600; color: #4a544e;">Attire Palette (Regal & Traditional):</span>
-        <div class="color-swatches">
-          <div class="swatch" style="background: #7B1113;" title="Crimson Red"></div>
-          <div class="swatch" style="background: #C29D59;" title="Champagne Gold"></div>
-          <div class="swatch" style="background: #2E4057;" title="Midnight Blue"></div>
-          <div class="swatch" style="background: #FDFBF7; border-color: #ddd;" title="Ivory Silk"></div>
+    <div class="studio-grid-3">
+
+      <!-- Option 1: Inline Chic Chips (Recommended) -->
+      <div class="option-mobile-frame">
+        <div class="option-header-badge">
+          <h3 class="option-title">Option 1: Inline Chic Chips</h3>
+          <span class="option-pill-tag recommended">★ Recommended</span>
+        </div>
+        <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
+          Clean micro-pill chips with circular color dots and shade names nestled right under each event. Highly readable on mobile.
+        </p>
+
+        <!-- Simulated Mobile Timeline -->
+        <div class="demo-timeline">
+          <!-- Haldi -->
+          <div class="demo-milestone">
+            <span class="demo-time">11:00 AM</span>
+            <span class="demo-mtitle">Haldi Ceremony</span>
+            <span class="demo-desc">Auspicious turmeric blessings & joyous celebrations</span>
+            <div class="opt1-palette">
+              <span class="opt1-label">✨ Attire Theme • Yellow Haldi Shades</span>
+              <div class="opt1-swatches">
+                <span class="opt1-chip"><span class="opt1-dot" style="background: #F7CA18;"></span> Haldi Gold</span>
+                <span class="opt1-chip"><span class="opt1-dot" style="background: #E5A93C;"></span> Warm Mustard</span>
+                <span class="opt1-chip"><span class="opt1-dot" style="background: #F39C12;"></span> Marigold</span>
+                <span class="opt1-chip"><span class="opt1-dot" style="background: #FFE082;"></span> Soft Turmeric</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mehndi -->
+          <div class="demo-milestone">
+            <span class="demo-time">05:30 PM</span>
+            <span class="demo-mtitle">Mehndi</span>
+            <span class="demo-desc">Intricate henna artistry & musical beats</span>
+            <div class="opt1-palette">
+              <span class="opt1-label">🌸 Attire Theme • Soft Pastel Tones</span>
+              <div class="opt1-swatches">
+                <span class="opt1-chip"><span class="opt1-dot" style="background: #A8D5BA;"></span> Mint Sage</span>
+                <span class="opt1-chip"><span class="opt1-dot" style="background: #FCD5CE;"></span> Powder Peach</span>
+                <span class="opt1-chip"><span class="opt1-dot" style="background: #D8BFD8;"></span> Soft Lavender</span>
+                <span class="opt1-chip"><span class="opt1-dot" style="background: #F8C8DC;"></span> Pastel Blush</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dinner -->
+          <div class="demo-milestone">
+            <span class="demo-time">09:00 PM</span>
+            <span class="demo-mtitle">Dinner</span>
+            <span class="demo-desc">Festive dinner feast with loved ones</span>
+          </div>
         </div>
       </div>
+
+      <!-- Option 2: Inset Ribbon Pill Bar -->
+      <div class="option-mobile-frame">
+        <div class="option-header-badge">
+          <h3 class="option-title">Option 2: Inset Ribbon Pill Bar</h3>
+          <span class="option-pill-tag">Clean & Structured</span>
+        </div>
+        <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
+          Soft tinted banner with clickable swatch dots and concise labels. Feels like a dedicated event pass.
+        </p>
+
+        <!-- Simulated Mobile Timeline -->
+        <div class="demo-timeline">
+          <!-- Haldi -->
+          <div class="demo-milestone">
+            <span class="demo-time">11:00 AM</span>
+            <span class="demo-mtitle">Haldi Ceremony</span>
+            <span class="demo-desc">Auspicious turmeric blessings & joyous celebrations</span>
+            <div class="opt2-ribbon haldi-ribbon">
+              <div class="opt2-info">
+                <span class="opt2-title">Attire: Yellow Shades</span>
+                <span class="opt2-sub">Haldi Gold • Mustard • Marigold</span>
+              </div>
+              <div class="opt2-dots">
+                <div class="opt2-circle" style="background: #F7CA18;" title="Haldi Gold"></div>
+                <div class="opt2-circle" style="background: #E5A93C;" title="Mustard"></div>
+                <div class="opt2-circle" style="background: #F39C12;" title="Marigold"></div>
+                <div class="opt2-circle" style="background: #FFE082;" title="Soft Turmeric"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mehndi -->
+          <div class="demo-milestone">
+            <span class="demo-time">05:30 PM</span>
+            <span class="demo-mtitle">Mehndi</span>
+            <span class="demo-desc">Intricate henna artistry & musical beats</span>
+            <div class="opt2-ribbon mehndi-ribbon">
+              <div class="opt2-info">
+                <span class="opt2-title">Attire: Pastel Colors</span>
+                <span class="opt2-sub">Mint • Peach • Lavender • Rose</span>
+              </div>
+              <div class="opt2-dots">
+                <div class="opt2-circle" style="background: #A8D5BA;" title="Mint Sage"></div>
+                <div class="opt2-circle" style="background: #FCD5CE;" title="Powder Peach"></div>
+                <div class="opt2-circle" style="background: #D8BFD8;" title="Lavender"></div>
+                <div class="opt2-circle" style="background: #F8C8DC;" title="Pastel Blush"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dinner -->
+          <div class="demo-milestone">
+            <span class="demo-time">09:00 PM</span>
+            <span class="demo-mtitle">Dinner</span>
+            <span class="demo-desc">Festive dinner feast with loved ones</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Option 3: Minimalist Overlapping Halo Rings (Active) -->
+      <div class="option-mobile-frame" style="border-color: var(--gold); box-shadow: 0 10px 30px rgba(194, 157, 89, 0.25);">
+        <div class="option-header-badge">
+          <h3 class="option-title">Option 3: Overlapping Halo Rings</h3>
+          <span class="option-pill-tag recommended">✓ Selected & Active</span>
+        </div>
+        <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
+          Fashion-lookbook overlapping color discs with compact tags. Maximum space efficiency with luxury look.
+        </p>
+
+        <!-- Simulated Mobile Timeline -->
+        <div class="demo-timeline">
+          <!-- Haldi -->
+          <div class="demo-milestone">
+            <span class="demo-time">11:00 AM</span>
+            <span class="demo-mtitle">Haldi Ceremony</span>
+            <span class="demo-desc">Auspicious turmeric blessings & joyous celebrations</span>
+            <div class="opt3-container">
+              <span class="opt3-text">🟡 Attire: Yellow Haldi Shades</span>
+              <div class="opt3-discs">
+                <div class="opt3-disc" style="background: #F7CA18;" title="Haldi Gold"></div>
+                <div class="opt3-disc" style="background: #E5A93C;" title="Mustard"></div>
+                <div class="opt3-disc" style="background: #F39C12;" title="Marigold"></div>
+                <div class="opt3-disc" style="background: #FFE082;" title="Soft Turmeric"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mehndi -->
+          <div class="demo-milestone">
+            <span class="demo-time">05:30 PM</span>
+            <span class="demo-mtitle">Mehndi</span>
+            <span class="demo-desc">Intricate henna artistry & musical beats</span>
+            <div class="opt3-container">
+              <span class="opt3-text">🌸 Attire: Soft Pastel Hues</span>
+              <div class="opt3-discs">
+                <div class="opt3-disc" style="background: #A8D5BA;" title="Mint Sage"></div>
+                <div class="opt3-disc" style="background: #FCD5CE;" title="Powder Peach"></div>
+                <div class="opt3-disc" style="background: #D8BFD8;" title="Soft Lavender"></div>
+                <div class="opt3-disc" style="background: #F8C8DC;" title="Pastel Blush"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dinner -->
+          <div class="demo-milestone">
+            <span class="demo-time">09:00 PM</span>
+            <span class="demo-mtitle">Dinner</span>
+            <span class="demo-desc">Festive dinner feast with loved ones</span>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </div>
+  </section>
 
   <!-- Confirmed Interactive Features -->
   <h2 class="section-title">The 4-Pillar Interactive Experience</h2>
@@ -1025,7 +1428,7 @@
       </div>
       <div class="card-body">
         <h3 class="card-title">3. Interactive Event Tabs</h3>
-        <p class="card-desc">Custom tabs for Haldi & Mehndi (Nov 18) and The Wedding & Reception (Nov 20). Zero clutter
+        <p class="card-desc">Custom tabs for Haldi & Mehndi (Nov 18) and The Wedding (Nov 20). Zero clutter
           with instant tab switching.</p>
         <div class="details-box">
           <strong>Govindnagar & Moradabad Venues</strong><br>

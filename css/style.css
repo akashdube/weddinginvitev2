@@ -486,15 +486,36 @@ body {
   font-weight: 700;
 }
 
-/* Tab Navigation Buttons with Sliding Capsule */
+/* Interaction Affordance Cue */
+.tab-interaction-cue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  margin-bottom: 12px;
+  animation: tabCuePulse 2.8s infinite ease-in-out;
+}
+
+@keyframes tabCuePulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+/* Tab Navigation Buttons with Sliding Capsule (Option 1) */
 .tab-pills-wrapper {
   position: relative;
   display: flex;
-  background: #f0eae1;
+  background: #f3ede2;
   padding: 5px;
   border-radius: var(--radius-pill);
-  margin-bottom: 20px;
-  border: 1px solid var(--color-border);
+  margin-bottom: 22px;
+  border: 1.5px solid rgba(194, 157, 89, 0.45);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.03);
   user-select: none;
   overflow: hidden;
 }
@@ -507,9 +528,10 @@ body {
   width: calc(50% - 5px);
   background: #ffffff;
   border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-gold);
   box-shadow: 
-    0 4px 14px rgba(50, 40, 30, 0.09),
-    0 1px 3px rgba(0, 0, 0, 0.04);
+    0 4px 18px rgba(194, 157, 89, 0.32),
+    0 1px 3px rgba(0, 0, 0, 0.05);
   transition: transform 0.36s cubic-bezier(0.25, 1, 0.45, 1);
   pointer-events: none;
   z-index: 1;
@@ -527,26 +549,53 @@ body {
   flex: 1;
   background: transparent;
   border: none;
-  padding: 11px 16px;
+  padding: 9px 12px;
   border-radius: var(--radius-pill);
-  font-family: var(--font-sans);
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--color-text-muted);
   cursor: pointer;
-  transition: color 0.3s ease, font-weight 0.3s ease;
   text-align: center;
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: all 0.3s ease;
   -webkit-tap-highlight-color: transparent;
 }
 
-.tab-pill-btn.active {
-  color: var(--color-primary);
+.tab-btn-title {
+  font-family: var(--font-sans);
+  font-size: 0.90rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+.tab-btn-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  background: rgba(194, 157, 89, 0.14);
+  padding: 2px 9px;
+  border-radius: 99px;
+  transition: all 0.3s ease;
+  line-height: 1.3;
+}
+
+.tab-pill-btn.active .tab-btn-title {
+  color: #202b23;
   font-weight: 700;
 }
 
-.tab-pill-btn:hover:not(.active) {
+.tab-pill-btn.active .tab-btn-badge {
+  background: #fdf3df;
+  color: #8c6a28;
+  border: 1px solid rgba(194, 157, 89, 0.45);
+}
+
+.tab-pill-btn:hover:not(.active) .tab-btn-title {
   color: var(--color-primary);
 }
 
@@ -859,21 +908,39 @@ body {
   color: var(--color-text-muted);
 }
 
-/* Footer */
+/* Footer & Closing Flourish */
 footer {
   text-align: center;
-  padding: 40px 16px 20px;
+  padding: 40px 16px 30px;
   color: var(--color-text-muted);
   font-size: 0.85rem;
+  position: relative;
 }
 
-.footer-monogram {
-  font-family: var(--font-serif);
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--color-gold);
-  margin-bottom: 6px;
+.footer-lotus-garland {
   display: block;
+  margin: 0 auto 16px;
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+}
+
+.footer-bottom-flourish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+  color: var(--color-gold);
+  font-size: 0.78rem;
+}
+
+.footer-bottom-flourish::before,
+.footer-bottom-flourish::after {
+  content: '';
+  height: 1px;
+  width: 45px;
+  background: linear-gradient(to right, transparent, var(--color-gold), transparent);
 }
 
 /* CTA Buttons Group */

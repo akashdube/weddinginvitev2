@@ -1043,9 +1043,437 @@
       margin-left: 0;
     }
 
-    .opt3-disc:hover {
-      transform: translateY(-2px) scale(1.15);
-      z-index: 10;
+    /* ==========================================================================
+       Itinerary Slider Highlight Studio Styles
+       ========================================================================== */
+    .slider-studio-section {
+      max-width: 1200px;
+      margin: 60px auto 40px;
+      padding: 36px 24px;
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+    }
+
+    .slider-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 28px;
+      margin-top: 28px;
+    }
+
+    .slider-preview-card {
+      background: #fbfaf7;
+      border-radius: 18px;
+      border: 2px solid #ecd8b6;
+      padding: 24px 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      position: relative;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slider-preview-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 12px 32px rgba(194, 157, 89, 0.22);
+    }
+
+    .tap-cue-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #8c6a28;
+      margin-bottom: 14px;
+      animation: gentlePulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes gentlePulse {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.02); }
+    }
+
+    /* --- Design 1: Royal Dual-Tier Date Badges (Recommended) --- */
+    .d1-pills-wrapper {
+      position: relative;
+      display: flex;
+      background: #f3ede2;
+      padding: 5px;
+      border-radius: 50px;
+      border: 1.5px solid rgba(194, 157, 89, 0.45);
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.04);
+      user-select: none;
+      margin-bottom: 16px;
+    }
+
+    .d1-slider-indicator {
+      position: absolute;
+      top: 5px;
+      bottom: 5px;
+      left: 5px;
+      width: calc(50% - 5px);
+      background: #ffffff;
+      border-radius: 50px;
+      border: 1.5px solid var(--gold);
+      box-shadow: 0 4px 16px rgba(194, 157, 89, 0.32), 0 1px 3px rgba(0,0,0,0.06);
+      transition: transform 0.35s cubic-bezier(0.25, 1, 0.45, 1);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .d1-pills-wrapper[data-active="haldi"] .d1-slider-indicator {
+      transform: translateX(0);
+    }
+
+    .d1-pills-wrapper[data-active="wedding"] .d1-slider-indicator {
+      transform: translateX(100%);
+    }
+
+    .d1-pill-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 9px 12px;
+      border-radius: 50px;
+      cursor: pointer;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      transition: all 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .d1-btn-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.90rem;
+      font-weight: 600;
+      color: #727a75;
+      transition: color 0.3s ease;
+    }
+
+    .d1-btn-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #a3813e;
+      background: rgba(194, 157, 89, 0.12);
+      padding: 2px 8px;
+      border-radius: 99px;
+      transition: all 0.3s ease;
+    }
+
+    .d1-pill-btn.active .d1-btn-title {
+      color: #202b23;
+      font-weight: 700;
+    }
+
+    .d1-pill-btn.active .d1-btn-badge {
+      background: #fdf3df;
+      color: #8c6a28;
+      border: 1px solid rgba(194, 157, 89, 0.4);
+    }
+
+    /* --- Design 2: Gilded Segmented Switch with Shimmer --- */
+    .d2-pills-wrapper {
+      position: relative;
+      display: flex;
+      background: linear-gradient(135deg, #efe8db 0%, #faefe1 100%);
+      padding: 6px;
+      border-radius: 16px;
+      border: 2px solid #dfc79b;
+      box-shadow: 0 4px 18px rgba(194, 157, 89, 0.18);
+      user-select: none;
+      margin-bottom: 16px;
+    }
+
+    .d2-slider-indicator {
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      left: 6px;
+      width: calc(50% - 6px);
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(60, 45, 25, 0.15);
+      transition: transform 0.35s cubic-bezier(0.25, 1, 0.45, 1);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .d2-pills-wrapper[data-active="haldi"] .d2-slider-indicator {
+      transform: translateX(0);
+    }
+
+    .d2-pills-wrapper[data-active="wedding"] .d2-slider-indicator {
+      transform: translateX(100%);
+    }
+
+    .d2-pill-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 12px 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #727a75;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .d2-pill-btn.active {
+      color: #202b23;
+      font-weight: 700;
+    }
+
+    .d2-shimmer-tag {
+      font-size: 0.65rem;
+      background: linear-gradient(90deg, #dfbe7d, #fff0d2, #dfbe7d);
+      background-size: 200% auto;
+      color: #5d4210;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 99px;
+      animation: shineText 2.5s infinite linear;
+    }
+
+    @keyframes shineText {
+      to { background-position: 200% center; }
+    }
+
+    /* --- Design 3: Dual Luxury Ceremony Passes (Ticket Aesthetic) --- */
+    .d3-passes-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .d3-pass-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 12px 10px;
+      border: 1.5px solid #e0d8cc;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      text-align: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .d3-pass-card.active {
+      background: #fffdf9;
+      border: 2px solid var(--gold);
+      box-shadow: 0 6px 20px rgba(194, 157, 89, 0.28);
+      transform: translateY(-2px);
+    }
+
+    .d3-pass-card:hover:not(.active) {
+      border-color: #c9bca6;
+      background: #faf8f5;
+    }
+
+    .d3-pass-badge {
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 4px;
+      padding: 2px 7px;
+      border-radius: 99px;
+      background: #eef2ed;
+      color: var(--primary);
+    }
+
+    .d3-pass-card.active .d3-pass-badge {
+      background: #fdf3df;
+      color: #94691e;
+      border: 1px solid #dfbe7d;
+    }
+
+    .d3-pass-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #202b23;
+      margin-bottom: 2px;
+      display: block;
+      line-height: 1.2;
+    }
+
+    .d3-pass-date {
+      font-size: 0.70rem;
+      color: #727a75;
+      font-weight: 600;
+      display: block;
+    }
+
+    /* Demo Output Preview inside card */
+    .demo-output-card {
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #ebd9c0;
+      padding: 14px;
+      font-size: 0.85rem;
+      color: #4a544e;
+      min-height: 110px;
+    }
+    /* ==========================================================================
+       Footer Closing Border & Art Motif Studio Styles
+       ========================================================================== */
+    .footer-studio-section {
+      max-width: 1200px;
+      margin: 60px auto 40px;
+      padding: 36px 24px;
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+    }
+
+    .footer-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 28px;
+      margin-top: 28px;
+    }
+
+    .footer-preview-card {
+      background: #fbfaf7;
+      border-radius: 18px;
+      border: 2px solid #ecd8b6;
+      padding: 26px 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      position: relative;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-preview-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 12px 32px rgba(194, 157, 89, 0.22);
+    }
+
+    /* --- Option 1: Botanical Lotus & Filigree Garland --- */
+    .opt1-footer-box {
+      text-align: center;
+      padding: 24px 16px;
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid #ebd9c0;
+      margin-top: 10px;
+    }
+
+    .opt1-top-garland {
+      display: block;
+      margin: 0 auto 12px;
+      max-width: 220px;
+      height: auto;
+    }
+
+    .opt1-bottom-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+      color: var(--gold);
+      font-size: 0.78rem;
+    }
+
+    .opt1-bottom-divider::before,
+    .opt1-bottom-divider::after {
+      content: '';
+      height: 1px;
+      width: 44px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+
+    /* --- Option 2: Heritage Archival Gold Filigree Frame --- */
+    .opt2-footer-frame {
+      position: relative;
+      text-align: center;
+      padding: 26px 18px;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1.5px solid #dfbe7d;
+      box-shadow: 0 4px 16px rgba(194, 157, 89, 0.08);
+      margin-top: 10px;
+    }
+
+    .opt2-corner-svg {
+      position: absolute;
+      width: 26px;
+      height: 26px;
+    }
+    .opt2-corner-svg.tl { top: 6px; left: 6px; }
+    .opt2-corner-svg.tr { top: 6px; right: 6px; transform: scaleX(-1); }
+    .opt2-corner-svg.bl { bottom: 6px; left: 6px; transform: scaleY(-1); }
+    .opt2-corner-svg.br { bottom: 6px; right: 6px; transform: scale(-1); }
+
+    .opt2-top-crest {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+
+    .opt2-bottom-crest {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: var(--gold);
+      font-size: 0.80rem;
+      margin-top: 12px;
+    }
+
+    /* --- Option 3: Mughal Mandala Jaali & Paisley Crest --- */
+    .opt3-footer-box {
+      text-align: center;
+      padding: 24px 16px;
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid #ebd9c0;
+      margin-top: 10px;
+    }
+
+    .opt3-top-arch {
+      display: block;
+      margin: 0 auto 10px;
+      max-width: 190px;
+      height: auto;
+    }
+
+    .opt3-bottom-paisley {
+      display: block;
+      margin: 12px auto 0;
+      max-width: 150px;
+      height: auto;
     }
   </style>
 </head>
@@ -1369,6 +1797,296 @@
     </div>
   </section>
 
+  <!-- ======================================================================
+       INTERACTIVE DESIGN LAB: Itinerary Slider Highlight & Visibility Options
+       ====================================================================== -->
+  <section class="slider-studio-section" id="slider-studio">
+    <div style="text-align: center;">
+      <span class="badge" style="background: #fdf3df; color: #94691e; border: 1px solid #dfbe7d;">Visibility Consultation</span>
+      <h2 class="studio-title" style="margin-top: 6px;">Ceremony Itinerary Slider: 3 High-Visibility Designs</h2>
+      <p class="studio-desc" style="max-width: 820px; margin: 0 auto; color: var(--text-muted); font-size: 0.95rem;">
+        To make sure viewers <strong>never overlook Day 2 (The Wedding)</strong>, here are 3 matching luxury designs that provide immediate interactive affordance, clear date badges, and attention-grabbing cues. <em>Click the tabs below to test live switching!</em>
+      </p>
+    </div>
+
+    <div class="slider-options-grid">
+
+      <!-- Design 1: Royal Dual-Tier Date Badges (Active) -->
+      <div class="slider-preview-card" id="card-d1" style="border-color: var(--gold); box-shadow: 0 10px 30px rgba(194, 157, 89, 0.25);">
+        <div class="option-header-badge">
+          <h3 class="option-title">Design 1: Royal Dual-Tier Date Badges</h3>
+          <span class="option-pill-tag recommended">✓ Selected & Active</span>
+        </div>
+        <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
+          Includes a subtle animated tap cue above, dual-tier event + date buttons (Day 1 • Nov 18 vs Day 2 • Nov 20), and a rich gold-bordered elevated slider indicator.
+        </p>
+
+        <!-- Tap Cue Bar -->
+        <div class="tap-cue-bar">
+          <span>✨ 2-Day Celebrations • Tap below to switch ✦</span>
+        </div>
+
+        <!-- Slider Pills -->
+        <div class="d1-pills-wrapper" id="d1-pills" data-active="haldi">
+          <div class="d1-slider-indicator"></div>
+          <button class="d1-pill-btn active" data-tab="haldi" onclick="switchDemo1('haldi')">
+            <span class="d1-btn-title">Haldi & Mehndi</span>
+            <span class="d1-btn-badge">Day 1 • Nov 18</span>
+          </button>
+          <button class="d1-pill-btn" data-tab="wedding" onclick="switchDemo1('wedding')">
+            <span class="d1-btn-title">The Wedding</span>
+            <span class="d1-btn-badge">Day 2 • Nov 20</span>
+          </button>
+        </div>
+
+        <!-- Live Content Demonstration -->
+        <div class="demo-output-card" id="d1-output">
+          <div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div>
+          <div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi's Residence, Govindnagar</div>
+          <p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">
+            11:00 AM Haldi • 05:30 PM Mehndi • 09:00 PM Dinner
+          </p>
+        </div>
+      </div>
+
+      <!-- Design 2: Gilded Segmented Switch with Shimmer -->
+      <div class="slider-preview-card" id="card-d2">
+        <div class="option-header-badge">
+          <h3 class="option-title">Design 2: Gilded Segmented Switch</h3>
+          <span class="option-pill-tag">Dynamic Glamour</span>
+        </div>
+        <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
+          Gilded champagne container with an eye-catching shimmering tag on the inactive tab that guides the eye naturally while scrolling.
+        </p>
+
+        <!-- Tap Cue Bar -->
+        <div class="tap-cue-bar">
+          <span>👆 Tap tab to reveal full ceremony schedule</span>
+        </div>
+
+        <!-- Slider Pills -->
+        <div class="d2-pills-wrapper" id="d2-pills" data-active="haldi">
+          <div class="d2-slider-indicator"></div>
+          <button class="d2-pill-btn active" id="d2-btn-haldi" onclick="switchDemo2('haldi')">
+            <span>Haldi & Mehndi</span>
+          </button>
+          <button class="d2-pill-btn" id="d2-btn-wedding" onclick="switchDemo2('wedding')">
+            <span>The Wedding</span>
+            <span class="d2-shimmer-tag" id="d2-tag">Nov 20 →</span>
+          </button>
+        </div>
+
+        <!-- Live Content Demonstration -->
+        <div class="demo-output-card" id="d2-output">
+          <div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div>
+          <div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi's Residence, Govindnagar</div>
+          <p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">
+            11:00 AM Haldi • 05:30 PM Mehndi • 09:00 PM Dinner
+          </p>
+        </div>
+      </div>
+
+      <!-- Design 3: Dual Luxury Ceremony Passes -->
+      <div class="slider-preview-card" id="card-d3">
+        <div class="option-header-badge">
+          <h3 class="option-title">Design 3: Dual Ceremony Passes</h3>
+          <span class="option-pill-tag">Ticket Aesthetic</span>
+        </div>
+        <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
+          Replaces the slider with two side-by-side regal invitation cards. Impossible to mistake for static text; guests instinctively tap either pass.
+        </p>
+
+        <!-- Tap Cue Bar -->
+        <div class="tap-cue-bar">
+          <span>🎟️ Tap either ceremony pass to view details</span>
+        </div>
+
+        <!-- Dual Passes Row -->
+        <div class="d3-passes-row">
+          <div class="d3-pass-card active" id="d3-card-haldi" onclick="switchDemo3('haldi')">
+            <span class="d3-pass-badge">✓ Selected</span>
+            <span class="d3-pass-title">Haldi & Mehndi</span>
+            <span class="d3-pass-date">Wed, 18 Nov</span>
+          </div>
+          <div class="d3-pass-card" id="d3-card-wedding" onclick="switchDemo3('wedding')">
+            <span class="d3-pass-badge" style="background:#fcf8f0; color:#8c6a28; border:1px solid #ebd9c0;">👉 Tap to View</span>
+            <span class="d3-pass-title">The Wedding</span>
+            <span class="d3-pass-date">Fri, 20 Nov</span>
+          </div>
+        </div>
+
+        <!-- Live Content Demonstration -->
+        <div class="demo-output-card" id="d3-output">
+          <div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div>
+          <div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi's Residence, Govindnagar</div>
+          <p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">
+            11:00 AM Haldi • 05:30 PM Mehndi • 09:00 PM Dinner
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       INTERACTIVE DESIGN LAB: Footer Closing Border & Art Motif Options
+       ====================================================================== -->
+  <section class="footer-studio-section" id="footer-studio">
+    <div style="text-align: center;">
+      <span class="badge" style="background: #fdf3df; color: #94691e; border: 1px solid #dfbe7d;">Design Consultation</span>
+      <h2 class="studio-title" style="margin-top: 6px;">Closing Border &amp; Flourish: 3 Art Designs for the Footer</h2>
+      <p class="studio-desc" style="max-width: 820px; margin: 0 auto; color: var(--text-muted); font-size: 0.95rem;">
+        The monogram <strong>P &amp; A</strong> has been removed. Below are <strong>3 distinct artistic closing border treatments</strong> matching the botanical eucalyptus, gold accents, and sacred elegance of the invitation.
+      </p>
+    </div>
+
+    <div class="footer-options-grid">
+
+      <!-- Design Option 1: Botanical Lotus & Filigree Vignette (Active) -->
+      <div class="footer-preview-card" id="footer-card-d1" style="border-color: var(--gold); box-shadow: 0 10px 30px rgba(194, 157, 89, 0.25);">
+        <div class="option-header-badge">
+          <h3 class="option-title">Option 1: Botanical Lotus &amp; Filigree Vignette</h3>
+          <span class="option-pill-tag recommended">✓ Selected & Active</span>
+        </div>
+        <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
+          A symmetrical hand-crafted vector garland featuring a sacred golden lotus center flanked by eucalyptus foliage and champagne flourishes, followed by a delicate diamond tassel baseline.
+        </p>
+
+        <!-- Live Render Box -->
+        <div class="opt1-footer-box">
+          <!-- Top Botanical Lotus Garland -->
+          <svg class="opt1-top-garland" viewBox="0 0 240 40" fill="none">
+            <!-- Center Lotus -->
+            <path d="M120 6 C115 15 110 24 120 31 C130 24 125 15 120 6 Z" fill="#c29d59" opacity="0.95"/>
+            <path d="M120 16 C111 17 104 23 113 30 C117 28 119 23 120 16 Z" fill="#dfbe7d" opacity="0.9"/>
+            <path d="M120 16 C129 17 136 23 127 30 C123 28 121 23 120 16 Z" fill="#dfbe7d" opacity="0.9"/>
+            <circle cx="120" cy="3" r="1.8" fill="#c29d59"/>
+            <!-- Left Vine & Leaves -->
+            <path d="M108 26 C88 26 68 20 38 22 C24 23 10 24 0 24" stroke="#c29d59" stroke-width="1.2" stroke-linecap="round"/>
+            <ellipse cx="88" cy="20" rx="8" ry="4.5" transform="rotate(-15 88 20)" fill="#8ea992" opacity="0.88"/>
+            <ellipse cx="66" cy="24" rx="7" ry="4" transform="rotate(18 66 24)" fill="#a3bfa7" opacity="0.85"/>
+            <ellipse cx="44" cy="19" rx="6" ry="3.5" transform="rotate(-10 44 19)" fill="#78967c" opacity="0.88"/>
+            <circle cx="76" cy="15" r="2" fill="#c29d59"/>
+            <circle cx="54" cy="26" r="1.8" fill="#e5adb1"/>
+            <!-- Right Vine & Leaves -->
+            <path d="M132 26 C152 26 172 20 202 22 C216 23 230 24 240 24" stroke="#c29d59" stroke-width="1.2" stroke-linecap="round"/>
+            <ellipse cx="152" cy="20" rx="8" ry="4.5" transform="rotate(15 152 20)" fill="#8ea992" opacity="0.88"/>
+            <ellipse cx="174" cy="24" rx="7" ry="4" transform="rotate(-18 174 24)" fill="#a3bfa7" opacity="0.85"/>
+            <ellipse cx="196" cy="19" rx="6" ry="3.5" transform="rotate(10 196 19)" fill="#78967c" opacity="0.88"/>
+            <circle cx="164" cy="15" r="2" fill="#c29d59"/>
+            <circle cx="186" cy="26" r="1.8" fill="#e5adb1"/>
+          </svg>
+
+          <!-- Footer Content -->
+          <p style="font-weight: 700; color: #243328; margin-bottom: 5px; font-size: 0.95rem; letter-spacing: 0.05em;">#PAForever</p>
+          <p style="font-size: 0.88rem; color: #556259; line-height: 1.5;">With love, blessings, and warm gratitude from both families.</p>
+          <p style="font-size: 0.78rem; margin-top: 10px; color: #8c6a28; font-weight: 600;">18th &amp; 20th November 2026 • Moradabad</p>
+
+          <!-- Bottom Flourish Baseline -->
+          <div class="opt1-bottom-divider">
+            <span>✦</span>
+            <span>❖</span>
+            <span>✦</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design Option 2: Heritage Archival Gold Filigree Frame -->
+      <div class="footer-preview-card" id="footer-card-d2">
+        <div class="option-header-badge">
+          <h3 class="option-title">Option 2: Heritage Archival Gold Frame</h3>
+          <span class="option-pill-tag">Royal Certificate</span>
+        </div>
+        <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
+          Encloses the blessings in an archival heritage certificate frame with 4 ornate gold filigree corner brackets and an auspicious top medallion crown.
+        </p>
+
+        <!-- Live Render Box -->
+        <div class="opt2-footer-frame">
+          <!-- 4 Corner Brackets -->
+          <svg class="opt2-corner-svg tl" viewBox="0 0 30 30" fill="none">
+            <path d="M2 28 L2 6 C2 3.8 3.8 2 6 2 L28 2" stroke="#c29d59" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M6 24 L6 8 C6 6.9 6.9 6 8 6 L24 6" stroke="#dfbe7d" stroke-width="1" stroke-dasharray="2 2" stroke-linecap="round"/>
+            <circle cx="4" cy="4" r="2.2" fill="#c29d59"/>
+          </svg>
+          <svg class="opt2-corner-svg tr" viewBox="0 0 30 30" fill="none">
+            <path d="M2 28 L2 6 C2 3.8 3.8 2 6 2 L28 2" stroke="#c29d59" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M6 24 L6 8 C6 6.9 6.9 6 8 6 L24 6" stroke="#dfbe7d" stroke-width="1" stroke-dasharray="2 2" stroke-linecap="round"/>
+            <circle cx="4" cy="4" r="2.2" fill="#c29d59"/>
+          </svg>
+          <svg class="opt2-corner-svg bl" viewBox="0 0 30 30" fill="none">
+            <path d="M2 28 L2 6 C2 3.8 3.8 2 6 2 L28 2" stroke="#c29d59" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M6 24 L6 8 C6 6.9 6.9 6 8 6 L24 6" stroke="#dfbe7d" stroke-width="1" stroke-dasharray="2 2" stroke-linecap="round"/>
+            <circle cx="4" cy="4" r="2.2" fill="#c29d59"/>
+          </svg>
+          <svg class="opt2-corner-svg br" viewBox="0 0 30 30" fill="none">
+            <path d="M2 28 L2 6 C2 3.8 3.8 2 6 2 L28 2" stroke="#c29d59" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M6 24 L6 8 C6 6.9 6.9 6 8 6 L24 6" stroke="#dfbe7d" stroke-width="1" stroke-dasharray="2 2" stroke-linecap="round"/>
+            <circle cx="4" cy="4" r="2.2" fill="#c29d59"/>
+          </svg>
+
+          <!-- Top Medallion Crown -->
+          <div class="opt2-top-crest">
+            <span>✤</span>
+            <span style="font-size: 1.1rem; letter-spacing: 0.1em; color: #94691e;">✦</span>
+            <span>✤</span>
+          </div>
+
+          <!-- Footer Content -->
+          <p style="font-weight: 700; color: #243328; margin-bottom: 5px; font-size: 0.95rem; letter-spacing: 0.05em;">#PAForever</p>
+          <p style="font-size: 0.88rem; color: #556259; line-height: 1.5;">With love, blessings, and warm gratitude from both families.</p>
+          <p style="font-size: 0.78rem; margin-top: 10px; color: #8c6a28; font-weight: 600;">18th &amp; 20th November 2026 • Moradabad</p>
+
+          <!-- Bottom Miniature Seal -->
+          <div class="opt2-bottom-crest">
+            <span style="opacity: 0.75;">~ ❦ ~</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design Option 3: Mughal Mandala Jaali & Paisley Crest -->
+      <div class="footer-preview-card" id="footer-card-d3">
+        <div class="option-header-badge">
+          <h3 class="option-title">Option 3: Mughal Mandala Jaali &amp; Paisley</h3>
+          <span class="option-pill-tag">Traditional Jaali</span>
+        </div>
+        <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
+          An ornamental scalloped dome arch inspired by royal palace jharokhas with intricate dots and an authentic paisley henna divider below.
+        </p>
+
+        <!-- Live Render Box -->
+        <div class="opt3-footer-box">
+          <!-- Top Mandala Arch -->
+          <svg class="opt3-top-arch" viewBox="0 0 200 36" fill="none">
+            <path d="M10 32 Q100 -2 190 32" stroke="#c29d59" stroke-width="1.2" stroke-dasharray="3 3"/>
+            <path d="M25 33 Q100 10 175 33" stroke="#dfbe7d" stroke-width="1"/>
+            <circle cx="100" cy="14" r="4" fill="#c29d59"/>
+            <circle cx="85" cy="17" r="2.5" fill="#dfbe7d"/>
+            <circle cx="115" cy="17" r="2.5" fill="#dfbe7d"/>
+            <circle cx="70" cy="23" r="2" fill="#c29d59"/>
+            <circle cx="130" cy="23" r="2" fill="#c29d59"/>
+            <path d="M97 6 C97 2 103 2 103 6 C103 9 97 9 97 6 Z" fill="#c29d59"/>
+          </svg>
+
+          <!-- Footer Content -->
+          <p style="font-weight: 700; color: #243328; margin-bottom: 5px; font-size: 0.95rem; letter-spacing: 0.05em;">#PAForever</p>
+          <p style="font-size: 0.88rem; color: #556259; line-height: 1.5;">With love, blessings, and warm gratitude from both families.</p>
+          <p style="font-size: 0.78rem; margin-top: 10px; color: #8c6a28; font-weight: 600;">18th &amp; 20th November 2026 • Moradabad</p>
+
+          <!-- Bottom Paisley Flourish -->
+          <svg class="opt3-bottom-paisley" viewBox="0 0 160 24" fill="none">
+            <path d="M20 12 C50 12 65 20 80 12 C95 4 110 12 140 12" stroke="#c29d59" stroke-width="1.2" stroke-linecap="round"/>
+            <circle cx="80" cy="12" r="3" fill="#c29d59"/>
+            <circle cx="68" cy="14" r="1.8" fill="#dfbe7d"/>
+            <circle cx="92" cy="10" r="1.8" fill="#dfbe7d"/>
+            <path d="M78 6 C80 3 82 6 80 8 Z" fill="#c29d59"/>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- Confirmed Interactive Features -->
   <h2 class="section-title">The 4-Pillar Interactive Experience</h2>
   <div class="grid">
@@ -1609,11 +2327,59 @@
       }
     })();
 
-    // Audio pill feedback
-    const audioBtn = document.getElementById('audioToggle');
-    audioBtn.addEventListener('click', () => {
-      alert('♫ In the full website, this plays an authentic, soothing Indian Flute & Shehnai instrumental track.');
-    });
+    // Slider Studio Interactive Demonstrations
+    window.switchDemo1 = function(tab) {
+      const pills = document.getElementById('d1-pills');
+      const btns = pills.querySelectorAll('.d1-pill-btn');
+      const output = document.getElementById('d1-output');
+      pills.setAttribute('data-active', tab);
+      btns.forEach(b => b.classList.toggle('active', b.getAttribute('data-tab') === tab));
+      if (tab === 'haldi') {
+        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi\'s Residence, Govindnagar</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">11:00 AM Haldi • 05:30 PM Mehndi • 09:00 PM Dinner</p>';
+      } else {
+        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Friday, 20th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 HB Klyde Premier, Rampur Road, Moradabad</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">08:00 PM Baraat • 08:30 PM Jaimala • 09:00 PM Dinner • ~06:00 AM Vidayi</p>';
+      }
+    };
+
+    window.switchDemo2 = function(tab) {
+      const pills = document.getElementById('d2-pills');
+      const bHaldi = document.getElementById('d2-btn-haldi');
+      const bWed = document.getElementById('d2-btn-wedding');
+      const output = document.getElementById('d2-output');
+      pills.setAttribute('data-active', tab);
+      bHaldi.classList.toggle('active', tab === 'haldi');
+      bWed.classList.toggle('active', tab === 'wedding');
+      if (tab === 'haldi') {
+        bWed.innerHTML = '<span>The Wedding</span> <span class="d2-shimmer-tag">Nov 20 →</span>';
+        bHaldi.innerHTML = '<span>Haldi & Mehndi</span>';
+        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi\'s Residence, Govindnagar</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">11:00 AM Haldi • 05:30 PM Mehndi • 09:00 PM Dinner</p>';
+      } else {
+        bHaldi.innerHTML = '<span>Haldi & Mehndi</span> <span class="d2-shimmer-tag">← Nov 18</span>';
+        bWed.innerHTML = '<span>The Wedding</span>';
+        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Friday, 20th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 HB Klyde Premier, Rampur Road, Moradabad</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">08:00 PM Baraat • 08:30 PM Jaimala • 09:00 PM Dinner • ~06:00 AM Vidayi</p>';
+      }
+    };
+
+    window.switchDemo3 = function(tab) {
+      const cHaldi = document.getElementById('d3-card-haldi');
+      const cWed = document.getElementById('d3-card-wedding');
+      const output = document.getElementById('d3-output');
+      cHaldi.classList.toggle('active', tab === 'haldi');
+      cWed.classList.toggle('active', tab === 'wedding');
+      if (tab === 'haldi') {
+        cHaldi.querySelector('.d3-pass-badge').textContent = '✓ Selected';
+        cHaldi.querySelector('.d3-pass-badge').style = '';
+        cWed.querySelector('.d3-pass-badge').textContent = '👉 Tap to View';
+        cWed.querySelector('.d3-pass-badge').style = 'background:#fcf8f0; color:#8c6a28; border:1px solid #ebd9c0;';
+        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi\'s Residence, Govindnagar</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">11:00 AM Haldi • 05:30 PM Mehndi • 09:00 PM Dinner</p>';
+      } else {
+        cWed.querySelector('.d3-pass-badge').textContent = '✓ Selected';
+        cWed.querySelector('.d3-pass-badge').style = '';
+        cHaldi.querySelector('.d3-pass-badge').textContent = '👉 Tap to View';
+        cHaldi.querySelector('.d3-pass-badge').style = 'background:#fcf8f0; color:#8c6a28; border:1px solid #ebd9c0;';
+        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Friday, 20th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 HB Klyde Premier, Rampur Road, Moradabad</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">08:00 PM Baraat • 08:30 PM Jaimala • 09:00 PM Dinner • ~06:00 AM Vidayi</p>';
+      }
+    };
   </script>
 
 </body>

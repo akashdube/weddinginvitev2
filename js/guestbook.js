@@ -1,5 +1,5 @@
 /**
- * Pranshi & Akash Wedding (#PAForever)
+ * Pranshi & Akash Wedding (#APforever)
  * Live Google Sheets Guestbook Integration with LocalStorage Fallback
  */
 

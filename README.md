@@ -1,4 +1,4 @@
-# Pranshi & Akash Wedding Invitation Website (#PAForever) 🌸💍
+# Pranshi & Akash Wedding Invitation Website (#APforever) 🌸💍
 
 A bespoke, lightweight, mobile-first, interactive wedding invitation website crafted for **Pranshi & Akash**, ready for instant zero-cost hosting on **GitHub Pages**.
 
@@ -13,7 +13,7 @@ A bespoke, lightweight, mobile-first, interactive wedding invitation website cra
 * **Auspicious Lord Ganesha Blessing:**
   * Embossed gold Lord Ganesha crest with sacred Hindi shloka: **॥ श्री गणेशाय नमः ॥**
 * **Couple Typography & Live Countdown:**
-  * Couple display: **Pranshi & Akash** • **#PAForever**
+  * Couple display: **Pranshi & Akash** • **#APforever**
   * Dynamic live countdown clock targeting **20th November 2026**.
   * 1-Tap **"Add to Google Calendar"** button.
 * **Interactive Event Itinerary Tabs (No Sangeet):**
@@ -39,7 +39,7 @@ Open your terminal in this folder (`c:\Users\akash\Desktop\wedding_invite2.0`) a
 ```bash
 git init
 git add .
-git commit -m "Pranshi & Akash Wedding Invitation (#PAForever)"
+git commit -m "Pranshi & Akash Wedding Invitation (#APforever)"
 git branch -M main
 git remote add origin https://github.com/YOUR_GITHUB_USERNAME/wedding_invite.git
 git push -u origin main

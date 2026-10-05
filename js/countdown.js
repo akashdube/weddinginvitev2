@@ -1,5 +1,5 @@
 /**
- * Pranshi & Akash Wedding Countdown (#PAForever)
+ * Pranshi & Akash Wedding Countdown (#APforever)
  * Target Date: November 20, 2026, 17:00:00 IST
  */
 

@@ -1,5 +1,5 @@
 /**
- * Pranshi & Akash Wedding (#PAForever)
+ * Pranshi & Akash Wedding (#APforever)
  * Schedule Tabs, Maps & Calendar Integration
  */
 
@@ -44,9 +44,9 @@
     calendarBtn.addEventListener('click', (e) => {
       e.preventDefault();
       
-      const title = encodeURIComponent("Pranshi & Akash's Wedding Celebration (#PAForever)");
+      const title = encodeURIComponent("Pranshi & Akash's Wedding Celebration (#APforever)");
       const details = encodeURIComponent(
-        "Join us to celebrate the wedding of Pranshi & Akash!\n\nVenue: HB Klyde Premier, Rampur Road, Moradabad\nHashtag: #PAForever"
+        "Join us to celebrate the wedding of Pranshi & Akash!\n\nVenue: HB Klyde Premier, Rampur Road, Moradabad\nHashtag: #APforever"
       );
       const location = encodeURIComponent("HB Klyde Premier, Rampur Road, Near Arcadia Greens, Zero Point, Moradabad, UP 244001");
       const startDate = "20261120T113000Z"; // 17:00 IST is 11:30 UTC
@@ -92,7 +92,7 @@
       e.preventDefault();
       const currentUrl = window.location.href;
       const shareMessage = encodeURIComponent(
-        `🌸 *Pranshi & Akash are Getting Married!* 💍\n\nWith the heavenly blessings of our elders, we cordially invite you to celebrate our wedding festivities (#PAForever).\n\n🗓️ *Dates:* 18th & 20th November 2026\n📍 *City:* Moradabad, UP\n\n✨ *Tap to open our interactive 3D wedding invitation:* \n${currentUrl}`
+        `🌸 *Pranshi & Akash are Getting Married!* 💍\n\nWith the heavenly blessings of our elders, we cordially invite you to celebrate our wedding festivities (#APforever).\n\n🗓️ *Dates:* 18th & 20th November 2026\n📍 *City:* Moradabad, UP\n\n✨ *Tap to open our interactive 3D wedding invitation:* \n${currentUrl}`
       );
       window.open(`https://api.whatsapp.com/send?text=${shareMessage}`, '_blank');
     });

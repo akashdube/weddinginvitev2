@@ -1,5 +1,5 @@
 /**
- * Pranshi & Akash Wedding (#PAForever)
+ * Pranshi & Akash Wedding (#APforever)
  * Melodious Indian Wedding Ambient Audio (Tanpura Drone + Celebratory Shehnai/Bansuri Melody)
  * Supports custom MP3 playback with automatic acoustic synthesis fallback
  */

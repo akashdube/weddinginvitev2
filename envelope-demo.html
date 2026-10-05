@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Pranshi & Akash — Envelope Animation Showcase</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Noto+Serif+Devanagari:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- GSAP 3.12 (Offline-first) -->
+  <script src="./js/libs/gsap.min.js"></script>
+  <script>
+    if (typeof gsap === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"><\/script>');
+    }
+  </script>
+
+  <style>
+    :root {
+      --color-primary: #b54a55;
+      --color-primary-dark: #8a2a35;
+      --color-gold: #c29d59;
+      --color-gold-dark: #9e7b3a;
+      --color-sage: #4a5d4e;
+      --color-bg: #faf6f0;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Outfit', sans-serif;
+      --font-hindi: 'Noto Serif Devanagari', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(234, 197, 200, 0.18) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(142, 169, 146, 0.18) 0px, transparent 50%);
+      color: #2c2523;
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Style Selector Bar (Sticky Top) */
+    .style-picker-bar {
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(194, 157, 89, 0.35);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      border-radius: 999px;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      max-width: 95vw;
+      overflow-x: auto;
+    }
+
+    .style-btn {
+      background: transparent;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #555;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+    }
+
+    .style-btn:hover {
+      color: var(--color-primary);
+      background: rgba(181, 74, 85, 0.06);
+    }
+
+    .style-btn.active {
+      background: var(--color-primary);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(181, 74, 85, 0.3);
+    }
+
+    .replay-btn {
+      background: #faf4e8;
+      border: 1px solid var(--color-gold);
+      color: var(--color-gold-dark);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+
+    .replay-btn:hover {
+      background: var(--color-gold);
+      color: #fff;
+    }
+
+    /* Main Showcase Stage */
+    .showcase-stage {
+      width: 100%;
+      max-width: 440px;
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 16px 40px;
+    }
+
+    /* Style Info Header */
+    .style-description-banner {
+      text-align: center;
+      margin-bottom: 20px;
+      z-index: 10;
+      animation: fadeInDown 0.4s ease;
+    }
+
+    .banner-title {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      letter-spacing: 0.04em;
+    }
+
+    .banner-desc {
+      font-size: 0.82rem;
+      color: #666;
+      margin-top: 4px;
+      max-width: 320px;
+    }
+
+    /* Hashtag Crest */
+    .hashtag-crest {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(10px);
+      padding: 8px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(194, 157, 89, 0.35);
+      box-shadow: 0 6px 20px rgba(194, 157, 89, 0.15);
+      margin-bottom: 18px;
+    }
+
+    .hashtag-text {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      background: linear-gradient(135deg, #b88f42 0%, #e6cb89 50%, #946f29 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+    }
+
+    /* Envelope 3D Stage */
+    .envelope-box {
+      width: 330px;
+      height: 450px;
+      position: relative;
+      perspective: 1400px;
+      margin: 0 auto;
+    }
+
+    /* The Main Envelope Base */
+    .env-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #fbf9f5;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px rgba(50, 40, 30, 0.18), 0 8px 20px rgba(0,0,0,0.06);
+      border: 1.5px solid #e2dacd;
+      transform-style: preserve-3d;
+      overflow: visible;
+    }
+
+    /* =======================================================================
+       Common Envelope Elements
+       ======================================================================= */
+    
+    /* Top Flap (Style 1 & 4) */
+    .env-flap-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 225px;
+      transform-origin: top center;
+      z-index: 25;
+      backface-visibility: visible;
+    }
+
+    .env-flap-top svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+    }
+
+    /* Gatefold Left & Right Doors (Style 3) */
+    .gate-door-left, .gate-door-right {
+      position: absolute;
+      top: 0;
+      width: 50.5%;
+      height: 100%;
+      z-index: 24;
+      background: #fdfbf7;
+      border: 1.5px solid #e0d5c3;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .gate-door-left {
+      left: 0;
+      border-top-left-radius: 16px;
+      border-bottom-left-radius: 16px;
+      transform-origin: left center;
+    }
+
+    .gate-door-right {
+      right: 0;
+      border-top-right-radius: 16px;
+      border-bottom-right-radius: 16px;
+      transform-origin: right center;
+    }
+
+    /* The Inside Invitation Card */
+    .invitation-card {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      height: 420px;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid rgba(194, 157, 89, 0.4);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 22px 16px;
+      text-align: center;
+      z-index: 10;
+      will-change: transform, opacity, box-shadow;
+    }
+
+    .invitation-card::before {
+      content: '';
+      position: absolute;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1px solid rgba(194, 157, 89, 0.3);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    .card-ganesha {
+      width: 44px;
+      height: auto;
+      margin-bottom: 4px;
+      filter: drop-shadow(0 2px 5px rgba(194, 157, 89, 0.3));
+    }
+
+    .card-shloka {
+      font-family: var(--font-hindi);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-gold-dark);
+    }
+
+    .card-hashtag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      letter-spacing: 0.12em;
+      background: rgba(181, 74, 85, 0.08);
+      border: 1px solid rgba(181, 74, 85, 0.2);
+      padding: 2px 12px;
+      border-radius: 999px;
+      margin: 6px 0;
+      text-transform: uppercase;
+    }
+
+    .card-names {
+      font-family: 'Great Vibes', 'Alex Brush', cursive;
+      font-size: 2.1rem;
+      font-weight: 400;
+      color: #1a1a1a;
+      line-height: 1.15;
+    }
+
+    .card-amp {
+      font-family: 'Alex Brush', cursive;
+      font-size: 1.25rem;
+      color: var(--color-gold);
+    }
+
+    .card-date {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--color-gold-dark);
+      margin-top: 4px;
+    }
+
+    /* Envelope Pocket Front */
+    .env-pocket-front {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 15;
+      pointer-events: none;
+      border-radius: 16px;
+      overflow: visible;
+    }
+
+    .env-pocket-front svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Ribbon Belly Band */
+    .ribbon-band {
+      position: absolute;
+      top: 225px;
+      left: 0;
+      right: 0;
+      height: 54px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, #ecd3be 0%, #f7ede3 50%, #ecd3be 100%);
+      border-top: 1px solid rgba(194, 157, 89, 0.4);
+      border-bottom: 1px solid rgba(194, 157, 89, 0.4);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      z-index: 18;
+      pointer-events: none;
+    }
+
+    /* 3D Wax Seal */
+    .seal-wrap {
+      position: absolute;
+      top: 225px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 35;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.25s ease;
+    }
+
+    .seal-wrap:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    .seal-stamp {
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      background-image: url('./assets/wax_seal_pa.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      filter: drop-shadow(0 12px 24px rgba(117, 82, 27, 0.42));
+      animation: pulseGlow 2.4s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 12px 24px rgba(117, 82, 27, 0.42)); }
+      50% { transform: scale(1.03); filter: drop-shadow(0 16px 32px rgba(194, 157, 89, 0.65)); }
+    }
+
+    .seal-cue {
+      margin-top: 12px;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--color-gold-dark);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 5px 18px;
+      border-radius: 999px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      border: 1px solid rgba(194, 157, 89, 0.35);
+      animation: bounceCue 2s infinite ease-in-out;
+    }
+
+    @keyframes bounceCue {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    /* Destination Full Screen Preview Card (Revealed upon settling) */
+    .settled-full-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid rgba(194, 157, 89, 0.35);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+      padding: 36px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.95);
+    }
+
+    .full-ganesha {
+      width: 58px;
+      margin-bottom: 8px;
+    }
+
+    .full-shloka {
+      font-family: var(--font-hindi);
+      font-size: 1rem;
+      color: var(--color-gold-dark);
+      font-weight: 600;
+    }
+
+    .full-names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: #1a1a1a;
+      margin: 22px 0 10px;
+      line-height: 1.1;
+    }
+
+    .full-prose {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.55;
+      max-width: 300px;
+      margin: 10px 0 16px;
+    }
+
+    .full-badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      background: rgba(181, 74, 85, 0.08);
+      padding: 6px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(181, 74, 85, 0.25);
+    }
+
+    .success-pill {
+      margin-top: 18px;
+      font-size: 0.78rem;
+      color: var(--color-sage);
+      font-weight: 600;
+      background: rgba(74, 93, 78, 0.1);
+      padding: 4px 14px;
+      border-radius: 999px;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Style Switcher Bar -->
+  <div class="style-picker-bar">
+    <button class="style-btn active" data-style="1">Style 1: Royal 3D Lift &amp; Bloom</button>
+    <button class="style-btn" data-style="2">Style 2: Luxury Parallax Split</button>
+    <button class="style-btn" data-style="3">Style 3: Royal Gatefold Doors</button>
+    <button class="style-btn" data-style="4">Style 4: Letterpress Elevation</button>
+    <button class="replay-btn" id="replay-btn" title="Replay current animation">↻ Replay</button>
+  </div>
+
+  <div class="showcase-stage">
+    
+    <!-- Style Info Banner -->
+    <div class="style-description-banner" id="style-banner">
+      <h2 class="banner-title" id="banner-title">Style 1: Royal 3D Lift &amp; Bloom</h2>
+      <p class="banner-desc" id="banner-desc">Flawless 3D top flap fold, upward card pop, then smooth camera zoom filling the screen with zero tearing.</p>
+    </div>
+
+    <!-- Hashtag Crest -->
+    <div class="hashtag-crest">
+      <span style="color: var(--color-gold); font-size: 0.8rem;">✤</span>
+      <span class="hashtag-text">#APforever</span>
+      <span style="color: var(--color-gold); font-size: 0.8rem;">✤</span>
+    </div>
+
+    <!-- Envelope Container -->
+    <div class="envelope-box" id="envelope-box">
+      <div class="env-wrapper" id="main-env">
+
+        <!-- 1. Top Flap (Styles 1 & 4) -->
+        <div class="env-flap-top" id="flap-top">
+          <svg viewBox="0 0 330 225" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="flapG" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#fdfbf8" />
+                <stop offset="100%" stop-color="#f4ebe0" />
+              </linearGradient>
+            </defs>
+            <path d="M 0 0 L 330 0 L 170 221 Q 165 225 160 221 L 0 0 Z" fill="url(#flapG)" stroke="#dfd4c2" stroke-width="1.2" />
+            <path d="M 20 8 L 165 210 L 310 8" fill="none" stroke="#c29d59" stroke-width="1" opacity="0.6" stroke-dasharray="3,3" />
+          </svg>
+        </div>
+
+        <!-- 2. Gatefold Doors (Style 3) -->
+        <div class="gate-door-left" id="gate-left" style="display: none;">
+          <svg width="100%" height="100%" viewBox="0 0 165 450" preserveAspectRatio="none">
+            <rect x="0" y="0" width="165" height="450" fill="#fdfbf7" />
+            <rect x="8" y="8" width="149" height="434" fill="none" stroke="#e0d5c3" stroke-width="1" />
+            <path d="M 12 12 L 153 12 L 153 438 L 12 438" fill="none" stroke="#c29d59" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.6" />
+            <!-- Ornate Corner Motifs -->
+            <circle cx="20" cy="20" r="3" fill="#c29d59" />
+            <circle cx="20" cy="430" r="3" fill="#c29d59" />
+          </svg>
+        </div>
+        <div class="gate-door-right" id="gate-right" style="display: none;">
+          <svg width="100%" height="100%" viewBox="0 0 165 450" preserveAspectRatio="none">
+            <rect x="0" y="0" width="165" height="450" fill="#fdfbf7" />
+            <rect x="8" y="8" width="149" height="434" fill="none" stroke="#e0d5c3" stroke-width="1" />
+            <path d="M 12 12 L 153 12 L 153 438 L 12 438" fill="none" stroke="#c29d59" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.6" />
+            <circle cx="145" cy="20" r="3" fill="#c29d59" />
+            <circle cx="145" cy="430" r="3" fill="#c29d59" />
+          </svg>
+        </div>
+
+        <!-- 3. Inside Invitation Card -->
+        <div class="invitation-card" id="inner-card">
+          <img src="./assets/ganesha_gold.png" alt="Lord Ganesha" class="card-ganesha">
+          <span class="card-shloka">॥ श्री गणेशाय नमः ॥</span>
+          <span class="card-hashtag">#APforever</span>
+          <div class="card-names">
+            <span>Pranshi</span>
+            <div class="card-amp">&amp;</div>
+            <span>Akash</span>
+          </div>
+          <div class="card-ap-logo-wrap" id="demo-inner-card-logo" style="width: 176px; height: 114px; margin-top: 6px; display: flex; align-items: center; justify-content: center;">
+            <!-- Selected AP Logo injected here -->
+          </div>
+        </div>
+
+        <!-- 4. Envelope Pocket Front (Vector SVG) -->
+        <div class="env-pocket-front" id="pocket-front">
+          <svg viewBox="0 0 330 450" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="pocketG" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#fdfbf8" />
+                <stop offset="100%" stop-color="#f6efe4" />
+              </linearGradient>
+            </defs>
+            <!-- Left Flap -->
+            <polygon points="-1,-1 166,226 -1,451" fill="#eee5d8" stroke="#dfd4c2" stroke-width="0.8" />
+            <!-- Right Flap -->
+            <polygon points="331,-1 164,226 331,451" fill="#eee5d8" stroke="#dfd4c2" stroke-width="0.8" />
+            <!-- Bottom Flap -->
+            <path d="M -1 451 L 160 213 Q 165 210 170 213 L 331 451 Z" fill="url(#pocketG)" stroke="#ded3c1" stroke-width="1.2" />
+            <path d="M 22 438 L 165 224 L 308 438" fill="none" stroke="#c29d59" stroke-width="1" opacity="0.55" stroke-dasharray="3,3" />
+          </svg>
+
+          <!-- Silk Ribbon Band -->
+          <div class="ribbon-band" id="ribbon-band"></div>
+
+          <!-- Botanical Wings behind Seal -->
+          <svg class="seal-wings" style="position: absolute; top: 225px; left: 50%; transform: translate(-50%, -50%); width: 250px; height: 90px; pointer-events: none; z-index: 19;" viewBox="0 0 240 80" fill="none">
+            <path d="M60 40 C35 38 20 28 8 18" stroke="#78967c" stroke-width="1.5" stroke-linecap="round" />
+            <ellipse cx="40" cy="32" rx="12" ry="7" transform="rotate(-20 40 32)" fill="#8ea992" opacity="0.9" />
+            <ellipse cx="22" cy="24" rx="10" ry="6" transform="rotate(-35 22 24)" fill="#a3bfa7" opacity="0.85" />
+            <circle cx="34" cy="24" r="3" fill="#e5adb1" />
+            <path d="M180 40 C205 38 220 28 232 18" stroke="#78967c" stroke-width="1.5" stroke-linecap="round" />
+            <ellipse cx="200" cy="32" rx="12" ry="7" transform="rotate(20 200 32)" fill="#8ea992" opacity="0.9" />
+            <ellipse cx="218" cy="24" rx="10" ry="6" transform="rotate(35 218 24)" fill="#a3bfa7" opacity="0.85" />
+            <circle cx="206" cy="24" r="3" fill="#e5adb1" />
+          </svg>
+        </div>
+
+        <!-- 5. 3D Wax Seal Monogram -->
+        <div class="seal-wrap" id="seal-wrap">
+          <div class="seal-stamp" id="seal-stamp"></div>
+          <div class="seal-cue" id="seal-cue">Tap to Unseal</div>
+        </div>
+
+      </div>
+
+      <!-- Destination Full Screen View (Screen Fill Result) -->
+      <div class="settled-full-screen" id="settled-screen">
+        <img src="./assets/ganesha_gold.png" alt="Lord Ganesha" class="full-ganesha">
+        <span class="full-shloka">॥ श्री गणेशाय नमः ॥</span>
+        <h1 class="full-names">Pranshi &amp; Akash</h1>
+        <p class="full-prose">With blessings from both families, we warmly welcome you to our wedding celebrations.</p>
+        <span class="full-badge">18th &amp; 20th November 2026 • Moradabad</span>
+        <div class="success-pill">✓ Seamless Screen Fill Complete</div>
+    </div>
+
+    <!-- =====================================================================
+         AP Logo Suggestions Showcase (Choose for Opening Card)
+         ===================================================================== -->
+    <div style="width: 100%; max-width: 440px; margin-top: 50px; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-radius: 20px; border: 1.5px solid rgba(194, 157, 89, 0.35); box-shadow: 0 15px 40px rgba(0,0,0,0.08); padding: 28px 18px; text-align: center;">
+      <h3 style="font-family: var(--font-serif); font-size: 1.45rem; color: var(--color-primary-dark); font-weight: 700; margin-bottom: 4px;">AP Logo Designs</h3>
+      <p style="font-size: 0.8rem; color: #666; margin-bottom: 22px;">Review these 8 handcrafted monogram concepts to replace the dates on the opening card:</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        
+        <!-- Logo 1: Imperial Botanical Wreath -->
+        <div class="logo-choice-card" id="logo-card-1" style="background: #fdfbf8; border: 1.5px solid rgba(194, 157, 89, 0.35); border-radius: 14px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.04); transition: all 0.25s ease;">
+          <span style="font-size: 0.72rem; font-weight: 700; color: var(--color-primary); letter-spacing: 0.05em; margin-bottom: 6px;">Option 1: Botanical Wreath</span>
+          <svg viewBox="0 0 140 85" style="width: 100%; height: 75px;" fill="none">
+            <defs>
+              <linearGradient id="demoLogoGold1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#b88f42" />
+                <stop offset="40%" stop-color="#f5e1a4" />
+                <stop offset="100%" stop-color="#946f29" />
+              </linearGradient>
+            </defs>
+            <path d="M 38 42 C 34 28 44 16 60 12 C 52 20 50 30 54 40" stroke="#8ea992" stroke-width="1.2" stroke-linecap="round" />
+            <ellipse cx="40" cy="26" rx="5" ry="2.8" transform="rotate(-35 40 26)" fill="#a3bfa7" opacity="0.85" />
+            <circle cx="45" cy="18" r="1.5" fill="#e5adb1" />
+            <path d="M 102 42 C 106 28 96 16 80 12 C 88 20 90 30 86 40" stroke="#8ea992" stroke-width="1.2" stroke-linecap="round" />
+            <ellipse cx="100" cy="26" rx="5" ry="2.8" transform="rotate(35 100 26)" fill="#a3bfa7" opacity="0.85" />
+            <circle cx="95" cy="18" r="1.5" fill="#e5adb1" />
+            <circle cx="70" cy="44" r="26" stroke="url(#demoLogoGold1)" stroke-width="1" stroke-dasharray="3,2" />
+            <path d="M 70 7 L 71.5 11 L 75.5 12 L 71.5 13 L 70 17 L 68.5 13 L 64.5 12 L 68.5 11 Z" fill="url(#demoLogoGold1)" />
+            <text x="70" y="52" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="700" letter-spacing="1.5" fill="url(#demoLogoGold1)" text-anchor="middle">A✤P</text>
+            <path d="M 58 61 C 64 64 76 64 82 61" stroke="url(#demoLogoGold1)" stroke-width="1" />
+          </svg>
+          <span style="font-size: 0.68rem; color: #777; margin-top: 4px;">Royal Rajputana Wreath</span>
+          <button onclick="previewLogo(1)" style="margin-top: 8px; background: transparent; border: 1px solid var(--color-gold); color: var(--color-gold-dark); border-radius: 999px; padding: 3px 12px; font-size: 0.7rem; font-weight: 700; cursor: pointer;">Preview on Card</button>
+        </div>
+
+        <!-- Logo 2: Sacred Lotus Padma -->
+        <div class="logo-choice-card" id="logo-card-2" style="background: #fdfbf8; border: 1.5px solid rgba(194, 157, 89, 0.35); border-radius: 14px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.04); transition: all 0.25s ease;">
+          <span style="font-size: 0.72rem; font-weight: 700; color: var(--color-primary); letter-spacing: 0.05em; margin-bottom: 6px;">Option 2: Sacred Lotus</span>
+          <svg viewBox="0 0 140 85" style="width: 100%; height: 75px;" fill="none">
+            <defs>
+              <linearGradient id="demoLogoGold2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#b88f42" />
+                <stop offset="50%" stop-color="#f5e1a4" />
+                <stop offset="100%" stop-color="#946f29" />
+              </linearGradient>
+            </defs>
+            <!-- Sacred Lotus Base -->
+            <path d="M 52 64 C 58 58 64 66 70 60 C 76 66 82 58 88 64 C 82 68 76 72 70 70 C 64 72 58 68 52 64 Z" fill="url(#demoLogoGold2)" opacity="0.45" />
+            <path d="M 62 64 C 66 57 74 57 78 64 C 74 67 66 67 62 64 Z" fill="url(#demoLogoGold2)" />
+            <!-- Star flourishes -->
+            <text x="38" y="32" font-size="10" fill="#c29d59">✦</text>
+            <text x="100" y="32" font-size="10" fill="#c29d59">✦</text>
+            <text x="70" y="14" font-size="11" fill="#c29d59" text-anchor="middle">✦</text>
+            <!-- Flowing Cursive AP -->
+            <text x="70" y="47" font-family="'Great Vibes', cursive" font-size="28" font-weight="700" fill="url(#demoLogoGold2)" text-anchor="middle">A&amp;P</text>
+          </svg>
+          <span style="font-size: 0.68rem; color: #777; margin-top: 4px;">Auspicious Blooming Lotus</span>
+          <button onclick="previewLogo(2)" style="margin-top: 8px; background: transparent; border: 1px solid var(--color-gold); color: var(--color-gold-dark); border-radius: 999px; padding: 3px 12px; font-size: 0.7rem; font-weight: 700; cursor: pointer;">Preview on Card</button>
+        </div>
+
+        <!-- Logo 3: Modern Royal Geometric -->
+        <div class="logo-choice-card" id="logo-card-3" style="background: #fdfbf8; border: 1.5px solid rgba(194, 157, 89, 0.35); border-radius: 14px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.04); transition: all 0.25s ease;">
+          <span style="font-size: 0.72rem; font-weight: 700; color: var(--color-primary); letter-spacing: 0.05em; margin-bottom: 6px;">Option 3: Modern Luxury</span>
+          <svg viewBox="0 0 140 85" style="width: 100%; height: 75px;" fill="none">
+            <defs>
+              <linearGradient id="demoLogoGold3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#b88f42" />
+                <stop offset="50%" stop-color="#f5e1a4" />
+                <stop offset="100%" stop-color="#946f29" />
+              </linearGradient>
+            </defs>
+            <!-- Geometric Octagon Frame -->
+            <polygon points="70,10 96,20 106,46 96,72 70,82 44,72 34,46 44,20" fill="none" stroke="url(#demoLogoGold3)" stroke-width="1.2" opacity="0.75" />
+            <polygon points="70,14 92,23 101,46 92,69 70,78 48,69 39,46 48,23" fill="none" stroke="url(#demoLogoGold3)" stroke-width="0.6" stroke-dasharray="2,2" opacity="0.5" />
+            <!-- High Fashion Interlocked Monogram -->
+            <text x="70" y="53" font-family="'Cormorant Garamond', serif" font-size="25" font-weight="700" letter-spacing="3" fill="url(#demoLogoGold3)" text-anchor="middle">AP</text>
+            <text x="70" y="69" font-family="'Outfit', sans-serif" font-size="6" font-weight="700" letter-spacing="2" fill="var(--color-primary)" text-anchor="middle">FOREVER</text>
+          </svg>
+          <span style="font-size: 0.68rem; color: #777; margin-top: 4px;">Geometric Diamond Emblem</span>
+          <button onclick="previewLogo(3)" style="margin-top: 8px; background: transparent; border: 1px solid var(--color-gold); color: var(--color-gold-dark); border-radius: 999px; padding: 3px 12px; font-size: 0.7rem; font-weight: 700; cursor: pointer;">Preview on Card</button>
+        </div>
+
+        <!-- Logo 4: Heritage Palace Jaali Medallion -->
+        <div class="logo-choice-card" id="logo-card-4" style="background: #fdfbf8; border: 1.5px solid rgba(194, 157, 89, 0.35); border-radius: 14px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.04); transition: all 0.25s ease;">
+          <span style="font-size: 0.72rem; font-weight: 700; color: var(--color-primary); letter-spacing: 0.05em; margin-bottom: 6px;">Option 4: Palace Jaali</span>
+          <svg viewBox="0 0 140 85" style="width: 100%; height: 75px;" fill="none">
+            <defs>
+              <linearGradient id="demoLogoGold4" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#b88f42" />
+                <stop offset="50%" stop-color="#f5e1a4" />
+                <stop offset="100%" stop-color="#946f29" />
+              </linearGradient>
+            </defs>
+            <!-- Scalloped Heritage Medallion -->
+            <rect x="36" y="12" width="68" height="62" rx="12" fill="none" stroke="url(#demoLogoGold4)" stroke-width="1.2" />
+            <rect x="40" y="16" width="60" height="54" rx="8" fill="none" stroke="url(#demoLogoGold4)" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.6" />
+            <!-- Paisley corner accents -->
+            <circle cx="43" cy="19" r="2" fill="#c29d59" />
+            <circle cx="97" cy="19" r="2" fill="#c29d59" />
+            <circle cx="43" cy="67" r="2" fill="#c29d59" />
+            <circle cx="97" cy="67" r="2" fill="#c29d59" />
+            <!-- Central Serif Initials -->
+            <text x="70" y="49" font-family="'Cormorant Garamond', Georgia, serif" font-size="22" font-weight="700" letter-spacing="2" fill="url(#demoLogoGold4)" text-anchor="middle">A • P</text>
+            <path d="M 52 58 C 60 62 80 62 88 58" stroke="url(#demoLogoGold4)" stroke-width="0.9" />
+          </svg>
+          <span style="font-size: 0.68rem; color: #777; margin-top: 4px;">Palace Jaali Lattice</span>
+          <button onclick="previewLogo(4)" style="margin-top: 8px; background: transparent; border: 1px solid var(--color-gold); color: var(--color-gold-dark); border-radius: 999px; padding: 3px 12px; font-size: 0.7rem; font-weight: 700; cursor: pointer;">Preview on Card</button>
+        </div>
+
+        <!-- Logo 5: Royal Rajputana Mukut & Crest -->
+        <div class="logo-choice-card" id="logo-card-5" style="background: #fdfbf8; border: 1.5px solid rgba(194, 157, 89, 0.35); border-radius: 14px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.04); transition: all 0.25s ease;">
+          <span style="font-size: 0.72rem; font-weight: 700; color: var(--color-primary); letter-spacing: 0.05em; margin-bottom: 6px;">Option 5: Royal Mukut</span>
+          <svg viewBox="0 0 140 85" style="width: 100%; height: 75px;" fill="none">
+            <defs>
+              <linearGradient id="demoLogoGold5" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#b88f42" />
+                <stop offset="50%" stop-color="#f5e1a4" />
+                <stop offset="100%" stop-color="#946f29" />
+              </linearGradient>
+            </defs>
+            <!-- Royal Mukut / Coronet Crown -->
+            <path d="M 52 20 L 56 12 L 62 18 L 70 8 L 78 18 L 84 12 L 88 20 Z" fill="url(#demoLogoGold5)" />
+            <circle cx="56" cy="11" r="1.5" fill="#f5e1a4" />
+            <circle cx="70" cy="7" r="2" fill="#b54a55" />
+            <circle cx="84" cy="11" r="1.5" fill="#f5e1a4" />
+            <line x1="50" y1="21" x2="90" y2="21" stroke="url(#demoLogoGold5)" stroke-width="1.2" />
+            <!-- Baroque Flourish Wings -->
+            <path d="M 38 45 C 32 32 46 26 56 36 C 48 38 46 48 50 56" stroke="url(#demoLogoGold5)" stroke-width="1" stroke-linecap="round" />
+            <path d="M 102 45 C 108 32 94 26 84 36 C 92 38 94 48 90 56" stroke="url(#demoLogoGold5)" stroke-width="1" stroke-linecap="round" />
+            <!-- Central Serif Monogram -->
+            <text x="70" y="47" font-family="'Cormorant Garamond', Georgia, serif" font-size="22" font-weight="700" letter-spacing="2" fill="url(#demoLogoGold5)" text-anchor="middle">A✦P</text>
+            <!-- Lower Banner -->
+            <path d="M 44 60 C 56 65 84 65 96 60" stroke="url(#demoLogoGold5)" stroke-width="1" />
+            <text x="70" y="69" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="700" letter-spacing="1.5" fill="var(--color-gold-dark)" text-anchor="middle">AP FOREVER</text>
+          </svg>
+          <span style="font-size: 0.68rem; color: #777; margin-top: 4px;">Rajputana Coronet Crown</span>
+          <button onclick="previewLogo(5)" style="margin-top: 8px; background: transparent; border: 1px solid var(--color-gold); color: var(--color-gold-dark); border-radius: 999px; padding: 3px 12px; font-size: 0.7rem; font-weight: 700; cursor: pointer;">Preview on Card</button>
+        </div>
+
+        <!-- Logo 6: Ananta Bandhan Infinity Knot -->
+        <div class="logo-choice-card" id="logo-card-6" style="background: #fdfbf8; border: 1.5px solid rgba(194, 157, 89, 0.35); border-radius: 14px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.04); transition: all 0.25s ease;">
+          <span style="font-size: 0.72rem; font-weight: 700; color: var(--color-primary); letter-spacing: 0.05em; margin-bottom: 6px;">Option 6: Ananta Knot</span>
+          <svg viewBox="0 0 140 85" style="width: 100%; height: 75px;" fill="none">
+            <defs>
+              <linearGradient id="demoLogoGold6" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#b88f42" />
+                <stop offset="50%" stop-color="#f5e1a4" />
+                <stop offset="100%" stop-color="#946f29" />
+              </linearGradient>
+            </defs>
+            <!-- Sacred Kalash Finial at Top -->
+            <path d="M 66 16 C 66 12 74 12 74 16 L 75 19 L 65 19 Z" fill="url(#demoLogoGold6)" />
+            <circle cx="70" cy="11" r="2.5" fill="url(#demoLogoGold6)" />
+            <!-- Infinity Loop Contour -->
+            <path d="M 50 46 C 36 32 36 60 50 46 C 64 32 76 60 90 46 C 104 32 104 60 90 46 C 76 32 64 60 50 46 Z" stroke="url(#demoLogoGold6)" stroke-width="1.8" fill="none" opacity="0.45" />
+            <!-- Interwoven Initial Typography -->
+            <text x="52" y="52" font-family="'Cormorant Garamond', serif" font-size="20" font-weight="700" fill="url(#demoLogoGold6)" text-anchor="middle">A</text>
+            <text x="70" y="48" font-size="11" fill="#c29d59" text-anchor="middle">∞</text>
+            <text x="88" y="52" font-family="'Cormorant Garamond', serif" font-size="20" font-weight="700" fill="url(#demoLogoGold6)" text-anchor="middle">P</text>
+            <!-- Sanskrit Shloka Word -->
+            <text x="70" y="68" font-family="'Noto Serif Devanagari', serif" font-size="7" font-weight="600" fill="var(--color-gold-dark)" text-anchor="middle">॥ अनन्त प्रेम ॥</text>
+          </svg>
+          <span style="font-size: 0.68rem; color: #777; margin-top: 4px;">Eternal Infinity Kalash</span>
+          <button onclick="previewLogo(6)" style="margin-top: 8px; background: transparent; border: 1px solid var(--color-gold); color: var(--color-gold-dark); border-radius: 999px; padding: 3px 12px; font-size: 0.7rem; font-weight: 700; cursor: pointer;">Preview on Card</button>
+        </div>
+
+        <!-- Logo 7: Royal Mayur Peacocks -->
+        <div class="logo-choice-card" id="logo-card-7" style="background: #fdfbf8; border: 1.5px solid rgba(194, 157, 89, 0.35); border-radius: 14px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.04); transition: all 0.25s ease;">
+          <span style="font-size: 0.72rem; font-weight: 700; color: var(--color-primary); letter-spacing: 0.05em; margin-bottom: 6px;">Option 7: Mayur Peacocks</span>
+          <svg viewBox="0 0 140 85" style="width: 100%; height: 75px;" fill="none">
+            <defs>
+              <linearGradient id="demoLogoGold7" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#b88f42" />
+                <stop offset="50%" stop-color="#f5e1a4" />
+                <stop offset="100%" stop-color="#946f29" />
+              </linearGradient>
+            </defs>
+            <!-- Left Peacock Silhouette Arch -->
+            <path d="M 40 48 C 36 34 46 16 66 14 C 62 18 56 22 56 30 C 56 38 48 44 40 48 Z" fill="url(#demoLogoGold7)" opacity="0.6" />
+            <circle cx="65" cy="13" r="1.5" fill="#f5e1a4" />
+            <!-- Right Peacock Silhouette Arch -->
+            <path d="M 100 48 C 104 34 94 16 74 14 C 78 18 84 22 84 30 C 84 38 92 44 100 48 Z" fill="url(#demoLogoGold7)" opacity="0.6" />
+            <circle cx="75" cy="13" r="1.5" fill="#f5e1a4" />
+            <!-- Central Diamond -->
+            <polygon points="70,11 73,14 70,17 67,14" fill="#b54a55" />
+            <!-- Blooming Lotus at Base -->
+            <path d="M 58 64 C 62 58 66 63 70 59 C 74 63 78 58 82 64 Z" fill="url(#demoLogoGold7)" />
+            <!-- Regal Names Monogram -->
+            <text x="70" y="47" font-family="'Cormorant Garamond', Georgia, serif" font-size="21" font-weight="700" letter-spacing="1.5" fill="url(#demoLogoGold7)" text-anchor="middle">A &amp; P</text>
+          </svg>
+          <span style="font-size: 0.68rem; color: #777; margin-top: 4px;">Sabyasachi Mayur Arch</span>
+          <button onclick="previewLogo(7)" style="margin-top: 8px; background: transparent; border: 1px solid var(--color-gold); color: var(--color-gold-dark); border-radius: 999px; padding: 3px 12px; font-size: 0.7rem; font-weight: 700; cursor: pointer;">Preview on Card</button>
+        </div>
+
+        <!-- Logo 8: Sacred Surya Mandala -->
+        <div class="logo-choice-card" id="logo-card-8" style="background: #fdfbf8; border: 1.5px solid rgba(194, 157, 89, 0.35); border-radius: 14px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.04); transition: all 0.25s ease;">
+          <span style="font-size: 0.72rem; font-weight: 700; color: var(--color-primary); letter-spacing: 0.05em; margin-bottom: 6px;">Option 8: Surya Mandala</span>
+          <svg viewBox="0 0 190 105" style="width: 100%; height: 75px;" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="demoLogoGold8" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#b88f42" />
+                <stop offset="30%" stop-color="#f7e4a8" />
+                <stop offset="60%" stop-color="#ddba70" />
+                <stop offset="100%" stop-color="#916c26" />
+              </linearGradient>
+              <linearGradient id="demoSuryaDisc" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="60%" stop-color="#fdfcf8" />
+                <stop offset="100%" stop-color="#fbf5e8" />
+              </linearGradient>
+            </defs>
+            <g transform="translate(95, 52)">
+              <path d="M -38 -4 C -54 -14 -72 -6 -82 2 C -74 8 -58 4 -40 2" stroke="url(#demoLogoGold8)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.85" />
+              <circle cx="-83" cy="2" r="1.8" fill="url(#demoLogoGold8)" />
+              <circle cx="-62" cy="-4" r="1.2" fill="#c29d59" opacity="0.8" />
+              <path d="M 38 -4 C 54 -14 72 -6 82 2 C 74 8 58 4 40 2" stroke="url(#demoLogoGold8)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.85" />
+              <circle cx="83" cy="2" r="1.8" fill="url(#demoLogoGold8)" />
+              <circle cx="62" cy="-4" r="1.2" fill="#c29d59" opacity="0.8" />
+              <g fill="url(#demoLogoGold8)">
+                <polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" /><circle cx="0" cy="-49.5" r="1.3" />
+                <g transform="rotate(45)"><polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" /><circle cx="0" cy="-49.5" r="1.3" /></g>
+                <g transform="rotate(90)"><polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" /><circle cx="0" cy="-49.5" r="1.3" /></g>
+                <g transform="rotate(135)"><polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" /><circle cx="0" cy="-49.5" r="1.3" /></g>
+                <g transform="rotate(180)"><polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" /><circle cx="0" cy="-49.5" r="1.3" /></g>
+                <g transform="rotate(225)"><polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" /><circle cx="0" cy="-49.5" r="1.3" /></g>
+                <g transform="rotate(270)"><polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" /><circle cx="0" cy="-49.5" r="1.3" /></g>
+                <g transform="rotate(315)"><polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" /><circle cx="0" cy="-49.5" r="1.3" /></g>
+              </g>
+              <g fill="url(#demoLogoGold8)" opacity="0.8">
+                <g transform="rotate(22.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
+                <g transform="rotate(67.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
+                <g transform="rotate(112.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
+                <g transform="rotate(157.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
+                <g transform="rotate(202.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
+                <g transform="rotate(247.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
+                <g transform="rotate(292.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
+                <g transform="rotate(337.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
+              </g>
+              <circle cx="0" cy="0" r="30.5" stroke="url(#demoLogoGold8)" stroke-width="1.1" stroke-dasharray="3,2" fill="none" opacity="0.85" />
+              <circle cx="0" cy="0" r="27.5" fill="url(#demoSuryaDisc)" stroke="url(#demoLogoGold8)" stroke-width="1.3" />
+              <circle cx="0" cy="0" r="24.5" stroke="url(#demoLogoGold8)" stroke-width="0.75" stroke-dasharray="1.8,1.8" fill="none" opacity="0.7" />
+              <text x="0" y="8" font-family="'Cormorant Garamond', Georgia, serif" font-size="23" font-weight="700" letter-spacing="2" fill="url(#demoLogoGold8)" text-anchor="middle">A✦P</text>
+              <path d="M -11 13 C -5 15.5 5 15.5 11 13" stroke="url(#demoLogoGold8)" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.75" />
+              <circle cx="0" cy="14.8" r="0.9" fill="url(#demoLogoGold8)" />
+            </g>
+          </svg>
+          <span style="font-size: 0.68rem; color: #777; margin-top: 4px;">Sacred Sunburst Mandala</span>
+          <button onclick="previewLogo(8)" style="margin-top: 8px; background: transparent; border: 1px solid var(--color-gold); color: var(--color-gold-dark); border-radius: 999px; padding: 3px 12px; font-size: 0.7rem; font-weight: 700; cursor: pointer;">Preview on Card</button>
+        </div>
+
+      </div>
+    </div>
+
+  <script>
+    const unsealAudio = new Audio('./assets/audio/unseal.mp3');
+    unsealAudio.preload = 'auto';
+
+    let currentStyle = '1';
+    let isAnimating = false;
+    let masterTimeline = null;
+
+    const descriptions = {
+      '1': {
+        title: 'Style 1: Royal 3D Lift & Bloom',
+        desc: 'Flawless 3D vector flap fold, card pops upward, then smoothly camera-zooms into full screen without tearing.'
+      },
+      '2': {
+        title: 'Style 2: Luxury Parallax Split (Zero-3D Glitch-Proof)',
+        desc: 'Jacket slides down while card ascends in elegant parallax counter-motion, then gracefully expands to fill the viewport.'
+      },
+      '3': {
+        title: 'Style 3: Royal Gatefold Palace Doors',
+        desc: 'Double doors swing open sideways like royal palace gates; inner card emerges forward and fills the screen.'
+      },
+      '4': {
+        title: 'Style 4: Letterpress Elevation & Screen-Fill',
+        desc: 'Gentle tactile elevation with realistic spring physics, floating forward and cross-dissolving seamlessly into the full view.'
+      }
+    };
+
+    function setStyle(styleId) {
+      currentStyle = styleId;
+      document.querySelectorAll('.style-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.style === styleId);
+      });
+      document.getElementById('banner-title').textContent = descriptions[styleId].title;
+      document.getElementById('banner-desc').textContent = descriptions[styleId].desc;
+      resetStage();
+    }
+
+    function resetStage() {
+      if (masterTimeline) masterTimeline.kill();
+      isAnimating = false;
+
+      const flapTop = document.getElementById('flap-top');
+      const gateLeft = document.getElementById('gate-left');
+      const gateRight = document.getElementById('gate-right');
+      const pocketFront = document.getElementById('pocket-front');
+      const ribbonBand = document.getElementById('ribbon-band');
+      const innerCard = document.getElementById('inner-card');
+      const sealWrap = document.getElementById('seal-wrap');
+      const sealStamp = document.getElementById('seal-stamp');
+      const sealCue = document.getElementById('seal-cue');
+      const mainEnv = document.getElementById('main-env');
+      const settledScreen = document.getElementById('settled-screen');
+
+      // Reset transforms and opacities
+      gsap.set([mainEnv, innerCard, flapTop, gateLeft, gateRight, pocketFront, ribbonBand, sealWrap, sealStamp, sealCue, settledScreen], {
+        clearProps: 'all'
+      });
+
+      // Configure layout based on style
+      if (currentStyle === '3') {
+        // Gatefold mode
+        flapTop.style.display = 'none';
+        pocketFront.style.display = 'none';
+        gateLeft.style.display = 'flex';
+        gateRight.style.display = 'flex';
+      } else {
+        // Standard envelope mode
+        flapTop.style.display = 'block';
+        pocketFront.style.display = 'block';
+        gateLeft.style.display = 'none';
+        gateRight.style.display = 'none';
+      }
+
+      settledScreen.style.opacity = '0';
+      settledScreen.style.pointerEvents = 'none';
+    }
+
+    function playAnimation() {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      try {
+        unsealAudio.currentTime = 0;
+        unsealAudio.play().catch(() => {});
+      } catch (e) {}
+
+      masterTimeline = gsap.timeline({
+        onComplete: () => {
+          // Animation finished
+        }
+      });
+
+      const tl = masterTimeline;
+
+      // Common Seal Pop
+      tl.to('#seal-cue', { opacity: 0, y: 12, duration: 0.25, ease: 'power2.in' }, 0);
+      tl.to('#seal-stamp', { scale: 1.15, rotation: 6, duration: 0.12, ease: 'power1.out' }, 0);
+      tl.to('#seal-stamp', { scale: 0, rotation: -14, opacity: 0, duration: 0.35, ease: 'back.in(1.8)' }, 0.12);
+
+      // =====================================================================
+      // STYLE 1: Royal 3D Lift & Bloom
+      // =====================================================================
+      if (currentStyle === '1') {
+        // Flap folds 180°
+        tl.to('#flap-top', {
+          rotateX: 180,
+          duration: 0.85,
+          ease: 'power2.inOut',
+          transformOrigin: 'top center',
+          onUpdate: function () {
+            const flap = document.getElementById('flap-top');
+            if (flap) flap.style.zIndex = this.progress() > 0.48 ? '2' : '25';
+          }
+        }, 0.28);
+
+        // Card pops UP out of pocket
+        tl.to('#inner-card', {
+          y: -235,
+          duration: 0.95,
+          ease: 'power3.out',
+          boxShadow: '0 25px 50px rgba(0,0,0,0.22)'
+        }, 0.75);
+
+        // Envelope physical recoil
+        tl.to('#main-env', { y: 12, scale: 0.985, duration: 0.85, ease: 'power2.out' }, 0.8);
+
+        // Settle pause, then Card falls into screen filling it
+        tl.to('#inner-card', {
+          scale: 1.85,
+          y: 20,
+          opacity: 0,
+          duration: 0.85,
+          ease: 'power2.inOut'
+        }, 2.05);
+
+        tl.to(['#main-env', '.hashtag-crest'], {
+          opacity: 0,
+          scale: 0.88,
+          duration: 0.7,
+          ease: 'power2.in'
+        }, 2.05);
+
+        tl.fromTo('#settled-screen', 
+          { opacity: 0, scale: 0.92, y: 25 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.85, ease: 'power2.out', pointerEvents: 'auto' },
+          2.15
+        );
+      }
+
+      // =====================================================================
+      // STYLE 2: Luxury Parallax Split (Zero-3D Glitch-Proof)
+      // =====================================================================
+      else if (currentStyle === '2') {
+        // No 3D flap rotation: jacket slides down, card slides up simultaneously
+        tl.to('#pocket-front, #flap-top', {
+          y: 160,
+          opacity: 0.4,
+          duration: 1.0,
+          ease: 'power3.inOut'
+        }, 0.35);
+
+        tl.to('#inner-card', {
+          y: -140,
+          duration: 1.0,
+          ease: 'power3.out',
+          boxShadow: '0 25px 60px rgba(0,0,0,0.2)'
+        }, 0.35);
+
+        // Card expands smoothly outward to fill the viewport
+        tl.to('#inner-card', {
+          scale: 1.08,
+          y: -40,
+          duration: 0.7,
+          ease: 'power2.inOut'
+        }, 1.45);
+
+        tl.to('#main-env', {
+          opacity: 0,
+          duration: 0.6,
+          ease: 'power2.in'
+        }, 1.5);
+
+        tl.fromTo('#settled-screen',
+          { opacity: 0, scale: 0.96 },
+          { opacity: 1, scale: 1, duration: 0.75, ease: 'power2.out', pointerEvents: 'auto' },
+          1.7
+        );
+      }
+
+      // =====================================================================
+      // STYLE 3: Royal Gatefold Palace Doors
+      // =====================================================================
+      else if (currentStyle === '3') {
+        // Doors swing open on Y-axis
+        tl.to('#gate-left', {
+          rotateY: -125,
+          duration: 1.1,
+          ease: 'power2.inOut',
+          transformOrigin: 'left center'
+        }, 0.35);
+
+        tl.to('#gate-right', {
+          rotateY: 125,
+          duration: 1.1,
+          ease: 'power2.inOut',
+          transformOrigin: 'right center'
+        }, 0.35);
+
+        // Card floats forward
+        tl.to('#inner-card', {
+          scale: 1.05,
+          duration: 1.0,
+          ease: 'power2.out',
+          boxShadow: '0 25px 60px rgba(117, 82, 27, 0.25)'
+        }, 0.65);
+
+        // Card expands into screen
+        tl.to('#inner-card', {
+          scale: 1.6,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power2.inOut'
+        }, 1.85);
+
+        tl.to('#main-env', {
+          opacity: 0,
+          scale: 0.92,
+          duration: 0.7,
+          ease: 'power2.in'
+        }, 1.85);
+
+        tl.fromTo('#settled-screen',
+          { opacity: 0, scale: 0.94, y: 15 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.85, ease: 'power2.out', pointerEvents: 'auto' },
+          1.95
+        );
+      }
+
+      // =====================================================================
+      // STYLE 4: Letterpress Elevation & Screen-Fill
+      // =====================================================================
+      else if (currentStyle === '4') {
+        // Gentle flap lift (soft angle)
+        tl.to('#flap-top', {
+          rotateX: 180,
+          duration: 0.75,
+          ease: 'power1.inOut',
+          transformOrigin: 'top center',
+          onUpdate: function () {
+            const flap = document.getElementById('flap-top');
+            if (flap) flap.style.zIndex = this.progress() > 0.48 ? '2' : '25';
+          }
+        }, 0.25);
+
+        // Card glides up with spring physics
+        tl.to('#inner-card', {
+          y: -210,
+          duration: 0.9,
+          ease: 'back.out(1.4)',
+          boxShadow: '0 20px 45px rgba(0,0,0,0.18)'
+        }, 0.65);
+
+        // Card floats forward and settles into screen
+        tl.to('#inner-card', {
+          scale: 1.75,
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power2.inOut'
+        }, 1.85);
+
+        tl.to('#main-env', {
+          opacity: 0,
+          scale: 0.9,
+          duration: 0.65,
+          ease: 'power2.in'
+        }, 1.85);
+
+        tl.fromTo('#settled-screen',
+          { opacity: 0, scale: 0.95 },
+          { opacity: 1, scale: 1, duration: 0.8, ease: 'power2.out', pointerEvents: 'auto' },
+          1.95
+        );
+      }
+    }
+
+    // Event Listeners
+    document.querySelectorAll('.style-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        setStyle(e.target.dataset.style);
+      });
+    });
+
+    document.getElementById('replay-btn').addEventListener('click', () => {
+      resetStage();
+      setTimeout(playAnimation, 150);
+    });
+
+    // =========================================================================
+    // Logo Showcase Interactivity
+    // =========================================================================
+    function previewLogo(id) {
+      const cardEl = document.getElementById('demo-inner-card-logo');
+      const choiceCard = document.getElementById('logo-card-' + id);
+      if (!choiceCard || !cardEl) return;
+
+      // Extract the SVG from the selected choice card
+      const svgEl = choiceCard.querySelector('svg');
+      if (svgEl) {
+        cardEl.innerHTML = svgEl.outerHTML;
+      }
+
+      // Highlight active choice card
+      document.querySelectorAll('.logo-choice-card').forEach(card => {
+        card.style.borderColor = 'rgba(194, 157, 89, 0.35)';
+        card.style.background = '#fdfbf8';
+        card.style.transform = 'none';
+        card.style.boxShadow = '0 4px 12px rgba(0,0,0,0.04)';
+      });
+      choiceCard.style.borderColor = 'var(--color-primary)';
+      choiceCard.style.background = '#fffaf9';
+      choiceCard.style.transform = 'translateY(-3px)';
+      choiceCard.style.boxShadow = '0 8px 24px rgba(181, 74, 85, 0.18)';
+
+      // Switch to Style 3 (Gatefold Palace Doors) if not already active
+      if (currentStyle !== '3') {
+        setStyle('3');
+      }
+
+      // Open gatefold doors so the user can immediately admire the card
+      const gateLeft = document.getElementById('gate-left');
+      const gateRight = document.getElementById('gate-right');
+      const sealWrap = document.getElementById('seal-wrap');
+      const innerCard = document.getElementById('inner-card');
+
+      if (gateLeft && gateRight) {
+        gsap.to(gateLeft, { rotateY: -115, duration: 0.5, ease: 'power2.out', transformOrigin: 'left center' });
+        gsap.to(gateRight, { rotateY: 115, duration: 0.5, ease: 'power2.out', transformOrigin: 'right center' });
+        if (sealWrap) gsap.to(sealWrap, { opacity: 0, duration: 0.3 });
+        if (innerCard) {
+          gsap.fromTo(innerCard, { scale: 0.98 }, { scale: 1.02, duration: 0.35, yoyo: true, repeat: 1, ease: 'sine.inOut' });
+        }
+      }
+
+      // Scroll smoothly to envelope view if scrolled down
+      window.scrollTo({ top: 30, behavior: 'smooth' });
+    }
+
+    document.getElementById('seal-wrap').addEventListener('click', playAnimation);
+
+    // Initial setup
+    setStyle('3');
+    setTimeout(() => previewLogo(8), 100);
+  </script>
+</body>
+</html>

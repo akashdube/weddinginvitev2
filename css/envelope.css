@@ -1,3 +1,5 @@
+@import url('./divine-card.css');
+
 /* ==========================================================================
    Pranshi & Akash Wedding Invitation (#APforever)
    Style 3: Royal Gatefold Palace Doors & Full-Screen Immersion
@@ -85,14 +87,14 @@
 }
 
 .envelope-hashtag {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 1.65rem;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.04em;
   background: linear-gradient(135deg, #b88f42 0%, #e6cb89 50%, #946f29 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-transform: uppercase;
+  text-transform: none;
   display: inline-block;
 }
 
@@ -141,15 +143,18 @@
   box-shadow: 0 10px 30px rgba(50, 40, 30, 0.12);
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  will-change: transform, opacity;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
   overflow: hidden;
+  contain: paint;
 }
 
 .gatefold-left {
   left: 0;
   border-top-left-radius: 18px;
   border-bottom-left-radius: 18px;
-  transform-origin: left center;
+  transform-origin: 0% 50% 0px;
   border-right: 1px solid rgba(194, 157, 89, 0.45);
 }
 
@@ -157,7 +162,7 @@
   right: 0;
   border-top-right-radius: 18px;
   border-bottom-right-radius: 18px;
-  transform-origin: right center;
+  transform-origin: 100% 50% 0px;
   border-left: 1px solid rgba(194, 157, 89, 0.45);
 }
 
@@ -165,6 +170,7 @@
   width: 100%;
   height: 100%;
   display: block;
+  transform: translateZ(0);
 }
 
 /* ==========================================================================
@@ -176,32 +182,27 @@
   left: 16px;
   right: 16px;
   bottom: 16px;
-  background: #ffffff;
+  background: transparent;
   border-radius: 14px;
   z-index: 10;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(194, 157, 89, 0.4);
+  border: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 26px 18px 22px;
+  padding: 0;
   text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   will-change: transform, opacity, box-shadow;
   transform-style: preserve-3d;
 }
 
 /* Inner golden double-frame border */
 .envelope-invitation-card::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  right: 8px;
-  bottom: 8px;
-  border: 1px solid rgba(194, 157, 89, 0.35);
-  border-radius: 10px;
-  pointer-events: none;
+  display: none;
 }
 
 .card-ganesha-wrap {
@@ -233,13 +234,13 @@
   font-size: 0.74rem;
   font-weight: 700;
   color: var(--color-primary);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
   background: rgba(181, 74, 85, 0.08);
   border: 1px solid rgba(181, 74, 85, 0.22);
   padding: 3px 14px;
   border-radius: var(--radius-pill);
   margin: 6px 0 10px;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .card-names-wrap {
@@ -352,7 +353,7 @@
   width: 112px;
   height: 112px;
   border-radius: 50%;
-  background-image: url('../assets/wax_seal_pa.png');
+  background-image: url('../assets/wax_seal_pa.png?v=2');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -385,7 +386,12 @@
 
 /* Prompt Hint (Font matches main screen Outfit) */
 .seal-prompt {
-  margin-top: 16px;
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  margin-top: 0;
   font-family: var(--font-sans);
   font-size: 0.88rem;
   font-weight: 600;
@@ -403,8 +409,8 @@
 }
 
 @keyframes fadeBounce {
-  0%, 100% { transform: translateY(0); opacity: 0.95; }
-  50% { transform: translateY(-4px); opacity: 1; }
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.95; }
+  50% { transform: translateX(-50%) translateY(-4px); opacity: 1; }
 }
 
 /* Ensure seal prompt disappears completely when opening and never floats over card */

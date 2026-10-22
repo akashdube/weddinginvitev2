@@ -22,14 +22,17 @@
     rel="stylesheet">
 
   <!-- Stylesheets (Cache-busted for mobile browsers) -->
-  <link rel="stylesheet" href="./css/style.css?v=3.8" />
-  <link rel="stylesheet" href="./css/envelope.css?v=3.9" />
+  <link rel="stylesheet" href="./css/style.css?v=3.9" />
+  <link rel="stylesheet" href="./css/envelope.css?v=4.0" />
+  <link rel="stylesheet" href="./css/celebrate.css?v=1.0" />
 </head>
 
 <body>
 
   <!-- Floating Falling Rose & Eucalyptus Petals Canvas -->
   <canvas id="petal-canvas"></canvas>
+  <!-- Fullscreen Royal Fireworks & Rocket Canvas -->
+  <canvas id="fireworks-canvas"></canvas>
 
   <!-- Ambient Audio Floating Pill -->
   <div class="audio-control-pill muted" id="audio-pill" title="Click to Play Music">
@@ -122,126 +125,41 @@
           <span class="envelope-hashtag">#APforever</span>
           <span class="hashtag-flourish">✤</span>
         </div>
-      </div>      <div class="envelope-stage">
+      </div>
+      <div class="envelope-stage">
         <div class="envelope" id="main-envelope">
 
           <!-- Inside Royal Invitation Card (Revealed as palace doors open, then expands into full screen) -->
-          <div class="envelope-invitation-card" id="envelope-card">
-            <div class="card-ganesha-wrap">
-              <img src="./assets/ganesha_gold.png" alt="Lord Ganesha" class="card-ganesha-img" />
-              <span class="card-shloka">॥ श्री गणेशाय नमः ॥</span>
-            </div>
-            <span class="card-hashtag-badge">#APforever</span>
-            <div class="card-names-wrap">
-              <span class="card-name bride">Pranshi</span>
-              <span class="card-amp">&amp;</span>
-              <span class="card-name groom">Akash</span>
-            </div>
-            <!-- Sacred Surya Mandala AP Logo (Option 8 - Enlarged & Anchored at Bottom) -->
-            <div class="card-ap-logo-wrap" id="card-ap-logo">
-              <svg class="ap-logo-svg" viewBox="0 0 190 105" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="suryaGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#b88f42" />
-                    <stop offset="30%" stop-color="#f7e4a8" />
-                    <stop offset="60%" stop-color="#ddba70" />
-                    <stop offset="100%" stop-color="#916c26" />
-                  </linearGradient>
-                  <linearGradient id="suryaDiscGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ffffff" />
-                    <stop offset="60%" stop-color="#fdfcf8" />
-                    <stop offset="100%" stop-color="#fbf5e8" />
-                  </linearGradient>
-                  <filter id="suryaGlow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="rgba(194, 157, 89, 0.28)" />
-                  </filter>
-                </defs>
+          <!-- Inside Royal Invitation Card (Floats Upwards upon unsealing) -->
+          <div class="envelope-invitation-card" id="envelope-card" style="padding: 0; overflow: hidden; background: transparent; border: none; opacity: 0; visibility: hidden;">
+            <div class="divine-popup-card theme-botanical" id="active-divine-card">
+              <!-- Matching Royal Theme Frame with Corner Flourishes -->
+              <div class="divine-card-frame">
+                <div class="frame-corner top-left"></div>
+                <div class="frame-corner top-right"></div>
+                <div class="frame-corner bottom-left"></div>
+                <div class="frame-corner bottom-right"></div>
 
-                <!-- Central Surya Mandala Group (Center at 95, 52) -->
-                <g transform="translate(95, 52)">
-                  
-                  <!-- Left & Right Flanking Royal Flourish Wings -->
-                  <path d="M -38 -4 C -54 -14 -72 -6 -82 2 C -74 8 -58 4 -40 2" stroke="url(#suryaGold)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.85" />
-                  <circle cx="-83" cy="2" r="1.8" fill="url(#suryaGold)" />
-                  <circle cx="-62" cy="-4" r="1.2" fill="#c29d59" opacity="0.8" />
-                  
-                  <path d="M 38 -4 C 54 -14 72 -6 82 2 C 74 8 58 4 40 2" stroke="url(#suryaGold)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.85" />
-                  <circle cx="83" cy="2" r="1.8" fill="url(#suryaGold)" />
-                  <circle cx="62" cy="-4" r="1.2" fill="#c29d59" opacity="0.8" />
+                <!-- Center AP Monogram Logo: Positioned above and between the joining hands -->
+                <div class="divine-ap-logo-wrap framed-logo">
+                  <img src="./assets/ap_logo_brown.png" alt="AP Logo" class="divine-ap-logo-img" id="divine-ap-logo-img" />
+                </div>
 
-                  <!-- 16-Ray Sunburst: 8 Major Diamond Rays -->
-                  <g fill="url(#suryaGold)">
-                    <!-- 0 deg (Top) -->
-                    <polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" />
-                    <circle cx="0" cy="-49.5" r="1.3" />
-                    <!-- 45 deg -->
-                    <g transform="rotate(45)">
-                      <polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" />
-                      <circle cx="0" cy="-49.5" r="1.3" />
-                    </g>
-                    <!-- 90 deg (Right) -->
-                    <g transform="rotate(90)">
-                      <polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" />
-                      <circle cx="0" cy="-49.5" r="1.3" />
-                    </g>
-                    <!-- 135 deg -->
-                    <g transform="rotate(135)">
-                      <polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" />
-                      <circle cx="0" cy="-49.5" r="1.3" />
-                    </g>
-                    <!-- 180 deg (Bottom) -->
-                    <g transform="rotate(180)">
-                      <polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" />
-                      <circle cx="0" cy="-49.5" r="1.3" />
-                    </g>
-                    <!-- 225 deg -->
-                    <g transform="rotate(225)">
-                      <polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" />
-                      <circle cx="0" cy="-49.5" r="1.3" />
-                    </g>
-                    <!-- 270 deg (Left) -->
-                    <g transform="rotate(270)">
-                      <polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" />
-                      <circle cx="0" cy="-49.5" r="1.3" />
-                    </g>
-                    <!-- 315 deg -->
-                    <g transform="rotate(315)">
-                      <polygon points="0,-48 3.5,-33 0,-31 -3.5,-33" />
-                      <circle cx="0" cy="-49.5" r="1.3" />
-                    </g>
-                  </g>
+                <!-- Sacred Artwork: Both hands originate flush from the left and right frame lines -->
+                <div class="divine-cutout-wrap framed-hands" id="divine-cutout-wrap">
+                  <div class="divine-cutout-aura"></div>
+                  <img src="./assets/shiva_parvati_vivah_hands.png" alt="Shiva Parvati Vivah Divine Hands Union" class="divine-hands-cutout" id="divine-hands-cutout" />
+                </div>
 
-                  <!-- 8 Minor Rays (at 22.5 deg intervals) -->
-                  <g fill="url(#suryaGold)" opacity="0.8">
-                    <g transform="rotate(22.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
-                    <g transform="rotate(67.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
-                    <g transform="rotate(112.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
-                    <g transform="rotate(157.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
-                    <g transform="rotate(202.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
-                    <g transform="rotate(247.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
-                    <g transform="rotate(292.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
-                    <g transform="rotate(337.5)"><polygon points="0,-41 2.4,-32 0,-30 -2.4,-32" /></g>
-                  </g>
-
-                  <!-- Concentric Celestial Rings -->
-                  <!-- Outer Radiance Dashed Halo -->
-                  <circle cx="0" cy="0" r="30.5" stroke="url(#suryaGold)" stroke-width="1.1" stroke-dasharray="3,2" fill="none" opacity="0.85" />
-                  
-                  <!-- Medallion Disc Base -->
-                  <circle cx="0" cy="0" r="27.5" fill="url(#suryaDiscGrad)" stroke="url(#suryaGold)" stroke-width="1.3" filter="url(#suryaGlow)" />
-                  
-                  <!-- Inner Delicate Beaded/Dotted Ring -->
-                  <circle cx="0" cy="0" r="24.5" stroke="url(#suryaGold)" stroke-width="0.75" stroke-dasharray="1.8,1.8" fill="none" opacity="0.7" />
-
-                  <!-- Center Serif Monogram: A ✦ P -->
-                  <text x="0" y="8" font-family="'Cormorant Garamond', Georgia, serif" font-size="23" font-weight="700" letter-spacing="2" fill="url(#suryaGold)" text-anchor="middle" filter="url(#suryaGlow)">A✦P</text>
-
-                  <!-- Micro Baseline Accent inside Disc -->
-                  <path d="M -11 13 C -5 15.5 5 15.5 11 13" stroke="url(#suryaGold)" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.75" />
-                  <circle cx="0" cy="14.8" r="0.9" fill="url(#suryaGold)" />
-
-                </g>
-              </svg>
+                <!-- Bottom Footer: Couple Names -->
+                <div class="divine-footer framed-footer">
+                  <div class="divine-names-wrap">
+                    <span class="divine-name">Pranshi</span>
+                    <span class="divine-amp">&amp;</span>
+                    <span class="divine-name">Akash</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -256,10 +174,12 @@
               </defs>
               <rect x="0" y="0" width="175" height="470" fill="url(#gateGradL)" />
               <rect x="10" y="10" width="155" height="450" fill="none" stroke="#e0d5c3" stroke-width="1.2" />
-              <rect x="16" y="16" width="143" height="438" fill="none" stroke="#c29d59" stroke-width="1" stroke-dasharray="4,3" opacity="0.65" />
+              <rect x="16" y="16" width="143" height="438" fill="none" stroke="#c29d59" stroke-width="1"
+                stroke-dasharray="4,3" opacity="0.65" />
               <circle cx="26" cy="26" r="3.5" fill="#c29d59" />
               <circle cx="26" cy="444" r="3.5" fill="#c29d59" />
-              <path d="M 30 120 C 50 160 50 200 30 240 C 50 280 50 320 30 360" stroke="#8ea992" stroke-width="1.2" fill="none" opacity="0.6" />
+              <path d="M 30 120 C 50 160 50 200 30 240 C 50 280 50 320 30 360" stroke="#8ea992" stroke-width="1.2"
+                fill="none" opacity="0.6" />
               <ellipse cx="44" cy="175" rx="8" ry="4.5" transform="rotate(-25 44 175)" fill="#a3bfa7" opacity="0.75" />
               <ellipse cx="44" cy="295" rx="8" ry="4.5" transform="rotate(25 44 295)" fill="#a3bfa7" opacity="0.75" />
             </svg>
@@ -275,12 +195,15 @@
               </defs>
               <rect x="0" y="0" width="175" height="470" fill="url(#gateGradR)" />
               <rect x="10" y="10" width="155" height="450" fill="none" stroke="#e0d5c3" stroke-width="1.2" />
-              <rect x="16" y="16" width="143" height="438" fill="none" stroke="#c29d59" stroke-width="1" stroke-dasharray="4,3" opacity="0.65" />
+              <rect x="16" y="16" width="143" height="438" fill="none" stroke="#c29d59" stroke-width="1"
+                stroke-dasharray="4,3" opacity="0.65" />
               <circle cx="149" cy="26" r="3.5" fill="#c29d59" />
               <circle cx="149" cy="444" r="3.5" fill="#c29d59" />
-              <path d="M 145 120 C 125 160 125 200 145 240 C 125 280 125 320 145 360" stroke="#8ea992" stroke-width="1.2" fill="none" opacity="0.6" />
+              <path d="M 145 120 C 125 160 125 200 145 240 C 125 280 125 320 145 360" stroke="#8ea992"
+                stroke-width="1.2" fill="none" opacity="0.6" />
               <ellipse cx="131" cy="175" rx="8" ry="4.5" transform="rotate(25 131 175)" fill="#a3bfa7" opacity="0.75" />
-              <ellipse cx="131" cy="295" rx="8" ry="4.5" transform="rotate(-25 131 295)" fill="#a3bfa7" opacity="0.75" />
+              <ellipse cx="131" cy="295" rx="8" ry="4.5" transform="rotate(-25 131 295)" fill="#a3bfa7"
+                opacity="0.75" />
             </svg>
           </div>
 
@@ -303,7 +226,7 @@
           <div class="wax-seal-wrapper" id="wax-seal-wrapper">
             <div class="wax-seal-stamp" id="wax-seal-stamp">
               <div class="seal-ring"></div>
-              <div class="seal-monogram">P & A</div>
+              <div class="seal-monogram">AP</div>
             </div>
             <div class="seal-prompt" id="seal-prompt">Tap to Unseal</div>
           </div>
@@ -373,11 +296,14 @@
 
         <!-- Action Buttons Grid -->
         <div class="cta-actions-group">
+          <!-- Celebrate Our Union Button (Multi-Rocket Salvo Celebration) -->
+          <button class="btn-celebrate celebrate-theme-3" id="btn-celebrate" title="Click to launch celebration fireworks!">
+            <span class="celebrate-icon">🌺</span>
+            <span class="celebrate-label">Celebrate Our Union</span>
+          </button>
+
           <button class="btn-gold" id="btn-add-calendar">
             <span>📅 Add to Google Calendar</span>
-          </button>
-          <button class="btn-whatsapp" id="btn-share-whatsapp">
-            <span>💬 Share Invite on WhatsApp</span>
           </button>
         </div>
 
@@ -401,7 +327,7 @@
         <div class="tab-pills-wrapper" id="tab-pills-wrapper" data-active-tab="tab-haldi">
           <div class="tab-slider-indicator" id="tab-slider-indicator"></div>
           <button class="tab-pill-btn active" data-tab="tab-haldi">
-            <span class="tab-btn-title">Haldi & Mehndi</span>
+            <span class="tab-btn-title">Haldi & Mehendi</span>
             <span class="tab-btn-badge">Day 1 • Nov 18</span>
           </button>
           <button class="tab-pill-btn" data-tab="tab-wedding">
@@ -410,10 +336,10 @@
           </button>
         </div>
 
-        <!-- Tab Content 1: Haldi & Mehndi -->
+        <!-- Tab Content 1: Haldi & Mehendi -->
         <div class="tab-content-card active" id="tab-haldi">
           <span class="ceremony-badge">Day 1 • Auspicious Vibrance</span>
-          <h3 class="ceremony-title">Haldi & Mehndi Ceremony</h3>
+          <h3 class="ceremony-title">Haldi & Mehendi Ceremony</h3>
           <div class="ceremony-datetime">
             <span>🗓️ Wednesday, 18th November 2026</span>
           </div>
@@ -439,7 +365,7 @@
             <div class="milestone-item">
               <span class="milestone-time">05:30 PM</span>
               <div class="milestone-content">
-                <strong>Mehndi</strong>
+                <strong>Mehendi</strong>
                 <span>Intricate henna artistry & musical beats</span>
                 <div class="milestone-attire-row">
                   <span class="milestone-attire-label">🌸 Attire: Soft Pastel Hues</span>
@@ -519,11 +445,11 @@
             <div class="venue-header-row">
               <span class="venue-name">📍 HB Klyde Premier</span>
               <button class="btn-copy-address"
-                onclick="copyAddress('HB Klyde Premier, Rampur Road, Near Arcadia Greens, Zero Point, Moradabad, Uttar Pradesh 244001')">📋
+                onclick="copyAddress('HB Klyde Premier, Near Aryabhatta International School, Zero Point, Rampur Road, Moradabad, Uttar Pradesh 244001')">📋
                 Copy</button>
             </div>
-            Rampur Road, Near Arcadia Greens, Zero Point,<br>
-            Moradabad, Uttar Pradesh 244001
+            Near Aryabhatta International School, Zero Point,<br>
+            Rampur Road, Moradabad, Uttar Pradesh 244001
           </div>
 
           <button class="btn-gold" onclick="openDirections('wedding')">
@@ -564,24 +490,26 @@
         <!-- Closing Botanical Lotus Garland -->
         <svg class="footer-lotus-garland" viewBox="0 0 240 40" fill="none">
           <!-- Center Lotus -->
-          <path d="M120 6 C115 15 110 24 120 31 C130 24 125 15 120 6 Z" fill="#c29d59" opacity="0.95"/>
-          <path d="M120 16 C111 17 104 23 113 30 C117 28 119 23 120 16 Z" fill="#dfbe7d" opacity="0.9"/>
-          <path d="M120 16 C129 17 136 23 127 30 C123 28 121 23 120 16 Z" fill="#dfbe7d" opacity="0.9"/>
-          <circle cx="120" cy="3" r="1.8" fill="#c29d59"/>
+          <path d="M120 6 C115 15 110 24 120 31 C130 24 125 15 120 6 Z" fill="#c29d59" opacity="0.95" />
+          <path d="M120 16 C111 17 104 23 113 30 C117 28 119 23 120 16 Z" fill="#dfbe7d" opacity="0.9" />
+          <path d="M120 16 C129 17 136 23 127 30 C123 28 121 23 120 16 Z" fill="#dfbe7d" opacity="0.9" />
+          <circle cx="120" cy="3" r="1.8" fill="#c29d59" />
           <!-- Left Vine & Leaves -->
-          <path d="M108 26 C88 26 68 20 38 22 C24 23 10 24 0 24" stroke="#c29d59" stroke-width="1.2" stroke-linecap="round"/>
-          <ellipse cx="88" cy="20" rx="8" ry="4.5" transform="rotate(-15 88 20)" fill="#8ea992" opacity="0.88"/>
-          <ellipse cx="66" cy="24" rx="7" ry="4" transform="rotate(18 66 24)" fill="#a3bfa7" opacity="0.85"/>
-          <ellipse cx="44" cy="19" rx="6" ry="3.5" transform="rotate(-10 44 19)" fill="#78967c" opacity="0.88"/>
-          <circle cx="76" cy="15" r="2" fill="#c29d59"/>
-          <circle cx="54" cy="26" r="1.8" fill="#e5adb1"/>
+          <path d="M108 26 C88 26 68 20 38 22 C24 23 10 24 0 24" stroke="#c29d59" stroke-width="1.2"
+            stroke-linecap="round" />
+          <ellipse cx="88" cy="20" rx="8" ry="4.5" transform="rotate(-15 88 20)" fill="#8ea992" opacity="0.88" />
+          <ellipse cx="66" cy="24" rx="7" ry="4" transform="rotate(18 66 24)" fill="#a3bfa7" opacity="0.85" />
+          <ellipse cx="44" cy="19" rx="6" ry="3.5" transform="rotate(-10 44 19)" fill="#78967c" opacity="0.88" />
+          <circle cx="76" cy="15" r="2" fill="#c29d59" />
+          <circle cx="54" cy="26" r="1.8" fill="#e5adb1" />
           <!-- Right Vine & Leaves -->
-          <path d="M132 26 C152 26 172 20 202 22 C216 23 230 24 240 24" stroke="#c29d59" stroke-width="1.2" stroke-linecap="round"/>
-          <ellipse cx="152" cy="20" rx="8" ry="4.5" transform="rotate(15 152 20)" fill="#8ea992" opacity="0.88"/>
-          <ellipse cx="174" cy="24" rx="7" ry="4" transform="rotate(-18 174 24)" fill="#a3bfa7" opacity="0.85"/>
-          <ellipse cx="196" cy="19" rx="6" ry="3.5" transform="rotate(10 196 19)" fill="#78967c" opacity="0.88"/>
-          <circle cx="164" cy="15" r="2" fill="#c29d59"/>
-          <circle cx="186" cy="26" r="1.8" fill="#e5adb1"/>
+          <path d="M132 26 C152 26 172 20 202 22 C216 23 230 24 240 24" stroke="#c29d59" stroke-width="1.2"
+            stroke-linecap="round" />
+          <ellipse cx="152" cy="20" rx="8" ry="4.5" transform="rotate(15 152 20)" fill="#8ea992" opacity="0.88" />
+          <ellipse cx="174" cy="24" rx="7" ry="4" transform="rotate(-18 174 24)" fill="#a3bfa7" opacity="0.85" />
+          <ellipse cx="196" cy="19" rx="6" ry="3.5" transform="rotate(10 196 19)" fill="#78967c" opacity="0.88" />
+          <circle cx="164" cy="15" r="2" fill="#c29d59" />
+          <circle cx="186" cy="26" r="1.8" fill="#e5adb1" />
         </svg>
 
         <p style="font-weight: 600; color: var(--color-primary); margin-bottom: 4px;">#APforever</p>
@@ -610,10 +538,11 @@
 
   <!-- Scripts (Cache-busted for mobile browsers) -->
   <script src="./js/petals.js?v=2.2"></script>
-  <script src="./js/app.js?v=2.2"></script>
-  <script src="./js/envelope.js?v=3.7"></script>
+  <script src="./js/app.js?v=2.3"></script>
+  <script src="./js/envelope.js?v=3.9"></script>
   <script src="./js/countdown.js?v=2.2"></script>
   <script src="./js/schedule.js?v=2.4"></script>
+  <script src="./js/celebrate.js?v=1.0"></script>
   <script src="./js/guestbook.js?v=2.2"></script>
 
 </body>

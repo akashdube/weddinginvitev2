@@ -28,19 +28,27 @@
     'rgba(255, 235, 238, 0.70)'  // Warm cream petal
   ];
 
+  const softBubbleColors = [
+    'rgba(240, 206, 210, 0.40)', // Soft rose mist
+    'rgba(235, 212, 165, 0.42)', // Soft champagne gold
+    'rgba(175, 200, 180, 0.32)', // Translucent sage mist
+    'rgba(255, 246, 235, 0.48)', // Warm pearl glow
+    'rgba(245, 225, 215, 0.38)'  // Soft peach blush
+  ];
+
   function createPetal(isBurst = false) {
     return {
-      x: isBurst ? width * 0.5 + (Math.random() * 80 - 40) : Math.random() * width,
-      y: isBurst ? height * 0.6 : Math.random() * height - height,
-      r: Math.random() * 9 + 6,
+      x: isBurst ? width * 0.5 + (Math.random() * 60 - 30) : Math.random() * width,
+      y: isBurst ? height * 0.58 : Math.random() * height - height,
+      r: isBurst ? Math.random() * 8 + 5 : Math.random() * 9 + 6,
       d: Math.random() * 30,
-      color: petalColors[Math.floor(Math.random() * petalColors.length)],
+      color: isBurst ? softBubbleColors[Math.floor(Math.random() * softBubbleColors.length)] : petalColors[Math.floor(Math.random() * petalColors.length)],
       tilt: Math.floor(Math.random() * 10) - 10,
       tiltAngleIncremental: Math.random() * 0.07 + 0.04,
       tiltAngle: 0,
-      vx: isBurst ? (Math.random() - 0.5) * 12 : 0,
-      vy: isBurst ? -Math.random() * 15 - 5 : 0,
-      alpha: 1,
+      vx: isBurst ? (Math.random() - 0.5) * 5.2 : 0,
+      vy: isBurst ? -Math.random() * 5.5 - 3.6 : 0,
+      alpha: isBurst ? 0.70 : 1,
       isBurst: isBurst
     };
   }
@@ -52,7 +60,7 @@
 
   // Expose global celebration shower function for "Shower Blessings"
   window.showerBlessingsPetals = function () {
-    const burstCount = 65;
+    const burstCount = 30; // Soft ethereal count for silky-smooth performance
     for (let i = 0; i < burstCount; i++) {
       celebrationPetals.push(createPetal(true));
     }
@@ -82,23 +90,29 @@
       }
     }
 
-    // 2. Draw celebratory shower burst petals
+    // 2. Draw soft ethereal celebratory floating bubbles / orbs
     for (let i = celebrationPetals.length - 1; i >= 0; i--) {
       const cp = celebrationPetals[i];
       ctx.save();
-      ctx.globalAlpha = cp.alpha;
+      ctx.globalAlpha = Math.max(0, cp.alpha);
+      
+      // Soft radial glow gradient for a gentle, dreamy bubble appearance
+      const grad = ctx.createRadialGradient(cp.x, cp.y, cp.r * 0.15, cp.x, cp.y, cp.r);
+      grad.addColorStop(0, cp.color);
+      grad.addColorStop(0.7, cp.color);
+      grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      
       ctx.beginPath();
-      ctx.fillStyle = cp.color;
-
-      ctx.arc(cp.x, cp.y, cp.r * 0.7, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.arc(cp.x, cp.y, cp.r, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
 
       cp.x += cp.vx;
       cp.y += cp.vy;
-      cp.vy += 0.35; // Gravity
-      cp.vx *= 0.98; // Air resistance
-      cp.alpha -= 0.012;
+      cp.vy += 0.20; // Lively natural gravity matching website tempo
+      cp.vx *= 0.982; // Gentle air resistance
+      cp.alpha -= 0.015; // Smooth lively fade out (~1.1s duration)
 
       if (cp.alpha <= 0 || cp.y > height + 40) {
         celebrationPetals.splice(i, 1);

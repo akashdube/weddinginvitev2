@@ -1,0 +1,284 @@
+/* ==========================================================================
+   Celebrate Button & Royal Wedding Fireworks Engine Styles
+   Pranshi & Akash (#APforever)
+   ========================================================================== */
+
+/* Fullscreen High-Performance Fireworks Overlay Canvas */
+#fireworks-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Base Celebrate Button */
+.btn-celebrate {
+  position: relative;
+  width: 100%;
+  padding: 14px 22px;
+  border-radius: var(--radius-pill, 999px);
+  font-family: var(--font-sans, 'Outfit', sans-serif);
+  font-size: 0.90rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, filter 0.3s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-celebrate:hover {
+  transform: translateY(-2px);
+}
+
+.btn-celebrate:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+/* Shimmer Light Reflection Sweep */
+.btn-celebrate::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  animation: celebrateShimmerSweep 3.6s infinite ease-in-out;
+}
+
+@keyframes celebrateShimmerSweep {
+  0% {
+    left: -60%;
+  }
+  35% {
+    left: 140%;
+  }
+  100% {
+    left: 140%;
+  }
+}
+
+/* Upper Border Rocket Emitter Sparkle Indicator */
+.btn-celebrate::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
+  border-radius: 99px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(223, 190, 125, 0) 80%);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* Button Content Typography */
+.btn-celebrate .celebrate-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-celebrate:hover .celebrate-icon {
+  transform: scale(1.22) rotate(-6deg);
+}
+
+.btn-celebrate .celebrate-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   7 DISTINCT THEME DESIGNS
+   ========================================================================== */
+
+/* Design 1: Royal Gold & Stardust (Swarna Utsav) */
+.celebrate-theme-1 {
+  background: linear-gradient(135deg, #e8c988 0%, #c49f57 48%, #9c7329 100%);
+  color: #1c1507;
+  border: 1.5px solid #fff0c7;
+  box-shadow: 0 8px 24px rgba(196, 159, 87, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.celebrate-theme-1:hover {
+  box-shadow: 0 12px 28px rgba(196, 159, 87, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* Design 2: Royal Emerald & Gold Filigree (Shahi Zamarrud) */
+.celebrate-theme-2 {
+  background: linear-gradient(135deg, #183325 0%, #265039 50%, #152c1f 100%);
+  color: #f8f1e2;
+  border: 1.5px solid #d4af37;
+  box-shadow: 0 8px 25px rgba(24, 51, 37, 0.52), inset 0 1px 1px rgba(223, 190, 125, 0.5);
+}
+.celebrate-theme-2:hover {
+  box-shadow: 0 12px 30px rgba(24, 51, 37, 0.65), 0 0 14px rgba(212, 175, 55, 0.35);
+}
+
+/* Design 3: Auspicious Sindoor & Rose Gold (Shubh Vivah) */
+.celebrate-theme-3 {
+  background: linear-gradient(135deg, #8c1828 0%, #bb2539 48%, #720e1d 100%);
+  color: #ffffff;
+  border: 1.5px solid #ffccd3;
+  box-shadow: 0 8px 26px rgba(140, 24, 40, 0.48), inset 0 1px 1px rgba(255, 235, 240, 0.55);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
+}
+.celebrate-theme-3:hover {
+  background: linear-gradient(135deg, #991b2c 0%, #c93046 50%, #7d1121 100%);
+  box-shadow: 0 12px 32px rgba(140, 24, 40, 0.65), 0 0 18px rgba(244, 63, 94, 0.45);
+  border-color: #ffe4e8;
+}
+
+/* Design 4: Gilded Champagne Glassmorphism (Noor-e-Jashn) */
+.celebrate-theme-4 {
+  background: rgba(255, 253, 248, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #5c4314;
+  border: 1.5px solid #dfbe7d;
+  box-shadow: 0 8px 25px rgba(194, 157, 89, 0.28), inset 0 0 12px rgba(223, 190, 125, 0.2);
+}
+.celebrate-theme-4:hover {
+  background: rgba(255, 255, 252, 0.96);
+  box-shadow: 0 12px 30px rgba(194, 157, 89, 0.42);
+}
+
+/* Design 5: Festive Marigold & Saffron Silk (Kesar & Phuljhadi) */
+.celebrate-theme-5 {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+  color: #ffffff;
+  border: 1.5px solid #fef08a;
+  box-shadow: 0 8px 25px rgba(217, 119, 6, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+.celebrate-theme-5:hover {
+  box-shadow: 0 12px 30px rgba(217, 119, 6, 0.62), 0 0 16px rgba(245, 158, 11, 0.45);
+}
+
+/* Design 6: Velvet Midnight & Celestial Starlight (Ratna Deep) */
+.celebrate-theme-6 {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0a0f1d 100%);
+  color: #f8fafc;
+  border: 1.5px solid #dfbe7d;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.65), inset 0 1px 1px rgba(223, 190, 125, 0.4);
+}
+.celebrate-theme-6:hover {
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.8), 0 0 16px rgba(223, 190, 125, 0.45);
+}
+
+/* Design 7: Rajwada Heritage Dual-Gold Crest (Royal Insignia) */
+.celebrate-theme-7 {
+  background: #fdfbf7;
+  color: #3b2c16;
+  border: 3px double #c29d59;
+  box-shadow: 0 8px 24px rgba(140, 106, 40, 0.24);
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.02rem;
+  letter-spacing: 0.08em;
+}
+.celebrate-theme-7:hover {
+  background: #fff;
+  border-color: #dfbe7d;
+  box-shadow: 0 12px 28px rgba(140, 106, 40, 0.38);
+}
+
+/* ==========================================================================
+   Interactive Design Picker Switcher (1 to 7)
+   ========================================================================== */
+.celebrate-switcher-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  margin-bottom: 2px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px dashed #e3d5be;
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+}
+
+.celebrate-switcher-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.74rem;
+  color: var(--text-muted, #727a75);
+  font-weight: 500;
+}
+
+.celebrate-current-name {
+  color: var(--primary, #4a5d4e);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.celebrate-pills-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.celebrate-pill-opt {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid #e3d5be;
+  background: #ffffff;
+  color: #4a5d4e;
+  font-family: var(--font-sans, 'Outfit', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  position: relative;
+  user-select: none;
+}
+
+.celebrate-pill-opt:hover {
+  transform: translateY(-2px) scale(1.08);
+  border-color: var(--gold, #c29d59);
+}
+
+.celebrate-pill-opt.active {
+  background: linear-gradient(135deg, #c29d59 0%, #dfbe7d 100%);
+  color: #ffffff;
+  border-color: #b58d44;
+  box-shadow: 0 3px 10px rgba(194, 157, 89, 0.45);
+  transform: scale(1.12);
+}
+
+.celebrate-hint-text {
+  font-size: 0.72rem;
+  color: #8c6a28;
+  font-style: italic;
+  margin-top: 2px;
+  text-align: center;
+}

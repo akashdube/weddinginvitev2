@@ -1,0 +1,910 @@
+/* ==========================================================================
+   Divine Union Pop-up Card & 7 Handcrafted Design Themes
+   Shiva-Parvati Sacred Hands Artwork + AP Monogram Integration
+   ========================================================================== */
+
+:root {
+  --gold-metallic: linear-gradient(135deg, #b88f42 0%, #f7e4a8 30%, #dfba70 60%, #916c26 100%);
+  --gold-primary: #c29d59;
+  --gold-dark: #8c6a23;
+  --burgundy-royal: #6b1419;
+  --burgundy-deep: #4d0a0e;
+  --ivory-base: #fdfcf9;
+  --sage-accent: #78967c;
+  --lotus-pink: #e5adb1;
+  --shadow-luxe: 0 16px 40px rgba(117, 82, 27, 0.22);
+}
+
+/* --------------------------------------------------------------------------
+   Pop-up Card Core Container
+   -------------------------------------------------------------------------- */
+.divine-popup-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  background: #ffffff;
+  border-radius: 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: 'Outfit', sans-serif;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Base double border */
+.divine-popup-card::before {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Matching Royal Theme Frame (Hands originate from left and right frame lines)
+   -------------------------------------------------------------------------- */
+.divine-card-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid rgba(194, 157, 89, 0.75);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  background: radial-gradient(circle at 50% 30%, #fffefe 0%, #fcf7ef 100%);
+  overflow: hidden;
+  padding: 16px 8px 16px; /* Equal top and bottom padding so all borders are equally spaced */
+}
+
+.divine-card-frame::before {
+  content: '';
+  position: absolute;
+  inset: 5px; /* Equal inset on all four sides */
+  border: 1px solid rgba(194, 157, 89, 0.35);
+  border-radius: 7px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Four Corner Flourishes */
+.frame-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.frame-corner.top-left {
+  top: 7px;
+  left: 7px;
+  border-top: 2px solid var(--gold-primary);
+  border-left: 2px solid var(--gold-primary);
+}
+
+.frame-corner.top-right {
+  top: 7px;
+  right: 7px;
+  border-top: 2px solid var(--gold-primary);
+  border-right: 2px solid var(--gold-primary);
+}
+
+.frame-corner.bottom-left {
+  bottom: 7px;
+  left: 7px;
+  border-bottom: 2px solid var(--gold-primary);
+  border-left: 2px solid var(--gold-primary);
+}
+
+.frame-corner.bottom-right {
+  bottom: 7px;
+  right: 7px;
+  border-bottom: 2px solid var(--gold-primary);
+  border-right: 2px solid var(--gold-primary);
+}
+
+/* Logo: Centered slightly above the centre of the card */
+.divine-ap-logo-wrap.framed-logo {
+  position: relative;
+  z-index: 7;
+  margin-top: 48px; /* Brings logo down so it sits slightly above the card centre */
+  margin-bottom: -32px; /* Sits naturally right above and between the clasping hands */
+  transition: transform 0.3s ease;
+}
+
+.framed-logo .divine-ap-logo-img {
+  height: 50px;
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(82, 44, 21, 0.20));
+}
+
+.framed-logo .divine-ap-logo-img:hover {
+  transform: scale(1.05);
+}
+
+/* Hands: Zoomed out slightly so nothing is cropped at the bottom */
+.divine-cutout-wrap.framed-hands {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  z-index: 4;
+}
+
+.framed-hands .divine-hands-cutout {
+  width: 90%;
+  max-width: 90%;
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
+  object-position: center bottom;
+  display: block;
+  filter: drop-shadow(0 10px 22px rgba(70, 48, 25, 0.16));
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+.divine-footer.framed-footer {
+  position: relative;
+  z-index: 7;
+  width: 100%;
+  text-align: center;
+  margin-top: -4px;
+  margin-bottom: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Divine Artwork Frame: Shiva & Parvati Hands
+   -------------------------------------------------------------------------- */
+.divine-art-frame {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  max-height: 250px;
+  min-height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fbf6ee;
+  z-index: 4;
+}
+
+.divine-art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.divine-art-frame:hover .divine-art-img {
+  transform: scale(1.03);
+}
+
+.divine-art-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center 35%, transparent 60%, rgba(251, 246, 238, 0.35) 100%);
+  border: 1px solid rgba(194, 157, 89, 0.3);
+  border-radius: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   Transparent Hands Cutout & Divine Radiance
+   -------------------------------------------------------------------------- */
+.divine-cutout-wrap {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 6px;
+  overflow: visible;
+  z-index: 4;
+}
+
+.divine-cutout-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 230px;
+  height: 195px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(247, 228, 168, 0.5) 0%, rgba(229, 173, 177, 0.22) 42%, transparent 72%);
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(12px);
+  animation: divineAuraPulse 3.5s infinite ease-in-out;
+}
+
+@keyframes divineAuraPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.85; }
+  50% { transform: translate(-50%, -50%) scale(1.12); opacity: 1; }
+}
+
+.divine-hands-cutout {
+  width: 100%;
+  max-width: 290px;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 14px 28px rgba(70, 48, 25, 0.20));
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+/* --------------------------------------------------------------------------
+   Card Footer: Names + Hashtag + Ceremony
+   -------------------------------------------------------------------------- */
+.divine-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  z-index: 6;
+  margin-top: 6px;
+}
+
+.divine-names-wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.divine-name {
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.divine-amp {
+  font-family: 'Alex Brush', cursive;
+  font-size: 1.5rem;
+  color: var(--gold-primary);
+  line-height: 1;
+}
+
+.divine-sub-badge {
+  display: none !important;
+}
+
+/* ==========================================================================
+   THE 7 DISTINCT DESIGN THEMES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Design 1: Royal Jharokha Arch (Mughal Palace Pavilion)
+   -------------------------------------------------------------------------- */
+.theme-jharokha {
+  background: radial-gradient(circle at 50% 20%, #ffffff 0%, #fcf8f2 100%);
+  border: 1.5px solid rgba(194, 157, 89, 0.6);
+}
+
+.theme-jharokha::before {
+  border: 1px solid rgba(194, 157, 89, 0.4);
+}
+
+.theme-jharokha .divine-shloka {
+  color: #8c6a23;
+  letter-spacing: 0.08em;
+}
+
+.theme-jharokha .divine-art-frame {
+  border-radius: 65px 65px 8px 8px; /* Classic Jharokha arch top */
+  border: 1.5px solid #d4b476;
+  box-shadow: 0 6px 20px rgba(184, 143, 66, 0.22);
+}
+
+.theme-jharokha .divine-art-overlay {
+  box-shadow: inset 0 0 15px rgba(184, 143, 66, 0.2);
+}
+
+.theme-jharokha .divine-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #2b221a;
+}
+
+/* --------------------------------------------------------------------------
+   Design 2: Sacred Pichwai & Silk Scroll (Burgundy & Gold Heritage)
+   -------------------------------------------------------------------------- */
+.theme-pichwai {
+  background: #fbf5eb;
+  border: 2px solid rgba(107, 20, 25, 0.35);
+  box-shadow: inset 0 0 25px rgba(107, 20, 25, 0.04);
+}
+
+.theme-pichwai::before {
+  border: 1px dashed rgba(107, 20, 25, 0.3);
+}
+
+.theme-pichwai .divine-shloka {
+  color: var(--burgundy-royal);
+  font-weight: 600;
+}
+
+.theme-pichwai .divine-art-frame {
+  border: 2px solid var(--burgundy-royal);
+  border-radius: 6px;
+  box-shadow: 0 6px 22px rgba(107, 20, 25, 0.18);
+}
+
+.theme-pichwai .divine-name {
+  font-family: 'Alex Brush', cursive;
+  font-size: 2rem;
+  color: var(--burgundy-royal);
+}
+
+.theme-pichwai .divine-sub-badge {
+  background: rgba(107, 20, 25, 0.08);
+  color: var(--burgundy-royal);
+  border-color: rgba(107, 20, 25, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   Design 3: Modern Botanical Editorial (Clean Contemporary Fusion)
+   -------------------------------------------------------------------------- */
+.theme-botanical {
+  background: #ffffff;
+  border: 1px solid rgba(120, 150, 124, 0.45);
+}
+
+.theme-botanical::before {
+  border: 1px solid rgba(120, 150, 124, 0.25);
+}
+
+.theme-botanical .divine-ap-logo-wrap {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  margin-bottom: 2px;
+}
+
+.theme-botanical .divine-ap-logo-img {
+  height: 58px;
+  max-width: 125px;
+}
+
+.theme-botanical .divine-art-frame {
+  border-radius: 10px;
+  border: 1px solid rgba(120, 150, 124, 0.35);
+  box-shadow: 0 8px 24px rgba(60, 80, 65, 0.12);
+}
+
+.theme-botanical .divine-shloka {
+  color: var(--sage-accent);
+}
+
+.theme-botanical .divine-name {
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-size: 2.25rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #1a1a1a;
+  line-height: 1.15;
+}
+
+.theme-botanical .divine-amp {
+  font-family: 'Alex Brush', cursive;
+  font-size: 1.5rem;
+  color: var(--gold-primary);
+  line-height: 1;
+}
+
+.theme-botanical .divine-sub-badge {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Design 4: Swarna Mandir (Golden Temple Sanctum & Aura)
+   -------------------------------------------------------------------------- */
+.theme-sanctum {
+  background: radial-gradient(circle at 50% 30%, #fffdf8 0%, #fbf5e6 100%);
+  border: 2px solid rgba(194, 157, 89, 0.7);
+}
+
+.theme-sanctum::before {
+  border: 1.5px solid rgba(194, 157, 89, 0.5);
+  border-radius: 6px;
+}
+
+.theme-sanctum .divine-ap-logo-wrap::before {
+  content: '';
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(247, 228, 168, 0.6) 0%, transparent 70%);
+  z-index: -1;
+  animation: auraGlow 3s infinite ease-in-out;
+}
+
+@keyframes auraGlow {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+.theme-sanctum .divine-art-frame {
+  border: 2px solid #c29d59;
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(194, 157, 89, 0.35);
+}
+
+.theme-sanctum .divine-art-overlay {
+  background: radial-gradient(circle at 50% 40%, transparent 55%, rgba(247, 228, 168, 0.25) 100%);
+}
+
+.theme-sanctum .divine-shloka {
+  color: #9c731e;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.theme-sanctum .divine-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.1rem;
+  color: #8c6a23;
+  text-shadow: 0 1px 2px rgba(247, 228, 168, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   Design 5: Botanical Pavilion & Lotus (Floral Harmony)
+   -------------------------------------------------------------------------- */
+.theme-lotus {
+  background: #fdfaf7;
+  border: 1.5px solid rgba(229, 173, 177, 0.5);
+}
+
+.theme-lotus::before {
+  border: 1px solid rgba(194, 157, 89, 0.3);
+}
+
+.theme-lotus .divine-art-frame {
+  border: 1.5px solid rgba(229, 173, 177, 0.7);
+  border-radius: 14px;
+  box-shadow: 0 6px 22px rgba(229, 173, 177, 0.25);
+}
+
+.theme-lotus .divine-shloka {
+  color: #b05763;
+}
+
+.theme-lotus .divine-name {
+  font-family: 'Parisienne', cursive;
+  font-size: 1.85rem;
+  color: #3b2a2d;
+}
+
+.theme-lotus .divine-sub-badge {
+  background: rgba(229, 173, 177, 0.15);
+  color: #8c3643;
+  border-color: rgba(229, 173, 177, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   Design 6: Royal Mehendi & Alta (Traditional Bridal Duo-Tone)
+   -------------------------------------------------------------------------- */
+.theme-mehendi {
+  background: #fcf9f2;
+  border: 2px solid #a33b47;
+}
+
+.theme-mehendi::before {
+  border: 1px double #c29d59;
+}
+
+.theme-mehendi .divine-art-frame {
+  border-radius: 4px;
+  border: 2px solid #a33b47;
+  outline: 1.5px solid #dfbe7d;
+  outline-offset: -5px;
+  box-shadow: 0 8px 25px rgba(163, 59, 71, 0.25);
+}
+
+.theme-mehendi .divine-shloka {
+  color: #a33b47;
+  font-weight: 700;
+}
+
+.theme-mehendi .divine-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.15rem;
+  color: #5c1822;
+}
+
+.theme-mehendi .divine-sub-badge {
+  background: rgba(163, 59, 71, 0.1);
+  color: #a33b47;
+  border-color: rgba(163, 59, 71, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   Design 7: Contemporary Frosted Glass & Gold Foil
+   -------------------------------------------------------------------------- */
+.theme-couture {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(194, 157, 89, 0.35);
+}
+
+.theme-couture::before {
+  border: 1px solid rgba(194, 157, 89, 0.2);
+  border-radius: 10px;
+}
+
+.theme-couture .divine-ap-logo-wrap {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(194, 157, 89, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.theme-couture .divine-art-frame {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.09);
+}
+
+.theme-couture .divine-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #1e1e1e;
+}
+
+.theme-couture .divine-sub-badge {
+  background: rgba(0, 0, 0, 0.03);
+  color: #4a4a4a;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   WHOLE PAGE / STAGE ZOOM-OUT CAMERA ANIMATIONS
+   ========================================================================== */
+.envelope-stage {
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Simulator only uses CSS transitions when triggered without GSAP */
+#live-sim-stage {
+  transition: transform 1.25s cubic-bezier(0.25, 1, 0.5, 1), filter 1.25s ease;
+}
+
+/* Initial close-up focus before unsealing */
+.envelope-stage.stage-camera-focused {
+  transform: scale(1.08);
+}
+
+/* Cinematic Zoom-Out States */
+.envelope-stage.stage-zoom-majestic {
+  transform: scale(0.92);
+}
+
+.envelope-stage.stage-zoom-regal {
+  transform: scale(0.86);
+}
+
+.envelope-stage.stage-zoom-float {
+  transform: scale(0.96) translateY(-10px);
+}
+
+/* Ambient Back-glow upon opening */
+.envelope-stage.stage-unsealed {
+  filter: drop-shadow(0 20px 45px rgba(117, 82, 27, 0.18));
+}
+
+/* ==========================================================================
+   INTERACTIVE POPUP DESIGN STUDIO (SHOWCASE & CONTROLS)
+   ========================================================================== */
+.popup-studio-section {
+  max-width: 1240px;
+  margin: 40px auto 60px;
+  padding: 40px 24px;
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1.5px solid rgba(194, 157, 89, 0.35);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.06);
+}
+
+.popup-studio-header {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.popup-studio-badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 999px;
+  background: #fbf5eb;
+  color: #8c6a23;
+  border: 1px solid #dfbe7d;
+  margin-bottom: 10px;
+}
+
+.popup-studio-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.45rem;
+  font-weight: 700;
+  color: #242c26;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.popup-studio-desc {
+  max-width: 820px;
+  margin: 0 auto;
+  color: #636b66;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Studio Controls Bar */
+.popup-controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px 28px;
+  background: #fdfaf5;
+  border: 1px solid rgba(194, 157, 89, 0.3);
+  padding: 16px 22px;
+  border-radius: 16px;
+  margin-bottom: 36px;
+}
+
+.popup-ctrl-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.popup-ctrl-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #4a4e4b;
+  letter-spacing: 0.04em;
+}
+
+.popup-toggle-btn {
+  background: #ffffff;
+  border: 1px solid rgba(194, 157, 89, 0.35);
+  color: #555c57;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.popup-toggle-btn:hover {
+  background: #fdf4e4;
+  color: #8c6a23;
+  border-color: #dfbe7d;
+}
+
+.popup-toggle-btn.active {
+  background: #8c6a23;
+  color: #ffffff;
+  border-color: #8c6a23;
+  box-shadow: 0 4px 12px rgba(140, 106, 35, 0.25);
+}
+
+/* 7 Cards Comparison Grid */
+.popup-designs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 26px;
+  margin-bottom: 45px;
+}
+
+.popup-design-card {
+  background: #faf7f2;
+  border: 1.5px solid rgba(194, 157, 89, 0.25);
+  border-radius: 18px;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  cursor: pointer;
+}
+
+.popup-design-card:hover {
+  transform: translateY(-4px);
+  border-color: #c29d59;
+  box-shadow: 0 14px 35px rgba(117, 82, 27, 0.12);
+}
+
+.popup-design-card.selected {
+  border-color: #8c6a23;
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgba(140, 106, 35, 0.18);
+  outline: 2px solid #8c6a23;
+}
+
+.card-num-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #8c6a23;
+  border: 1px solid rgba(194, 157, 89, 0.4);
+  z-index: 10;
+}
+
+.card-preview-stage {
+  width: 100%;
+  height: 380px;
+  border-radius: 14px;
+  padding: 10px;
+  background: #f0ebe2;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.popup-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.popup-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #242c26;
+  margin: 0;
+}
+
+.popup-card-tagline {
+  font-size: 0.8rem;
+  color: #8c6a23;
+  font-weight: 600;
+}
+
+.popup-card-desc {
+  font-size: 0.86rem;
+  color: #636b66;
+  line-height: 1.5;
+  margin: 4px 0 12px;
+}
+
+.popup-card-swatches {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.swatch-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn-select-design {
+  width: 100%;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1.5px solid #c29d59;
+  background: #ffffff;
+  color: #8c6a23;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.popup-design-card.selected .btn-select-design,
+.btn-select-design:hover {
+  background: #8c6a23;
+  color: #ffffff;
+  border-color: #8c6a23;
+}
+
+/* Simulator Anchor Section */
+.simulator-anchor-wrap {
+  margin-top: 25px;
+  padding: 30px 20px;
+  background: #fdfaf6;
+  border-radius: 20px;
+  border: 1px solid rgba(194, 157, 89, 0.35);
+  text-align: center;
+}
+
+.sim-actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.sim-action-btn {
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-trigger-unseal {
+  background: linear-gradient(135deg, #c29d59 0%, #8c6a23 100%);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 6px 20px rgba(140, 106, 35, 0.3);
+}
+
+.btn-trigger-unseal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(140, 106, 35, 0.45);
+}
+
+.btn-reset-envelope {
+  background: #ffffff;
+  border: 1.5px solid rgba(140, 106, 35, 0.4);
+  color: #8c6a23;
+}
+
+.btn-reset-envelope:hover {
+  background: #fbf5eb;
+}

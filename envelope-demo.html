@@ -18,6 +18,7 @@
     }
   </script>
 
+  <link rel="stylesheet" href="./css/divine-card.css" />
   <style>
     :root {
       --color-primary: #b54a55;
@@ -169,14 +170,14 @@
     }
 
     .hashtag-text {
-      font-family: var(--font-serif);
+      font-family: 'Outfit', sans-serif;
       font-size: 1.4rem;
       font-weight: 700;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.04em;
       background: linear-gradient(135deg, #b88f42 0%, #e6cb89 50%, #946f29 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-transform: uppercase;
+      text-transform: none;
     }
 
     /* Envelope 3D Stage */
@@ -308,7 +309,7 @@
       padding: 2px 12px;
       border-radius: 999px;
       margin: 6px 0;
-      text-transform: uppercase;
+      text-transform: none;
     }
 
     .card-names {
@@ -389,7 +390,7 @@
       width: 104px;
       height: 104px;
       border-radius: 50%;
-      background-image: url('./assets/wax_seal_pa.png');
+      background-image: url('./assets/wax_seal_pa.png?v=2');
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
@@ -403,7 +404,12 @@
     }
 
     .seal-cue {
-      margin-top: 12px;
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      margin-top: 0;
       font-family: var(--font-sans);
       font-size: 0.88rem;
       font-weight: 600;
@@ -419,8 +425,8 @@
     }
 
     @keyframes bounceCue {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-3px); }
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-3px); }
     }
 
     /* Destination Full Screen Preview Card (Revealed upon settling) */
@@ -566,17 +572,31 @@
         </div>
 
         <!-- 3. Inside Invitation Card -->
-        <div class="invitation-card" id="inner-card">
-          <img src="./assets/ganesha_gold.png" alt="Lord Ganesha" class="card-ganesha">
-          <span class="card-shloka">॥ श्री गणेशाय नमः ॥</span>
-          <span class="card-hashtag">#APforever</span>
-          <div class="card-names">
-            <span>Pranshi</span>
-            <div class="card-amp">&amp;</div>
-            <span>Akash</span>
-          </div>
-          <div class="card-ap-logo-wrap" id="demo-inner-card-logo" style="width: 176px; height: 114px; margin-top: 6px; display: flex; align-items: center; justify-content: center;">
-            <!-- Selected AP Logo injected here -->
+        <div class="invitation-card" id="inner-card" style="padding: 0; overflow: hidden; background: transparent; border: none;">
+          <div class="divine-popup-card theme-botanical" id="demo-divine-card" style="width: 100%; height: 100%;">
+            <div class="divine-card-frame">
+              <div class="frame-corner top-left"></div>
+              <div class="frame-corner top-right"></div>
+              <div class="frame-corner bottom-left"></div>
+              <div class="frame-corner bottom-right"></div>
+
+              <div class="divine-ap-logo-wrap framed-logo">
+                <img src="./assets/ap_logo_brown.png" alt="AP Logo" class="divine-ap-logo-img" id="demo-divine-logo-img" />
+              </div>
+
+              <div class="divine-cutout-wrap framed-hands" id="demo-cutout-wrap">
+                <div class="divine-cutout-aura"></div>
+                <img src="./assets/shiva_parvati_vivah_hands.png" alt="Shiva Parvati Vivah Divine Hands Union" class="divine-hands-cutout" id="demo-hands-cutout" />
+              </div>
+
+              <div class="divine-footer framed-footer">
+                <div class="divine-names-wrap">
+                  <span class="divine-name">Pranshi</span>
+                  <span class="divine-amp">&amp;</span>
+                  <span class="divine-name">Akash</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -939,7 +959,7 @@
       const settledScreen = document.getElementById('settled-screen');
 
       // Reset transforms and opacities
-      gsap.set([mainEnv, innerCard, flapTop, gateLeft, gateRight, pocketFront, ribbonBand, sealWrap, sealStamp, sealCue, settledScreen], {
+      gsap.set(['#envelope-box', mainEnv, innerCard, flapTop, gateLeft, gateRight, pocketFront, ribbonBand, sealWrap, sealStamp, sealCue, settledScreen], {
         clearProps: 'all'
       });
 
@@ -1078,6 +1098,13 @@
       // STYLE 3: Royal Gatefold Palace Doors
       // =====================================================================
       else if (currentStyle === '3') {
+        // Whole page / envelope stage zoom out pullback!
+        tl.to('#envelope-box', {
+          scale: 0.90,
+          duration: 1.4,
+          ease: 'power2.out'
+        }, 0.2);
+
         // Doors swing open on Y-axis
         tl.to('#gate-left', {
           rotateY: -125,
@@ -1093,33 +1120,45 @@
           transformOrigin: 'right center'
         }, 0.35);
 
-        // Card floats forward
+        // Card floats forward centered with equal border spacing
         tl.to('#inner-card', {
-          scale: 1.05,
-          duration: 1.0,
+          scale: 1.02,
+          y: 0,
+          duration: 0.75,
           ease: 'power2.out',
-          boxShadow: '0 25px 60px rgba(117, 82, 27, 0.25)'
-        }, 0.65);
+          boxShadow: '0 24px 55px rgba(117, 82, 27, 0.28)',
+          force3D: true
+        }, 0.35);
 
-        // Card expands into screen
+        // Cutout settles naturally without bottom crop
+        const demoCutout = document.getElementById('demo-hands-cutout');
+        if (demoCutout) {
+          tl.fromTo(demoCutout,
+            { scale: 1.05, opacity: 0.8 },
+            { scale: 1.0, opacity: 1, duration: 0.75, ease: 'power2.out', force3D: true },
+            0.35
+          );
+        }
+
+        // Card expands into screen after viewing
         tl.to('#inner-card', {
           scale: 1.6,
           opacity: 0,
-          duration: 0.8,
+          duration: 0.85,
           ease: 'power2.inOut'
-        }, 1.85);
+        }, 2.35);
 
         tl.to('#main-env', {
           opacity: 0,
           scale: 0.92,
-          duration: 0.7,
+          duration: 0.75,
           ease: 'power2.in'
-        }, 1.85);
+        }, 2.35);
 
         tl.fromTo('#settled-screen',
           { opacity: 0, scale: 0.94, y: 15 },
           { opacity: 1, scale: 1, y: 0, duration: 0.85, ease: 'power2.out', pointerEvents: 'auto' },
-          1.95
+          2.45
         );
       }
 

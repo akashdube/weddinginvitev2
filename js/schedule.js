@@ -46,9 +46,9 @@
       
       const title = encodeURIComponent("Pranshi & Akash's Wedding Celebration (#APforever)");
       const details = encodeURIComponent(
-        "Join us to celebrate the wedding of Pranshi & Akash!\n\nVenue: HB Klyde Premier, Rampur Road, Moradabad\nHashtag: #APforever"
+        "Join us to celebrate the wedding of Pranshi & Akash!\n\nVenue: HB Klyde Premier, Near Aryabhatta International School, Zero Point, Rampur Road, Moradabad, Uttar Pradesh 244001\nHashtag: #APforever"
       );
-      const location = encodeURIComponent("HB Klyde Premier, Rampur Road, Near Arcadia Greens, Zero Point, Moradabad, UP 244001");
+      const location = encodeURIComponent("HB Klyde Premier, Near Aryabhatta International School, Zero Point, Rampur Road, Moradabad, Uttar Pradesh 244001");
       const startDate = "20261120T113000Z"; // 17:00 IST is 11:30 UTC
       const endDate = "20261120T183000Z";
 
@@ -64,7 +64,7 @@
     if (venueKey === 'haldi') {
       query = encodeURIComponent("Govindnagar, Moradabad, Uttar Pradesh");
     } else if (venueKey === 'wedding') {
-      query = encodeURIComponent("HB Klyde Premier, Rampur Road, Moradabad, Uttar Pradesh 244001");
+      query = encodeURIComponent("HB Klyde Premier, Near Aryabhatta International School, Zero Point, Rampur Road, Moradabad, Uttar Pradesh 244001");
     }
     const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
     window.open(mapsUrl, '_blank');

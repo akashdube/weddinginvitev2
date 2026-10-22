@@ -10,6 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Monsieur+La+Doulaise&family=Outfit:wght@300;400;500;600;700&family=Parisienne&family=Pinyon+Script&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="./css/divine-card.css" />
   <style>
     :root {
       --bg: #fbf9f6;
@@ -71,7 +72,7 @@
     .hashtag {
       font-family: 'Outfit', sans-serif;
       font-weight: 600;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.04em;
       color: var(--gold);
       font-size: 1.1rem;
       margin-bottom: 8px;
@@ -640,11 +641,12 @@
 
     /* Exact Reference Match */
     .wax-seal-sample.seal-reference-matched {
-      background: url('./assets/wax_seal_pa.png') center/contain no-repeat !important;
+      background: url('./assets/wax_seal_pa.png?v=2') center/contain no-repeat !important;
       border: none !important;
       box-shadow: none !important;
       filter: drop-shadow(0 14px 28px rgba(117, 82, 27, 0.45));
     }
+
     .wax-seal-sample.seal-reference-matched .inner-ring,
     .wax-seal-sample.seal-reference-matched .monogram-text {
       display: none !important;
@@ -788,7 +790,7 @@
       background: #ffffff;
       border-radius: 20px;
       border: 1px solid var(--border);
-      box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
     }
 
     .studio-grid-3 {
@@ -803,7 +805,7 @@
       border-radius: 18px;
       border: 2px solid #ecd8b6;
       padding: 22px 18px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
       position: relative;
       transition: all 0.3s ease;
     }
@@ -943,8 +945,8 @@
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      border: 1px solid rgba(0,0,0,0.12);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
     /* --- Option 2: Inset Ribbon Pill Bar --- */
@@ -962,7 +964,7 @@
       background: #fffdf2;
     }
 
-    .opt2-ribbon.mehndi-ribbon {
+    .opt2-ribbon.mehendi-ribbon {
       background: #f5fbf7;
     }
 
@@ -994,7 +996,7 @@
       height: 20px;
       border-radius: 50%;
       border: 2px solid #ffffff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
       cursor: pointer;
       transition: transform 0.2s ease;
     }
@@ -1035,7 +1037,7 @@
       border-radius: 50%;
       border: 2px solid #ffffff;
       margin-left: -6px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.14);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.14);
       transition: transform 0.2s ease;
     }
 
@@ -1053,7 +1055,7 @@
       background: #ffffff;
       border-radius: 20px;
       border: 1px solid var(--border);
-      box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
     }
 
     .slider-options-grid {
@@ -1068,7 +1070,7 @@
       border-radius: 18px;
       border: 2px solid #ecd8b6;
       padding: 24px 18px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
       position: relative;
       transition: all 0.3s ease;
       display: flex;
@@ -1095,8 +1097,17 @@
     }
 
     @keyframes gentlePulse {
-      0%, 100% { opacity: 0.85; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.02); }
+
+      0%,
+      100% {
+        opacity: 0.85;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.02);
+      }
     }
 
     /* --- Design 1: Royal Dual-Tier Date Badges (Recommended) --- */
@@ -1107,7 +1118,7 @@
       padding: 5px;
       border-radius: 50px;
       border: 1.5px solid rgba(194, 157, 89, 0.45);
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.04);
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.04);
       user-select: none;
       margin-bottom: 16px;
     }
@@ -1121,7 +1132,7 @@
       background: #ffffff;
       border-radius: 50px;
       border: 1.5px solid var(--gold);
-      box-shadow: 0 4px 16px rgba(194, 157, 89, 0.32), 0 1px 3px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 16px rgba(194, 157, 89, 0.32), 0 1px 3px rgba(0, 0, 0, 0.06);
       transition: transform 0.35s cubic-bezier(0.25, 1, 0.45, 1);
       pointer-events: none;
       z-index: 1;
@@ -1257,7 +1268,9 @@
     }
 
     @keyframes shineText {
-      to { background-position: 200% center; }
+      to {
+        background-position: 200% center;
+      }
     }
 
     /* --- Design 3: Dual Luxury Ceremony Passes (Ticket Aesthetic) --- */
@@ -1338,6 +1351,7 @@
       color: #4a544e;
       min-height: 110px;
     }
+
     /* ==========================================================================
        Footer Closing Border & Art Motif Studio Styles
        ========================================================================== */
@@ -1348,7 +1362,7 @@
       background: #ffffff;
       border-radius: 20px;
       border: 1px solid var(--border);
-      box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
     }
 
     .footer-options-grid {
@@ -1363,7 +1377,7 @@
       border-radius: 18px;
       border: 2px solid #ecd8b6;
       padding: 26px 20px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
       position: relative;
       transition: all 0.3s ease;
       display: flex;
@@ -1427,10 +1441,29 @@
       width: 26px;
       height: 26px;
     }
-    .opt2-corner-svg.tl { top: 6px; left: 6px; }
-    .opt2-corner-svg.tr { top: 6px; right: 6px; transform: scaleX(-1); }
-    .opt2-corner-svg.bl { bottom: 6px; left: 6px; transform: scaleY(-1); }
-    .opt2-corner-svg.br { bottom: 6px; right: 6px; transform: scale(-1); }
+
+    .opt2-corner-svg.tl {
+      top: 6px;
+      left: 6px;
+    }
+
+    .opt2-corner-svg.tr {
+      top: 6px;
+      right: 6px;
+      transform: scaleX(-1);
+    }
+
+    .opt2-corner-svg.bl {
+      bottom: 6px;
+      left: 6px;
+      transform: scaleY(-1);
+    }
+
+    .opt2-corner-svg.br {
+      bottom: 6px;
+      right: 6px;
+      transform: scale(-1);
+    }
 
     .opt2-top-crest {
       display: flex;
@@ -1498,6 +1531,463 @@
     </div>
   </header>
 
+    <!-- ======================================================================
+       INTERACTIVE DESIGN LAB: Pop-up Card Divine Union Artwork & AP Logo
+       7 Handcrafted Designs with Whole Page Zoom-Out Animation
+       ====================================================================== -->
+  <section class="popup-studio-section" id="popup-studio">
+    <div class="popup-studio-header">
+      <span class="popup-studio-badge">✦ Handcrafted Design Lab</span>
+      <h2 class="popup-studio-title">Pop-up Card: Sacred Shiva-Parvati Union &amp; AP Logo</h2>
+      <p class="popup-studio-desc">
+        When the royal wax seal breaks, the envelope doors swing open and this sacred card elevates into view with a 
+        <strong>cinematic whole-page camera zoom-out animation</strong>. Review the <strong>7 handcrafted design variations</strong> 
+        below, seamlessly blending the divine Shiva-Parvati hands artwork and the AP monogram into your wedding palette.
+        Click any card to load it directly into the <strong>Live 3D Envelope Simulator</strong> below!
+      </p>
+    </div>
+
+    <!-- Global Design Studio Controls Bar -->
+    <div class="popup-controls-bar">
+      <div class="popup-ctrl-group">
+        <span class="popup-ctrl-label">Active Design:</span>
+        <div class="btn-toggle-group" id="design-select-group">
+          <button class="popup-toggle-btn active" data-design="1">1. Jharokha</button>
+          <button class="popup-toggle-btn" data-design="2">2. Pichwai</button>
+          <button class="popup-toggle-btn" data-design="3">3. Botanical</button>
+          <button class="popup-toggle-btn" data-design="4">4. Sanctum</button>
+          <button class="popup-toggle-btn" data-design="5">5. Lotus</button>
+          <button class="popup-toggle-btn" data-design="6">6. Mehendi</button>
+          <button class="popup-toggle-btn" data-design="7">7. Couture</button>
+        </div>
+      </div>
+
+      <div class="popup-ctrl-group">
+        <span class="popup-ctrl-label">AP Logo Finish:</span>
+        <div class="btn-toggle-group" id="logo-select-group">
+          <button class="popup-toggle-btn active" data-logo="gold">✨ Embossed Gold Foil</button>
+          <button class="popup-toggle-btn" data-logo="maroon">🍷 Royal Burgundy Maroon</button>
+        </div>
+      </div>
+
+      <div class="popup-ctrl-group">
+        <span class="popup-ctrl-label">Zoom-Out Camera Style:</span>
+        <div class="btn-toggle-group" id="camera-select-group">
+          <button class="popup-toggle-btn active" data-zoom="stage-zoom-majestic">Majestic Pullback (0.90x)</button>
+          <button class="popup-toggle-btn" data-zoom="stage-zoom-regal">Panoramic Overview (0.86x)</button>
+          <button class="popup-toggle-btn" data-zoom="stage-zoom-float">Cinematic Float (0.96x)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 Handcrafted Designs Comparison Grid -->
+    <div class="popup-designs-grid" id="popup-designs-grid">
+
+      <!-- Design 1: Royal Jharokha Arch -->
+      <div class="popup-design-card selected" data-design="1" id="design-card-1">
+        <span class="card-num-tag">Design 01 • Recommended</span>
+        <div class="card-preview-stage">
+          <div class="divine-popup-card theme-jharokha" style="width: 270px; height: 360px;">
+            <div class="divine-header">
+              <span class="divine-shloka">॥ श्री गणेशाय नमः ॥</span>
+              <div class="divine-ap-logo-wrap">
+                <img src="./assets/ap_logo_gold.png" alt="AP Logo" class="divine-ap-logo-img logo-target" />
+              </div>
+            </div>
+            <div class="divine-cutout-wrap">
+              <div class="divine-cutout-aura"></div>
+              <img src="./assets/shiva_parvati_hands_cutout.png" alt="Shiva Parvati Vivah Divine Hands Union" class="divine-hands-cutout" />
+            </div>
+            <div class="divine-footer">
+              <div class="divine-names-wrap">
+                <span class="divine-name">Pranshi</span>
+                <span class="divine-amp">&amp;</span>
+                <span class="divine-name">Akash</span>
+              </div>
+              <div class="divine-sub-badge">
+                <span>✦</span>
+                <span>#APforever</span>
+                <span>•</span>
+                <span>18 &amp; 20 Nov 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-card-meta">
+          <h3 class="popup-card-title">1. Royal Jharokha Arch</h3>
+          <span class="popup-card-tagline">Mughal Palace Pavilion &amp; Gold Embossed Trim</span>
+          <p class="popup-card-desc">
+            The sacred Shiva-Parvati painting is housed in a classic scalloped Mughal jharokha arch with golden filigree trim. Above it, the gold foil AP monogram shines under the divine Ganesha shloka.
+          </p>
+          <div class="popup-card-swatches">
+            <span class="swatch-dot" style="background:#c29d59;" title="Gold Foil"></span>
+            <span class="swatch-dot" style="background:#fdfcf9;" title="Warm Ivory"></span>
+            <span class="swatch-dot" style="background:#2b221a;" title="Royal Sepia"></span>
+            <span class="swatch-dot" style="background:#e5adb1;" title="Lotus Pink"></span>
+          </div>
+          <button class="btn-select-design" onclick="selectDesign(1)">✦ Preview in Live Envelope</button>
+        </div>
+      </div>
+
+      <!-- Design 2: Sacred Pichwai & Silk Scroll -->
+      <div class="popup-design-card" data-design="2" id="design-card-2">
+        <span class="card-num-tag">Design 02</span>
+        <div class="card-preview-stage">
+          <div class="divine-popup-card theme-pichwai" style="width: 270px; height: 360px;">
+            <div class="divine-header">
+              <span class="divine-shloka">॥ अखंड सौभाग्यवती भव ॥</span>
+              <div class="divine-ap-logo-wrap">
+                <img src="./assets/ap_logo_maroon.png" alt="AP Logo" class="divine-ap-logo-img logo-target" />
+              </div>
+            </div>
+            <div class="divine-cutout-wrap">
+              <div class="divine-cutout-aura"></div>
+              <img src="./assets/shiva_parvati_hands_cutout.png" alt="Shiva Parvati Vivah Divine Hands Union" class="divine-hands-cutout" />
+            </div>
+            <div class="divine-footer">
+              <div class="divine-names-wrap">
+                <span class="divine-name">Pranshi</span>
+                <span class="divine-amp">&amp;</span>
+                <span class="divine-name">Akash</span>
+              </div>
+              <div class="divine-sub-badge">
+                <span>✦</span>
+                <span>#APforever</span>
+                <span>•</span>
+                <span>Sacred Bond</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-card-meta">
+          <h3 class="popup-card-title">2. Sacred Pichwai &amp; Silk Scroll</h3>
+          <span class="popup-card-tagline">Burgundy Velvet Border &amp; Warm Parchment</span>
+          <p class="popup-card-desc">
+            Rich royal burgundy velvet border matching Goddess Parvati's bridal dupatta. Centered with the maroon AP monogram, gold dashed pinstripes, and the timeless marital blessing.
+          </p>
+          <div class="popup-card-swatches">
+            <span class="swatch-dot" style="background:#6b1419;" title="Royal Burgundy"></span>
+            <span class="swatch-dot" style="background:#fbf5eb;" title="Silk Parchment"></span>
+            <span class="swatch-dot" style="background:#c29d59;" title="Gold Foil"></span>
+          </div>
+          <button class="btn-select-design" onclick="selectDesign(2)">✦ Preview in Live Envelope</button>
+        </div>
+      </div>
+
+      <!-- Design 3: Modern Botanical Editorial -->
+      <div class="popup-design-card" data-design="3" id="design-card-3">
+        <span class="card-num-tag">Design 03</span>
+        <div class="card-preview-stage">
+          <div class="divine-popup-card theme-botanical" style="width: 270px; height: 360px;">
+            <div class="divine-card-frame">
+              <div class="frame-corner top-left"></div>
+              <div class="frame-corner top-right"></div>
+              <div class="frame-corner bottom-left"></div>
+              <div class="frame-corner bottom-right"></div>
+
+              <div class="divine-ap-logo-wrap framed-logo">
+                <img src="./assets/ap_logo_brown.png" alt="AP Logo" class="divine-ap-logo-img logo-target" />
+              </div>
+
+              <div class="divine-cutout-wrap framed-hands">
+                <div class="divine-cutout-aura"></div>
+                <img src="./assets/shiva_parvati_vivah_hands.png" alt="Shiva Parvati Vivah Divine Hands Union" class="divine-hands-cutout" />
+              </div>
+
+              <div class="divine-footer framed-footer">
+                <div class="divine-names-wrap">
+                  <span class="divine-name">Pranshi</span>
+                  <span class="divine-amp">&amp;</span>
+                  <span class="divine-name">Akash</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-card-meta">
+          <h3 class="popup-card-title">3. Modern Botanical Editorial</h3>
+          <span class="popup-card-tagline">Minimalist Alabaster &amp; Sage Leaf Harmony</span>
+          <p class="popup-card-desc">
+            A high-fashion modern editorial layout: the AP logo is nested in a delicate sage-ring crest, framed by crisp olive borders, clean spaced typography, and pure white negative space.
+          </p>
+          <div class="popup-card-swatches">
+            <span class="swatch-dot" style="background:#78967c;" title="Sage Green"></span>
+            <span class="swatch-dot" style="background:#ffffff;" title="Pure Alabaster"></span>
+            <span class="swatch-dot" style="background:#c29d59;" title="Gold Accent"></span>
+          </div>
+          <button class="btn-select-design" onclick="selectDesign(3)">✦ Preview in Live Envelope</button>
+        </div>
+      </div>
+
+      <!-- Design 4: Swarna Mandir (Golden Temple Sanctum) -->
+      <div class="popup-design-card" data-design="4" id="design-card-4">
+        <span class="card-num-tag">Design 04</span>
+        <div class="card-preview-stage">
+          <div class="divine-popup-card theme-sanctum" style="width: 270px; height: 360px;">
+            <div class="divine-header">
+              <span class="divine-shloka">॥ ॐ नमः शिवाय ॥</span>
+              <div class="divine-ap-logo-wrap">
+                <img src="./assets/ap_logo_gold.png" alt="AP Logo" class="divine-ap-logo-img logo-target" />
+              </div>
+            </div>
+            <div class="divine-cutout-wrap">
+              <div class="divine-cutout-aura"></div>
+              <img src="./assets/shiva_parvati_hands_cutout.png" alt="Shiva Parvati Vivah Divine Hands Union" class="divine-hands-cutout" />
+            </div>
+            <div class="divine-footer">
+              <div class="divine-names-wrap">
+                <span class="divine-name">Pranshi</span>
+                <span class="divine-amp">&amp;</span>
+                <span class="divine-name">Akash</span>
+              </div>
+              <div class="divine-sub-badge">
+                <span>✦</span>
+                <span>#APforever</span>
+                <span>•</span>
+                <span>Golden Aura</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-card-meta">
+          <h3 class="popup-card-title">4. Swarna Mandir Sanctum</h3>
+          <span class="popup-card-tagline">Sacred Shiva Mantra &amp; Shimmering Golden Aura</span>
+          <p class="popup-card-desc">
+            Surrounded by golden temple repousse borders with an animated sunburst halo glowing behind the AP logo. Dedicated with the auspicious mantra <em>॥ ॐ नमः शिवाय ॥</em>.
+          </p>
+          <div class="popup-card-swatches">
+            <span class="swatch-dot" style="background:#c29d59;" title="Deep Gold"></span>
+            <span class="swatch-dot" style="background:#f7e4a8;" title="Sunburst Glow"></span>
+            <span class="swatch-dot" style="background:#8c6a23;" title="Antique Ochre"></span>
+          </div>
+          <button class="btn-select-design" onclick="selectDesign(4)">✦ Preview in Live Envelope</button>
+        </div>
+      </div>
+
+      <!-- Design 5: Botanical Pavilion & Lotus -->
+      <div class="popup-design-card" data-design="5" id="design-card-5">
+        <span class="card-num-tag">Design 05</span>
+        <div class="card-preview-stage">
+          <div class="divine-popup-card theme-lotus" style="width: 270px; height: 360px;">
+            <div class="divine-header">
+              <span class="divine-shloka">॥ प्रेम परिणय सूत्र ॥</span>
+              <div class="divine-ap-logo-wrap">
+                <img src="./assets/ap_logo_gold.png" alt="AP Logo" class="divine-ap-logo-img logo-target" />
+              </div>
+            </div>
+            <div class="divine-cutout-wrap">
+              <div class="divine-cutout-aura"></div>
+              <img src="./assets/shiva_parvati_hands_cutout.png" alt="Shiva Parvati Vivah Divine Hands Union" class="divine-hands-cutout" />
+            </div>
+            <div class="divine-footer">
+              <div class="divine-names-wrap">
+                <span class="divine-name">Pranshi</span>
+                <span class="divine-amp">&amp;</span>
+                <span class="divine-name">Akash</span>
+              </div>
+              <div class="divine-sub-badge">
+                <span>✦</span>
+                <span>#APforever</span>
+                <span>•</span>
+                <span>Lotus Blossom</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-card-meta">
+          <h3 class="popup-card-title">5. Botanical Pavilion &amp; Lotus</h3>
+          <span class="popup-card-tagline">Lotus Petal Pink &amp; Champagne Gold Accents</span>
+          <p class="popup-card-desc">
+            Extracted from the soft pink lotus blossoms in the lower corners of the artwork. Soft dusty-rose borders, French Parisienne calligraphy, and champagne gold floral highlights.
+          </p>
+          <div class="popup-card-swatches">
+            <span class="swatch-dot" style="background:#e5adb1;" title="Lotus Petal"></span>
+            <span class="swatch-dot" style="background:#dfbe7d;" title="Champagne Gold"></span>
+            <span class="swatch-dot" style="background:#fdfaf7;" title="Blush Ivory"></span>
+          </div>
+          <button class="btn-select-design" onclick="selectDesign(5)">✦ Preview in Live Envelope</button>
+        </div>
+      </div>
+
+      <!-- Design 6: Royal Mehendi & Alta Bridal -->
+      <div class="popup-design-card" data-design="6" id="design-card-6">
+        <span class="card-num-tag">Design 06</span>
+        <div class="card-preview-stage">
+          <div class="divine-popup-card theme-mehendi" style="width: 270px; height: 360px;">
+            <div class="divine-header">
+              <span class="divine-shloka">॥ शुभ विवाह • मंगलम् ॥</span>
+              <div class="divine-ap-logo-wrap">
+                <img src="./assets/ap_logo_maroon.png" alt="AP Logo" class="divine-ap-logo-img logo-target" />
+              </div>
+            </div>
+            <div class="divine-cutout-wrap">
+              <div class="divine-cutout-aura"></div>
+              <img src="./assets/shiva_parvati_hands_cutout.png" alt="Shiva Parvati Vivah Divine Hands Union" class="divine-hands-cutout" />
+            </div>
+            <div class="divine-footer">
+              <div class="divine-names-wrap">
+                <span class="divine-name">Pranshi</span>
+                <span class="divine-amp">&amp;</span>
+                <span class="divine-name">Akash</span>
+              </div>
+              <div class="divine-sub-badge">
+                <span>✦</span>
+                <span>#APforever</span>
+                <span>•</span>
+                <span>Bridal Alta &amp; Henna</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-card-meta">
+          <h3 class="popup-card-title">6. Royal Mehendi &amp; Alta</h3>
+          <span class="popup-card-tagline">Traditional Vermilion, Henna &amp; Gold Inlay</span>
+          <p class="popup-card-desc">
+            Celebrates the exquisite bridal mehendi on Parvati's hand. Features a vermilion red inner bezel, deep burgundy typography, and dual-tone gold wire inlay.
+          </p>
+          <div class="popup-card-swatches">
+            <span class="swatch-dot" style="background:#a33b47;" title="Vermilion Alta"></span>
+            <span class="swatch-dot" style="background:#c29d59;" title="Gold Wire"></span>
+            <span class="swatch-dot" style="background:#fcf9f2;" title="Warm Linen"></span>
+          </div>
+          <button class="btn-select-design" onclick="selectDesign(6)">✦ Preview in Live Envelope</button>
+        </div>
+      </div>
+
+      <!-- Design 7: Contemporary Frosted Glass & Gold Foil -->
+      <div class="popup-design-card" data-design="7" id="design-card-7">
+        <span class="card-num-tag">Design 07</span>
+        <div class="card-preview-stage">
+          <div class="divine-popup-card theme-couture" style="width: 270px; height: 360px;">
+            <div class="divine-header">
+              <span class="divine-shloka">॥ SACRED UNION • 2026 ॥</span>
+              <div class="divine-ap-logo-wrap">
+                <img src="./assets/ap_logo_gold.png" alt="AP Logo" class="divine-ap-logo-img logo-target" />
+              </div>
+            </div>
+            <div class="divine-cutout-wrap">
+              <div class="divine-cutout-aura"></div>
+              <img src="./assets/shiva_parvati_hands_cutout.png" alt="Shiva Parvati Vivah Divine Hands Union" class="divine-hands-cutout" />
+            </div>
+            <div class="divine-footer">
+              <div class="divine-names-wrap">
+                <span class="divine-name" style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:700;">Pranshi &amp; Akash</span>
+              </div>
+              <div class="divine-sub-badge">
+                <span>✦</span>
+                <span>#APforever</span>
+                <span>•</span>
+                <span>Couture Glass</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-card-meta">
+          <h3 class="popup-card-title">7. Couture Frosted Glass</h3>
+          <span class="popup-card-tagline">Glassmorphic Layering &amp; High-Gloss Monogram</span>
+          <p class="popup-card-desc">
+            Ultra-modern luxury wedding stationery: translucent frosted glass layering with beveled specular highlights, floating glass plaque for the AP logo, and architectural poise.
+          </p>
+          <div class="popup-card-swatches">
+            <span class="swatch-dot" style="background:rgba(255,255,255,0.85); border:1px solid #c29d59;" title="Frosted Glass"></span>
+            <span class="swatch-dot" style="background:#c29d59;" title="Gold Foil"></span>
+            <span class="swatch-dot" style="background:#1e1e1e;" title="Modern Noir"></span>
+          </div>
+          <button class="btn-select-design" onclick="selectDesign(7)">✦ Preview in Live Envelope</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Live 3D Envelope & Camera Zoom Simulator -->
+    <div class="simulator-anchor-wrap" id="envelope-simulator-stage">
+      <div style="text-align: center; margin-bottom: 20px;">
+        <span class="popup-studio-badge" style="background:#f0ebe2; color:#5c471c;">Live 3D Envelope Simulation</span>
+        <h3 style="font-family: var(--font-serif); font-size: 1.85rem; color: #242c26; margin-top: 4px;">
+          Active Pop-up Card: <span id="active-design-label" style="color: #8c6a23;">Design 1 (Royal Jharokha Arch)</span>
+        </h3>
+        <p style="font-size: 0.9rem; color: #666; max-width: 600px; margin: 0 auto;">
+          Click the gold wax seal or use the action button below to watch the <strong>whole-page camera zoom-out pullback</strong>, 
+          doors swinging open, and the pop-up card rising from the envelope!
+        </p>
+      </div>
+
+      <!-- The Live Interactive 3D Envelope Container -->
+      <div style="display: flex; justify-content: center; align-items: center; min-height: 520px; perspective: 1200px;">
+        <div class="envelope-stage stage-camera-focused stage-zoom-majestic" id="live-sim-stage" style="width: 350px; height: 470px; position: relative;">
+          
+          <!-- Back Chamber Shadow -->
+          <div style="position: absolute; inset: 0; background: #e8ded0; border-radius: 16px; box-shadow: 0 15px 45px rgba(0,0,0,0.12);"></div>
+
+          <!-- Inside Pop-up Invitation Card (Elevates on Unseal) -->
+          <div class="envelope-invitation-card" id="live-sim-card" style="position: absolute; inset: 16px; border-radius: 14px; z-index: 10; padding: 0; overflow: hidden; background: transparent; border: none; transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 1.2s ease;">
+            
+            <div class="divine-popup-card theme-jharokha" id="sim-active-card-content" style="width: 100%; height: 100%;">
+              <div class="divine-card-frame">
+                <div class="frame-corner top-left"></div>
+                <div class="frame-corner top-right"></div>
+                <div class="frame-corner bottom-left"></div>
+                <div class="frame-corner bottom-right"></div>
+
+                <div class="divine-ap-logo-wrap framed-logo">
+                  <img src="./assets/ap_logo_brown.png" alt="AP Logo" class="divine-ap-logo-img" id="sim-card-logo" />
+                </div>
+
+                <div class="divine-cutout-wrap framed-hands">
+                  <div class="divine-cutout-aura"></div>
+                  <img src="./assets/shiva_parvati_vivah_hands.png" alt="Shiva Parvati Vivah Divine Hands Union" class="divine-hands-cutout" id="sim-hands-cutout" />
+                </div>
+
+                <div class="divine-footer framed-footer">
+                  <div class="divine-names-wrap">
+                    <span class="divine-name" id="sim-card-bride">Pranshi</span>
+                    <span class="divine-amp">&amp;</span>
+                    <span class="divine-name" id="sim-card-groom">Akash</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Gatefold Palace Doors: Left & Right -->
+          <div id="sim-gate-left" style="position: absolute; top: 0; left: 0; width: 175px; height: 470px; background: linear-gradient(135deg, #fdfbf8 0%, #f5ede2 100%); border-radius: 16px 0 0 16px; border: 1px solid #e0d5c3; border-right: none; z-index: 20; transform-origin: left center; transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 2px 0 10px rgba(0,0,0,0.06);">
+            <div style="position: absolute; inset: 12px; border: 1px dashed rgba(194, 157, 89, 0.5); border-radius: 10px 0 0 10px;"></div>
+          </div>
+
+          <div id="sim-gate-right" style="position: absolute; top: 0; right: 0; width: 175px; height: 470px; background: linear-gradient(225deg, #fdfbf8 0%, #f5ede2 100%); border-radius: 0 16px 16px 0; border: 1px solid #e0d5c3; border-left: none; z-index: 20; transform-origin: right center; transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: -2px 0 10px rgba(0,0,0,0.06);">
+            <div style="position: absolute; inset: 12px; border: 1px dashed rgba(194, 157, 89, 0.5); border-radius: 0 10px 10px 0;"></div>
+          </div>
+
+          <!-- Silk Ribbon Band across the Center Seam -->
+          <div class="envelope-ribbon-band" id="sim-ribbon" style="position: absolute; top: 50%; left: 0; right: 0; height: 56px; transform: translateY(-50%); background: linear-gradient(90deg, #ecd3be 0%, #f7ede3 50%, #ecd3be 100%); border-top: 1px solid rgba(194, 157, 89, 0.45); border-bottom: 1px solid rgba(194, 157, 89, 0.45); box-shadow: 0 4px 14px rgba(0,0,0,0.08); z-index: 25; pointer-events: none; transition: opacity 0.4s ease, transform 0.4s ease;"></div>
+
+          <!-- 3D Gold Wax Seal Monogram Locking Palace Doors -->
+          <div class="wax-seal-wrapper" id="sim-seal-wrapper" onclick="triggerSimUnseal()" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 35; cursor: pointer; transition: transform 0.3s ease;">
+            <div class="wax-seal-stamp" id="sim-seal-stamp" style="width: 112px; height: 112px; border-radius: 50%; background-image: url('./assets/wax_seal_pa.png?v=2'); background-position: center; background-repeat: no-repeat; background-size: contain; filter: drop-shadow(0 14px 28px rgba(117, 82, 27, 0.45)); transition: transform 0.4s ease, opacity 0.4s ease;">
+            </div>
+            <div class="seal-prompt" id="sim-seal-prompt" style="position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%); white-space: nowrap; margin-top: 0; font-family: 'Outfit', sans-serif; font-size: 0.88rem; font-weight: 600; color: #8c6a23; background: rgba(255,255,255,0.96); padding: 6px 20px; border-radius: 999px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); border: 1px solid rgba(194, 157, 89, 0.35);">
+              Tap to Break Seal
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="sim-actions-bar">
+        <button class="sim-action-btn btn-trigger-unseal" id="btn-unseal-action" onclick="triggerSimUnseal()">
+          <span>✦ Break Seal &amp; Trigger Zoom-Out Animation</span>
+        </button>
+        <button class="sim-action-btn btn-reset-envelope" onclick="resetSimEnvelope()">
+          <span>↺ Reseal &amp; Try Another Design</span>
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+
   <!-- ======================================================================
        INTERACTIVE DESIGN LAB: Wax Seal Size & Cursive Typography Options
        ====================================================================== -->
@@ -1506,7 +1996,8 @@
       <span class="studio-badge">Custom Seal Studio</span>
       <h2 class="studio-title">Wax Seal Design & Monogram Options (P &amp; A)</h2>
       <p class="studio-desc">
-        Compare the <strong>exact match to your reference image</strong> alongside alternative elegant cursive options below. Click any card to preview how it looks directly on the envelope.
+        Compare the <strong>exact match to your reference image</strong> alongside alternative elegant cursive options
+        below. Click any card to preview how it looks directly on the envelope.
       </p>
     </div>
 
@@ -1526,7 +2017,9 @@
     <div class="seal-options-grid" id="seal-options-grid">
 
       <!-- Option 1: Reference Match - Laurel Wreath & P & A (Recommended) -->
-      <div class="seal-option-card selected" data-font="font-reference" data-is-ref="true" data-name="Option 1: Reference Laurel Wreath Crest" data-desc="Exact match to your reference: Organic melted gold rim, symmetrical botanical laurel wreath, and debossed Roman serif P &amp; A with cursive ampersand.">
+      <div class="seal-option-card selected" data-font="font-reference" data-is-ref="true"
+        data-name="Option 1: Reference Laurel Wreath Crest"
+        data-desc="Exact match to your reference: Organic melted gold rim, symmetrical botanical laurel wreath, and debossed Roman serif P &amp; A with cursive ampersand.">
         <div class="seal-display-stage">
           <div class="wax-seal-sample seal-size-majestic seal-reference-matched">
             <div class="inner-ring"></div>
@@ -1535,11 +2028,13 @@
         </div>
         <h3 class="seal-spec-title">Option 1: Reference Match</h3>
         <span class="seal-spec-font">Laurel Wreath &amp; P &amp; A Monogram • Recommended</span>
-        <p class="seal-spec-desc">Exact match to your reference: Organic melted rim, botanical laurel wreath, and debossed serif P &amp; A with cursive ampersand.</p>
+        <p class="seal-spec-desc">Exact match to your reference: Organic melted rim, botanical laurel wreath, and
+          debossed serif P &amp; A with cursive ampersand.</p>
       </div>
 
       <!-- Option 2: Pinyon Script Calligraphy -->
-      <div class="seal-option-card" data-font="font-pinyon" data-is-ref="false" data-name="Option 2: Pinyon Script" data-desc="Aristocratic French calligraphy with dramatic slanted capitals and graceful flourishes.">
+      <div class="seal-option-card" data-font="font-pinyon" data-is-ref="false" data-name="Option 2: Pinyon Script"
+        data-desc="Aristocratic French calligraphy with dramatic slanted capitals and graceful flourishes.">
         <div class="seal-display-stage">
           <div class="wax-seal-sample seal-size-majestic">
             <div class="inner-ring"></div>
@@ -1550,11 +2045,13 @@
         </div>
         <h3 class="seal-spec-title">Option 2: Pinyon Script</h3>
         <span class="seal-spec-font">French Royal Calligraphy</span>
-        <p class="seal-spec-desc">High-society luxury script with dramatic slanted capitals, fine hair-lines, and elegant romantic poise.</p>
+        <p class="seal-spec-desc">High-society luxury script with dramatic slanted capitals, fine hair-lines, and
+          elegant romantic poise.</p>
       </div>
 
       <!-- Option 3: Great Vibes -->
-      <div class="seal-option-card" data-font="font-greatvibes" data-is-ref="false" data-name="Option 3: Great Vibes" data-desc="Sweeping classic royal calligraphy with balanced, flowing curves on both P and A.">
+      <div class="seal-option-card" data-font="font-greatvibes" data-is-ref="false" data-name="Option 3: Great Vibes"
+        data-desc="Sweeping classic royal calligraphy with balanced, flowing curves on both P and A.">
         <div class="seal-display-stage">
           <div class="wax-seal-sample seal-size-majestic">
             <div class="inner-ring"></div>
@@ -1565,11 +2062,13 @@
         </div>
         <h3 class="seal-spec-title">Option 3: Great Vibes</h3>
         <span class="seal-spec-font">Classic Sweeping Script</span>
-        <p class="seal-spec-desc">Formal traditional wedding calligraphy with sweeping, open ascenders and fluid graceful loops.</p>
+        <p class="seal-spec-desc">Formal traditional wedding calligraphy with sweeping, open ascenders and fluid
+          graceful loops.</p>
       </div>
 
       <!-- Option 4: Alex Brush -->
-      <div class="seal-option-card" data-font="font-alexbrush" data-is-ref="false" data-name="Option 4: Alex Brush" data-desc="Smooth flowing signature calligraphy with exceptional legibility and modern elegance.">
+      <div class="seal-option-card" data-font="font-alexbrush" data-is-ref="false" data-name="Option 4: Alex Brush"
+        data-desc="Smooth flowing signature calligraphy with exceptional legibility and modern elegance.">
         <div class="seal-display-stage">
           <div class="wax-seal-sample seal-size-majestic">
             <div class="inner-ring"></div>
@@ -1580,7 +2079,8 @@
         </div>
         <h3 class="seal-spec-title">Option 4: Alex Brush</h3>
         <span class="seal-spec-font">Graceful Signature Script</span>
-        <p class="seal-spec-desc">Soft, flowing, clean signature strokes that remain crisp, highly legible, and beautifully poised.</p>
+        <p class="seal-spec-desc">Soft, flowing, clean signature strokes that remain crisp, highly legible, and
+          beautifully poised.</p>
       </div>
 
     </div>
@@ -1589,7 +2089,9 @@
     <div class="envelope-simulator-box">
       <div class="envelope-sim-header">
         <h3>Live Envelope Appearance</h3>
-        <p>Previewing current selection: <strong id="sim-font-label" style="color: var(--primary);">Option 1: Reference Match (Laurel Wreath)</strong> at <strong id="sim-size-label" style="color: var(--gold-dark);">Majestic (112px)</strong></p>
+        <p>Previewing current selection: <strong id="sim-font-label" style="color: var(--primary);">Option 1: Reference
+            Match (Laurel Wreath)</strong> at <strong id="sim-size-label" style="color: var(--gold-dark);">Majestic
+            (112px)</strong></p>
       </div>
 
       <div class="mock-envelope-wrapper">
@@ -1620,10 +2122,13 @@
        ====================================================================== -->
   <section class="palette-studio-section" id="palette-studio">
     <div style="text-align: center;">
-      <span class="badge" style="background: #fdf3df; color: #94691e; border: 1px solid #dfbe7d;">Design Consultation</span>
+      <span class="badge" style="background: #fdf3df; color: #94691e; border: 1px solid #dfbe7d;">Design
+        Consultation</span>
       <h2 class="studio-title" style="margin-top: 6px;">Day 1: Per-Function Attire Color Palette UI Options</h2>
       <p class="studio-desc" style="max-width: 780px; margin: 0 auto; color: var(--text-muted); font-size: 0.95rem;">
-        The bottom palette block has been removed. Below are <strong>3 distinct UI treatments</strong> for embedding the dress code directly inside each milestone event row (<strong>Yellow Haldi Shades</strong> for Haldi, and <strong>Pastel Colors</strong> for Mehndi).
+        The bottom palette block has been removed. Below are <strong>3 distinct UI treatments</strong> for embedding the
+        dress code directly inside each milestone event row (<strong>Yellow Haldi Shades</strong> for Haldi, and
+        <strong>Pastel Colors</strong> for Mehendi).
       </p>
     </div>
 
@@ -1636,7 +2141,8 @@
           <span class="option-pill-tag recommended">★ Recommended</span>
         </div>
         <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
-          Clean micro-pill chips with circular color dots and shade names nestled right under each event. Highly readable on mobile.
+          Clean micro-pill chips with circular color dots and shade names nestled right under each event. Highly
+          readable on mobile.
         </p>
 
         <!-- Simulated Mobile Timeline -->
@@ -1657,10 +2163,10 @@
             </div>
           </div>
 
-          <!-- Mehndi -->
+          <!-- Mehendi -->
           <div class="demo-milestone">
             <span class="demo-time">05:30 PM</span>
-            <span class="demo-mtitle">Mehndi</span>
+            <span class="demo-mtitle">Mehendi</span>
             <span class="demo-desc">Intricate henna artistry & musical beats</span>
             <div class="opt1-palette">
               <span class="opt1-label">🌸 Attire Theme • Soft Pastel Tones</span>
@@ -1713,12 +2219,12 @@
             </div>
           </div>
 
-          <!-- Mehndi -->
+          <!-- Mehendi -->
           <div class="demo-milestone">
             <span class="demo-time">05:30 PM</span>
-            <span class="demo-mtitle">Mehndi</span>
+            <span class="demo-mtitle">Mehendi</span>
             <span class="demo-desc">Intricate henna artistry & musical beats</span>
-            <div class="opt2-ribbon mehndi-ribbon">
+            <div class="opt2-ribbon mehendi-ribbon">
               <div class="opt2-info">
                 <span class="opt2-title">Attire: Pastel Colors</span>
                 <span class="opt2-sub">Mint • Peach • Lavender • Rose</span>
@@ -1742,7 +2248,8 @@
       </div>
 
       <!-- Option 3: Minimalist Overlapping Halo Rings (Active) -->
-      <div class="option-mobile-frame" style="border-color: var(--gold); box-shadow: 0 10px 30px rgba(194, 157, 89, 0.25);">
+      <div class="option-mobile-frame"
+        style="border-color: var(--gold); box-shadow: 0 10px 30px rgba(194, 157, 89, 0.25);">
         <div class="option-header-badge">
           <h3 class="option-title">Option 3: Overlapping Halo Rings</h3>
           <span class="option-pill-tag recommended">✓ Selected & Active</span>
@@ -1769,10 +2276,10 @@
             </div>
           </div>
 
-          <!-- Mehndi -->
+          <!-- Mehendi -->
           <div class="demo-milestone">
             <span class="demo-time">05:30 PM</span>
-            <span class="demo-mtitle">Mehndi</span>
+            <span class="demo-mtitle">Mehendi</span>
             <span class="demo-desc">Intricate henna artistry & musical beats</span>
             <div class="opt3-container">
               <span class="opt3-text">🌸 Attire: Soft Pastel Hues</span>
@@ -1802,23 +2309,28 @@
        ====================================================================== -->
   <section class="slider-studio-section" id="slider-studio">
     <div style="text-align: center;">
-      <span class="badge" style="background: #fdf3df; color: #94691e; border: 1px solid #dfbe7d;">Visibility Consultation</span>
+      <span class="badge" style="background: #fdf3df; color: #94691e; border: 1px solid #dfbe7d;">Visibility
+        Consultation</span>
       <h2 class="studio-title" style="margin-top: 6px;">Ceremony Itinerary Slider: 3 High-Visibility Designs</h2>
       <p class="studio-desc" style="max-width: 820px; margin: 0 auto; color: var(--text-muted); font-size: 0.95rem;">
-        To make sure viewers <strong>never overlook Day 2 (The Wedding)</strong>, here are 3 matching luxury designs that provide immediate interactive affordance, clear date badges, and attention-grabbing cues. <em>Click the tabs below to test live switching!</em>
+        To make sure viewers <strong>never overlook Day 2 (The Wedding)</strong>, here are 3 matching luxury designs
+        that provide immediate interactive affordance, clear date badges, and attention-grabbing cues. <em>Click the
+          tabs below to test live switching!</em>
       </p>
     </div>
 
     <div class="slider-options-grid">
 
       <!-- Design 1: Royal Dual-Tier Date Badges (Active) -->
-      <div class="slider-preview-card" id="card-d1" style="border-color: var(--gold); box-shadow: 0 10px 30px rgba(194, 157, 89, 0.25);">
+      <div class="slider-preview-card" id="card-d1"
+        style="border-color: var(--gold); box-shadow: 0 10px 30px rgba(194, 157, 89, 0.25);">
         <div class="option-header-badge">
           <h3 class="option-title">Design 1: Royal Dual-Tier Date Badges</h3>
           <span class="option-pill-tag recommended">✓ Selected & Active</span>
         </div>
         <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
-          Includes a subtle animated tap cue above, dual-tier event + date buttons (Day 1 • Nov 18 vs Day 2 • Nov 20), and a rich gold-bordered elevated slider indicator.
+          Includes a subtle animated tap cue above, dual-tier event + date buttons (Day 1 • Nov 18 vs Day 2 • Nov 20),
+          and a rich gold-bordered elevated slider indicator.
         </p>
 
         <!-- Tap Cue Bar -->
@@ -1830,7 +2342,7 @@
         <div class="d1-pills-wrapper" id="d1-pills" data-active="haldi">
           <div class="d1-slider-indicator"></div>
           <button class="d1-pill-btn active" data-tab="haldi" onclick="switchDemo1('haldi')">
-            <span class="d1-btn-title">Haldi & Mehndi</span>
+            <span class="d1-btn-title">Haldi & Mehendi</span>
             <span class="d1-btn-badge">Day 1 • Nov 18</span>
           </button>
           <button class="d1-pill-btn" data-tab="wedding" onclick="switchDemo1('wedding')">
@@ -1844,7 +2356,7 @@
           <div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div>
           <div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi's Residence, Govindnagar</div>
           <p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">
-            11:00 AM Haldi • 05:30 PM Mehndi • 09:00 PM Dinner
+            11:00 AM Haldi • 05:30 PM Mehendi • 09:00 PM Dinner
           </p>
         </div>
       </div>
@@ -1856,7 +2368,8 @@
           <span class="option-pill-tag">Dynamic Glamour</span>
         </div>
         <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
-          Gilded champagne container with an eye-catching shimmering tag on the inactive tab that guides the eye naturally while scrolling.
+          Gilded champagne container with an eye-catching shimmering tag on the inactive tab that guides the eye
+          naturally while scrolling.
         </p>
 
         <!-- Tap Cue Bar -->
@@ -1868,7 +2381,7 @@
         <div class="d2-pills-wrapper" id="d2-pills" data-active="haldi">
           <div class="d2-slider-indicator"></div>
           <button class="d2-pill-btn active" id="d2-btn-haldi" onclick="switchDemo2('haldi')">
-            <span>Haldi & Mehndi</span>
+            <span>Haldi & Mehendi</span>
           </button>
           <button class="d2-pill-btn" id="d2-btn-wedding" onclick="switchDemo2('wedding')">
             <span>The Wedding</span>
@@ -1881,7 +2394,7 @@
           <div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div>
           <div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi's Residence, Govindnagar</div>
           <p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">
-            11:00 AM Haldi • 05:30 PM Mehndi • 09:00 PM Dinner
+            11:00 AM Haldi • 05:30 PM Mehendi • 09:00 PM Dinner
           </p>
         </div>
       </div>
@@ -1893,7 +2406,8 @@
           <span class="option-pill-tag">Ticket Aesthetic</span>
         </div>
         <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
-          Replaces the slider with two side-by-side regal invitation cards. Impossible to mistake for static text; guests instinctively tap either pass.
+          Replaces the slider with two side-by-side regal invitation cards. Impossible to mistake for static text;
+          guests instinctively tap either pass.
         </p>
 
         <!-- Tap Cue Bar -->
@@ -1905,11 +2419,12 @@
         <div class="d3-passes-row">
           <div class="d3-pass-card active" id="d3-card-haldi" onclick="switchDemo3('haldi')">
             <span class="d3-pass-badge">✓ Selected</span>
-            <span class="d3-pass-title">Haldi & Mehndi</span>
+            <span class="d3-pass-title">Haldi & Mehendi</span>
             <span class="d3-pass-date">Wed, 18 Nov</span>
           </div>
           <div class="d3-pass-card" id="d3-card-wedding" onclick="switchDemo3('wedding')">
-            <span class="d3-pass-badge" style="background:#fcf8f0; color:#8c6a28; border:1px solid #ebd9c0;">👉 Tap to View</span>
+            <span class="d3-pass-badge" style="background:#fcf8f0; color:#8c6a28; border:1px solid #ebd9c0;">👉 Tap to
+              View</span>
             <span class="d3-pass-title">The Wedding</span>
             <span class="d3-pass-date">Fri, 20 Nov</span>
           </div>
@@ -1920,7 +2435,7 @@
           <div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div>
           <div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi's Residence, Govindnagar</div>
           <p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">
-            11:00 AM Haldi • 05:30 PM Mehndi • 09:00 PM Dinner
+            11:00 AM Haldi • 05:30 PM Mehendi • 09:00 PM Dinner
           </p>
         </div>
       </div>
@@ -1933,23 +2448,27 @@
        ====================================================================== -->
   <section class="footer-studio-section" id="footer-studio">
     <div style="text-align: center;">
-      <span class="badge" style="background: #fdf3df; color: #94691e; border: 1px solid #dfbe7d;">Design Consultation</span>
+      <span class="badge" style="background: #fdf3df; color: #94691e; border: 1px solid #dfbe7d;">Design
+        Consultation</span>
       <h2 class="studio-title" style="margin-top: 6px;">Closing Border &amp; Flourish: 3 Art Designs for the Footer</h2>
       <p class="studio-desc" style="max-width: 820px; margin: 0 auto; color: var(--text-muted); font-size: 0.95rem;">
-        The monogram <strong>P &amp; A</strong> has been removed. Below are <strong>3 distinct artistic closing border treatments</strong> matching the botanical eucalyptus, gold accents, and sacred elegance of the invitation.
+        The monogram <strong>P &amp; A</strong> has been removed. Below are <strong>3 distinct artistic closing border
+          treatments</strong> matching the botanical eucalyptus, gold accents, and sacred elegance of the invitation.
       </p>
     </div>
 
     <div class="footer-options-grid">
 
       <!-- Design Option 1: Botanical Lotus & Filigree Vignette (Active) -->
-      <div class="footer-preview-card" id="footer-card-d1" style="border-color: var(--gold); box-shadow: 0 10px 30px rgba(194, 157, 89, 0.25);">
+      <div class="footer-preview-card" id="footer-card-d1"
+        style="border-color: var(--gold); box-shadow: 0 10px 30px rgba(194, 157, 89, 0.25);">
         <div class="option-header-badge">
           <h3 class="option-title">Option 1: Botanical Lotus &amp; Filigree Vignette</h3>
           <span class="option-pill-tag recommended">✓ Selected & Active</span>
         </div>
         <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
-          A symmetrical hand-crafted vector garland featuring a sacred golden lotus center flanked by eucalyptus foliage and champagne flourishes, followed by a delicate diamond tassel baseline.
+          A symmetrical hand-crafted vector garland featuring a sacred golden lotus center flanked by eucalyptus foliage
+          and champagne flourishes, followed by a delicate diamond tassel baseline.
         </p>
 
         <!-- Live Render Box -->
@@ -1957,30 +2476,35 @@
           <!-- Top Botanical Lotus Garland -->
           <svg class="opt1-top-garland" viewBox="0 0 240 40" fill="none">
             <!-- Center Lotus -->
-            <path d="M120 6 C115 15 110 24 120 31 C130 24 125 15 120 6 Z" fill="#c29d59" opacity="0.95"/>
-            <path d="M120 16 C111 17 104 23 113 30 C117 28 119 23 120 16 Z" fill="#dfbe7d" opacity="0.9"/>
-            <path d="M120 16 C129 17 136 23 127 30 C123 28 121 23 120 16 Z" fill="#dfbe7d" opacity="0.9"/>
-            <circle cx="120" cy="3" r="1.8" fill="#c29d59"/>
+            <path d="M120 6 C115 15 110 24 120 31 C130 24 125 15 120 6 Z" fill="#c29d59" opacity="0.95" />
+            <path d="M120 16 C111 17 104 23 113 30 C117 28 119 23 120 16 Z" fill="#dfbe7d" opacity="0.9" />
+            <path d="M120 16 C129 17 136 23 127 30 C123 28 121 23 120 16 Z" fill="#dfbe7d" opacity="0.9" />
+            <circle cx="120" cy="3" r="1.8" fill="#c29d59" />
             <!-- Left Vine & Leaves -->
-            <path d="M108 26 C88 26 68 20 38 22 C24 23 10 24 0 24" stroke="#c29d59" stroke-width="1.2" stroke-linecap="round"/>
-            <ellipse cx="88" cy="20" rx="8" ry="4.5" transform="rotate(-15 88 20)" fill="#8ea992" opacity="0.88"/>
-            <ellipse cx="66" cy="24" rx="7" ry="4" transform="rotate(18 66 24)" fill="#a3bfa7" opacity="0.85"/>
-            <ellipse cx="44" cy="19" rx="6" ry="3.5" transform="rotate(-10 44 19)" fill="#78967c" opacity="0.88"/>
-            <circle cx="76" cy="15" r="2" fill="#c29d59"/>
-            <circle cx="54" cy="26" r="1.8" fill="#e5adb1"/>
+            <path d="M108 26 C88 26 68 20 38 22 C24 23 10 24 0 24" stroke="#c29d59" stroke-width="1.2"
+              stroke-linecap="round" />
+            <ellipse cx="88" cy="20" rx="8" ry="4.5" transform="rotate(-15 88 20)" fill="#8ea992" opacity="0.88" />
+            <ellipse cx="66" cy="24" rx="7" ry="4" transform="rotate(18 66 24)" fill="#a3bfa7" opacity="0.85" />
+            <ellipse cx="44" cy="19" rx="6" ry="3.5" transform="rotate(-10 44 19)" fill="#78967c" opacity="0.88" />
+            <circle cx="76" cy="15" r="2" fill="#c29d59" />
+            <circle cx="54" cy="26" r="1.8" fill="#e5adb1" />
             <!-- Right Vine & Leaves -->
-            <path d="M132 26 C152 26 172 20 202 22 C216 23 230 24 240 24" stroke="#c29d59" stroke-width="1.2" stroke-linecap="round"/>
-            <ellipse cx="152" cy="20" rx="8" ry="4.5" transform="rotate(15 152 20)" fill="#8ea992" opacity="0.88"/>
-            <ellipse cx="174" cy="24" rx="7" ry="4" transform="rotate(-18 174 24)" fill="#a3bfa7" opacity="0.85"/>
-            <ellipse cx="196" cy="19" rx="6" ry="3.5" transform="rotate(10 196 19)" fill="#78967c" opacity="0.88"/>
-            <circle cx="164" cy="15" r="2" fill="#c29d59"/>
-            <circle cx="186" cy="26" r="1.8" fill="#e5adb1"/>
+            <path d="M132 26 C152 26 172 20 202 22 C216 23 230 24 240 24" stroke="#c29d59" stroke-width="1.2"
+              stroke-linecap="round" />
+            <ellipse cx="152" cy="20" rx="8" ry="4.5" transform="rotate(15 152 20)" fill="#8ea992" opacity="0.88" />
+            <ellipse cx="174" cy="24" rx="7" ry="4" transform="rotate(-18 174 24)" fill="#a3bfa7" opacity="0.85" />
+            <ellipse cx="196" cy="19" rx="6" ry="3.5" transform="rotate(10 196 19)" fill="#78967c" opacity="0.88" />
+            <circle cx="164" cy="15" r="2" fill="#c29d59" />
+            <circle cx="186" cy="26" r="1.8" fill="#e5adb1" />
           </svg>
 
           <!-- Footer Content -->
-          <p style="font-weight: 700; color: #243328; margin-bottom: 5px; font-size: 0.95rem; letter-spacing: 0.05em;">#APforever</p>
-          <p style="font-size: 0.88rem; color: #556259; line-height: 1.5;">With love, blessings, and warm gratitude from both families.</p>
-          <p style="font-size: 0.78rem; margin-top: 10px; color: #8c6a28; font-weight: 600;">18th &amp; 20th November 2026 • Moradabad</p>
+          <p style="font-weight: 700; color: #243328; margin-bottom: 5px; font-size: 0.95rem; letter-spacing: 0.05em;">
+            #APforever</p>
+          <p style="font-size: 0.88rem; color: #556259; line-height: 1.5;">With love, blessings, and warm gratitude from
+            both families.</p>
+          <p style="font-size: 0.78rem; margin-top: 10px; color: #8c6a28; font-weight: 600;">18th &amp; 20th November
+            2026 • Moradabad</p>
 
           <!-- Bottom Flourish Baseline -->
           <div class="opt1-bottom-divider">
@@ -1998,31 +2522,36 @@
           <span class="option-pill-tag">Royal Certificate</span>
         </div>
         <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
-          Encloses the blessings in an archival heritage certificate frame with 4 ornate gold filigree corner brackets and an auspicious top medallion crown.
+          Encloses the blessings in an archival heritage certificate frame with 4 ornate gold filigree corner brackets
+          and an auspicious top medallion crown.
         </p>
 
         <!-- Live Render Box -->
         <div class="opt2-footer-frame">
           <!-- 4 Corner Brackets -->
           <svg class="opt2-corner-svg tl" viewBox="0 0 30 30" fill="none">
-            <path d="M2 28 L2 6 C2 3.8 3.8 2 6 2 L28 2" stroke="#c29d59" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M6 24 L6 8 C6 6.9 6.9 6 8 6 L24 6" stroke="#dfbe7d" stroke-width="1" stroke-dasharray="2 2" stroke-linecap="round"/>
-            <circle cx="4" cy="4" r="2.2" fill="#c29d59"/>
+            <path d="M2 28 L2 6 C2 3.8 3.8 2 6 2 L28 2" stroke="#c29d59" stroke-width="1.6" stroke-linecap="round" />
+            <path d="M6 24 L6 8 C6 6.9 6.9 6 8 6 L24 6" stroke="#dfbe7d" stroke-width="1" stroke-dasharray="2 2"
+              stroke-linecap="round" />
+            <circle cx="4" cy="4" r="2.2" fill="#c29d59" />
           </svg>
           <svg class="opt2-corner-svg tr" viewBox="0 0 30 30" fill="none">
-            <path d="M2 28 L2 6 C2 3.8 3.8 2 6 2 L28 2" stroke="#c29d59" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M6 24 L6 8 C6 6.9 6.9 6 8 6 L24 6" stroke="#dfbe7d" stroke-width="1" stroke-dasharray="2 2" stroke-linecap="round"/>
-            <circle cx="4" cy="4" r="2.2" fill="#c29d59"/>
+            <path d="M2 28 L2 6 C2 3.8 3.8 2 6 2 L28 2" stroke="#c29d59" stroke-width="1.6" stroke-linecap="round" />
+            <path d="M6 24 L6 8 C6 6.9 6.9 6 8 6 L24 6" stroke="#dfbe7d" stroke-width="1" stroke-dasharray="2 2"
+              stroke-linecap="round" />
+            <circle cx="4" cy="4" r="2.2" fill="#c29d59" />
           </svg>
           <svg class="opt2-corner-svg bl" viewBox="0 0 30 30" fill="none">
-            <path d="M2 28 L2 6 C2 3.8 3.8 2 6 2 L28 2" stroke="#c29d59" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M6 24 L6 8 C6 6.9 6.9 6 8 6 L24 6" stroke="#dfbe7d" stroke-width="1" stroke-dasharray="2 2" stroke-linecap="round"/>
-            <circle cx="4" cy="4" r="2.2" fill="#c29d59"/>
+            <path d="M2 28 L2 6 C2 3.8 3.8 2 6 2 L28 2" stroke="#c29d59" stroke-width="1.6" stroke-linecap="round" />
+            <path d="M6 24 L6 8 C6 6.9 6.9 6 8 6 L24 6" stroke="#dfbe7d" stroke-width="1" stroke-dasharray="2 2"
+              stroke-linecap="round" />
+            <circle cx="4" cy="4" r="2.2" fill="#c29d59" />
           </svg>
           <svg class="opt2-corner-svg br" viewBox="0 0 30 30" fill="none">
-            <path d="M2 28 L2 6 C2 3.8 3.8 2 6 2 L28 2" stroke="#c29d59" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M6 24 L6 8 C6 6.9 6.9 6 8 6 L24 6" stroke="#dfbe7d" stroke-width="1" stroke-dasharray="2 2" stroke-linecap="round"/>
-            <circle cx="4" cy="4" r="2.2" fill="#c29d59"/>
+            <path d="M2 28 L2 6 C2 3.8 3.8 2 6 2 L28 2" stroke="#c29d59" stroke-width="1.6" stroke-linecap="round" />
+            <path d="M6 24 L6 8 C6 6.9 6.9 6 8 6 L24 6" stroke="#dfbe7d" stroke-width="1" stroke-dasharray="2 2"
+              stroke-linecap="round" />
+            <circle cx="4" cy="4" r="2.2" fill="#c29d59" />
           </svg>
 
           <!-- Top Medallion Crown -->
@@ -2033,9 +2562,12 @@
           </div>
 
           <!-- Footer Content -->
-          <p style="font-weight: 700; color: #243328; margin-bottom: 5px; font-size: 0.95rem; letter-spacing: 0.05em;">#APforever</p>
-          <p style="font-size: 0.88rem; color: #556259; line-height: 1.5;">With love, blessings, and warm gratitude from both families.</p>
-          <p style="font-size: 0.78rem; margin-top: 10px; color: #8c6a28; font-weight: 600;">18th &amp; 20th November 2026 • Moradabad</p>
+          <p style="font-weight: 700; color: #243328; margin-bottom: 5px; font-size: 0.95rem; letter-spacing: 0.05em;">
+            #APforever</p>
+          <p style="font-size: 0.88rem; color: #556259; line-height: 1.5;">With love, blessings, and warm gratitude from
+            both families.</p>
+          <p style="font-size: 0.78rem; margin-top: 10px; color: #8c6a28; font-weight: 600;">18th &amp; 20th November
+            2026 • Moradabad</p>
 
           <!-- Bottom Miniature Seal -->
           <div class="opt2-bottom-crest">
@@ -2051,35 +2583,40 @@
           <span class="option-pill-tag">Traditional Jaali</span>
         </div>
         <p style="font-size: 0.82rem; color: #727a75; margin-bottom: 12px;">
-          An ornamental scalloped dome arch inspired by royal palace jharokhas with intricate dots and an authentic paisley henna divider below.
+          An ornamental scalloped dome arch inspired by royal palace jharokhas with intricate dots and an authentic
+          paisley henna divider below.
         </p>
 
         <!-- Live Render Box -->
         <div class="opt3-footer-box">
           <!-- Top Mandala Arch -->
           <svg class="opt3-top-arch" viewBox="0 0 200 36" fill="none">
-            <path d="M10 32 Q100 -2 190 32" stroke="#c29d59" stroke-width="1.2" stroke-dasharray="3 3"/>
-            <path d="M25 33 Q100 10 175 33" stroke="#dfbe7d" stroke-width="1"/>
-            <circle cx="100" cy="14" r="4" fill="#c29d59"/>
-            <circle cx="85" cy="17" r="2.5" fill="#dfbe7d"/>
-            <circle cx="115" cy="17" r="2.5" fill="#dfbe7d"/>
-            <circle cx="70" cy="23" r="2" fill="#c29d59"/>
-            <circle cx="130" cy="23" r="2" fill="#c29d59"/>
-            <path d="M97 6 C97 2 103 2 103 6 C103 9 97 9 97 6 Z" fill="#c29d59"/>
+            <path d="M10 32 Q100 -2 190 32" stroke="#c29d59" stroke-width="1.2" stroke-dasharray="3 3" />
+            <path d="M25 33 Q100 10 175 33" stroke="#dfbe7d" stroke-width="1" />
+            <circle cx="100" cy="14" r="4" fill="#c29d59" />
+            <circle cx="85" cy="17" r="2.5" fill="#dfbe7d" />
+            <circle cx="115" cy="17" r="2.5" fill="#dfbe7d" />
+            <circle cx="70" cy="23" r="2" fill="#c29d59" />
+            <circle cx="130" cy="23" r="2" fill="#c29d59" />
+            <path d="M97 6 C97 2 103 2 103 6 C103 9 97 9 97 6 Z" fill="#c29d59" />
           </svg>
 
           <!-- Footer Content -->
-          <p style="font-weight: 700; color: #243328; margin-bottom: 5px; font-size: 0.95rem; letter-spacing: 0.05em;">#APforever</p>
-          <p style="font-size: 0.88rem; color: #556259; line-height: 1.5;">With love, blessings, and warm gratitude from both families.</p>
-          <p style="font-size: 0.78rem; margin-top: 10px; color: #8c6a28; font-weight: 600;">18th &amp; 20th November 2026 • Moradabad</p>
+          <p style="font-weight: 700; color: #243328; margin-bottom: 5px; font-size: 0.95rem; letter-spacing: 0.05em;">
+            #APforever</p>
+          <p style="font-size: 0.88rem; color: #556259; line-height: 1.5;">With love, blessings, and warm gratitude from
+            both families.</p>
+          <p style="font-size: 0.78rem; margin-top: 10px; color: #8c6a28; font-weight: 600;">18th &amp; 20th November
+            2026 • Moradabad</p>
 
           <!-- Bottom Paisley Flourish -->
           <svg class="opt3-bottom-paisley" viewBox="0 0 160 24" fill="none">
-            <path d="M20 12 C50 12 65 20 80 12 C95 4 110 12 140 12" stroke="#c29d59" stroke-width="1.2" stroke-linecap="round"/>
-            <circle cx="80" cy="12" r="3" fill="#c29d59"/>
-            <circle cx="68" cy="14" r="1.8" fill="#dfbe7d"/>
-            <circle cx="92" cy="10" r="1.8" fill="#dfbe7d"/>
-            <path d="M78 6 C80 3 82 6 80 8 Z" fill="#c29d59"/>
+            <path d="M20 12 C50 12 65 20 80 12 C95 4 110 12 140 12" stroke="#c29d59" stroke-width="1.2"
+              stroke-linecap="round" />
+            <circle cx="80" cy="12" r="3" fill="#c29d59" />
+            <circle cx="68" cy="14" r="1.8" fill="#dfbe7d" />
+            <circle cx="92" cy="10" r="1.8" fill="#dfbe7d" />
+            <path d="M78 6 C80 3 82 6 80 8 Z" fill="#c29d59" />
           </svg>
         </div>
       </div>
@@ -2146,14 +2683,14 @@
       </div>
       <div class="card-body">
         <h3 class="card-title">3. Interactive Event Tabs</h3>
-        <p class="card-desc">Custom tabs for Haldi & Mehndi (Nov 18) and The Wedding (Nov 20). Zero clutter
+        <p class="card-desc">Custom tabs for Haldi & Mehendi (Nov 18) and The Wedding (Nov 20). Zero clutter
           with instant tab switching.</p>
         <div class="details-box">
           <strong>Govindnagar & Moradabad Venues</strong><br>
           Direct Google Maps pin integration
         </div>
         <ul class="features-list">
-          <li>Haldi & Mehndi Tab (Pranshi's Residence)</li>
+          <li>Haldi & Mehendi Tab (Pranshi's Residence)</li>
           <li>The Wedding Tab (HB Klyde Premier, Moradabad)</li>
           <li>Interactive dress-code color swatches</li>
           <li>1-tap Google Maps directions button</li>
@@ -2328,20 +2865,20 @@
     })();
 
     // Slider Studio Interactive Demonstrations
-    window.switchDemo1 = function(tab) {
+    window.switchDemo1 = function (tab) {
       const pills = document.getElementById('d1-pills');
       const btns = pills.querySelectorAll('.d1-pill-btn');
       const output = document.getElementById('d1-output');
       pills.setAttribute('data-active', tab);
       btns.forEach(b => b.classList.toggle('active', b.getAttribute('data-tab') === tab));
       if (tab === 'haldi') {
-        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi\'s Residence, Govindnagar</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">11:00 AM Haldi • 05:30 PM Mehndi • 09:00 PM Dinner</p>';
+        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi\'s Residence, Govindnagar</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">11:00 AM Haldi • 05:30 PM Mehendi • 09:00 PM Dinner</p>';
       } else {
-        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Friday, 20th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 HB Klyde Premier, Rampur Road, Moradabad</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">08:00 PM Baraat • 08:30 PM Jaimala • 09:00 PM Dinner • ~06:00 AM Vidayi</p>';
+        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Friday, 20th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 HB Klyde Premier, Near Aryabhatta International School, Zero Point, Rampur Road, Moradabad, Uttar Pradesh 244001</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">08:00 PM Baraat • 08:30 PM Jaimala • 09:00 PM Dinner • ~06:00 AM Vidayi</p>';
       }
     };
 
-    window.switchDemo2 = function(tab) {
+    window.switchDemo2 = function (tab) {
       const pills = document.getElementById('d2-pills');
       const bHaldi = document.getElementById('d2-btn-haldi');
       const bWed = document.getElementById('d2-btn-wedding');
@@ -2351,16 +2888,16 @@
       bWed.classList.toggle('active', tab === 'wedding');
       if (tab === 'haldi') {
         bWed.innerHTML = '<span>The Wedding</span> <span class="d2-shimmer-tag">Nov 20 →</span>';
-        bHaldi.innerHTML = '<span>Haldi & Mehndi</span>';
-        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi\'s Residence, Govindnagar</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">11:00 AM Haldi • 05:30 PM Mehndi • 09:00 PM Dinner</p>';
+        bHaldi.innerHTML = '<span>Haldi & Mehendi</span>';
+        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi\'s Residence, Govindnagar</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">11:00 AM Haldi • 05:30 PM Mehendi • 09:00 PM Dinner</p>';
       } else {
-        bHaldi.innerHTML = '<span>Haldi & Mehndi</span> <span class="d2-shimmer-tag">← Nov 18</span>';
+        bHaldi.innerHTML = '<span>Haldi & Mehendi</span> <span class="d2-shimmer-tag">← Nov 18</span>';
         bWed.innerHTML = '<span>The Wedding</span>';
-        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Friday, 20th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 HB Klyde Premier, Rampur Road, Moradabad</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">08:00 PM Baraat • 08:30 PM Jaimala • 09:00 PM Dinner • ~06:00 AM Vidayi</p>';
+        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Friday, 20th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 HB Klyde Premier, Near Aryabhatta International School, Zero Point, Rampur Road, Moradabad, Uttar Pradesh 244001</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">08:00 PM Baraat • 08:30 PM Jaimala • 09:00 PM Dinner • ~06:00 AM Vidayi</p>';
       }
     };
 
-    window.switchDemo3 = function(tab) {
+    window.switchDemo3 = function (tab) {
       const cHaldi = document.getElementById('d3-card-haldi');
       const cWed = document.getElementById('d3-card-wedding');
       const output = document.getElementById('d3-output');
@@ -2371,17 +2908,268 @@
         cHaldi.querySelector('.d3-pass-badge').style = '';
         cWed.querySelector('.d3-pass-badge').textContent = '👉 Tap to View';
         cWed.querySelector('.d3-pass-badge').style = 'background:#fcf8f0; color:#8c6a28; border:1px solid #ebd9c0;';
-        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi\'s Residence, Govindnagar</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">11:00 AM Haldi • 05:30 PM Mehndi • 09:00 PM Dinner</p>';
+        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Wednesday, 18th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 Pranshi\'s Residence, Govindnagar</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">11:00 AM Haldi • 05:30 PM Mehendi • 09:00 PM Dinner</p>';
       } else {
         cWed.querySelector('.d3-pass-badge').textContent = '✓ Selected';
         cWed.querySelector('.d3-pass-badge').style = '';
         cHaldi.querySelector('.d3-pass-badge').textContent = '👉 Tap to View';
         cHaldi.querySelector('.d3-pass-badge').style = 'background:#fcf8f0; color:#8c6a28; border:1px solid #ebd9c0;';
-        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Friday, 20th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 HB Klyde Premier, Rampur Road, Moradabad</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">08:00 PM Baraat • 08:30 PM Jaimala • 09:00 PM Dinner • ~06:00 AM Vidayi</p>';
+        output.innerHTML = '<div style="font-weight: 700; color: #202b23; margin-bottom: 4px;">🗓️ Friday, 20th November 2026</div><div style="font-size: 0.8rem; color: #8c6a28; font-weight: 600;">📍 HB Klyde Premier, Near Aryabhatta International School, Zero Point, Rampur Road, Moradabad, Uttar Pradesh 244001</div><p style="font-size: 0.8rem; color: #727a75; margin-top: 6px;">08:00 PM Baraat • 08:30 PM Jaimala • 09:00 PM Dinner • ~06:00 AM Vidayi</p>';
       }
     };
   </script>
 
+<script>
+    // ======================================================================
+    // POP-UP CARD DESIGN STUDIO & LIVE ENVELOPE SIMULATOR LOGIC
+    // ======================================================================
+    let currentSelectedDesign = 1;
+    let currentLogoFinish = 'gold';
+    let currentZoomStyle = 'stage-zoom-majestic';
+    let isSimUnsealed = false;
+
+    const designThemeMap = {
+      1: {
+        themeClass: 'theme-jharokha',
+        name: 'Design 1 (Royal Jharokha Arch)',
+        shloka: '॥ श्री गणेशाय नमः ॥',
+        bride: 'Pranshi',
+        groom: 'Akash',
+        badge: '✦ #APforever • 18 & 20 Nov 2026'
+      },
+      2: {
+        themeClass: 'theme-pichwai',
+        name: 'Design 2 (Sacred Pichwai & Silk Scroll)',
+        shloka: '॥ अखंड सौभाग्यवती भव ॥',
+        bride: 'Pranshi',
+        groom: 'Akash',
+        badge: '✦ #APforever • Sacred Bond'
+      },
+      3: {
+        themeClass: 'theme-botanical',
+        name: 'Design 3 (Modern Botanical Editorial)',
+        shloka: '॥ शुभ मुहूर्त • कल्याणम् ॥',
+        bride: 'PRANSHI & AKASH',
+        groom: '',
+        badge: '✦ #APforever • Editorial Edition'
+      },
+      4: {
+        themeClass: 'theme-sanctum',
+        name: 'Design 4 (Swarna Mandir Golden Sanctum)',
+        shloka: '॥ ॐ नमः शिवाय ॥',
+        bride: 'Pranshi',
+        groom: 'Akash',
+        badge: '✦ #APforever • Golden Aura'
+      },
+      5: {
+        themeClass: 'theme-lotus',
+        name: 'Design 5 (Botanical Pavilion & Lotus)',
+        shloka: '॥ प्रेम परिणय सूत्र ॥',
+        bride: 'Pranshi',
+        groom: 'Akash',
+        badge: '✦ #APforever • Lotus Blossom'
+      },
+      6: {
+        themeClass: 'theme-mehendi',
+        name: 'Design 6 (Royal Mehendi & Alta)',
+        shloka: '॥ शुभ विवाह • मंगलम् ॥',
+        bride: 'Pranshi',
+        groom: 'Akash',
+        badge: '✦ #APforever • Bridal Alta & Henna'
+      },
+      7: {
+        themeClass: 'theme-couture',
+        name: 'Design 7 (Couture Frosted Glass)',
+        shloka: '॥ SACRED UNION • 2026 ॥',
+        bride: 'Pranshi & Akash',
+        groom: '',
+        badge: '✦ #APforever • Couture Glass'
+      }
+    };
+
+    window.selectDesign = function(num) {
+      currentSelectedDesign = num;
+
+      // Update Card highlights
+      document.querySelectorAll('.popup-design-card').forEach(c => c.classList.remove('selected'));
+      const activeCard = document.getElementById('design-card-' + num);
+      if (activeCard) activeCard.classList.add('selected');
+
+      // Update Top Toggle buttons
+      document.querySelectorAll('#design-select-group .popup-toggle-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-design') == num);
+      });
+
+      // Update Simulator Card Content
+      const data = designThemeMap[num];
+      const cardContent = document.getElementById('sim-active-card-content');
+      if (cardContent && data) {
+        cardContent.className = 'divine-popup-card ' + data.themeClass;
+        document.getElementById('sim-card-shloka').textContent = data.shloka;
+        document.getElementById('sim-card-bride').textContent = data.bride;
+        const groomEl = document.getElementById('sim-card-groom');
+        if (groomEl) groomEl.textContent = data.groom;
+        document.getElementById('sim-card-badge').innerHTML = '<span>✦</span><span>#APforever</span><span>•</span><span>' + data.badge.split('•')[1] + '</span>';
+      }
+
+      const labelEl = document.getElementById('active-design-label');
+      if (labelEl && data) labelEl.textContent = data.name;
+
+      // Smooth scroll to simulator if user clicked a card
+      const simStage = document.getElementById('envelope-simulator-stage');
+      if (simStage && window.scrollY < simStage.offsetTop - 300) {
+        simStage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    };
+
+    // Design button listeners
+    document.querySelectorAll('#design-select-group .popup-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const d = parseInt(btn.getAttribute('data-design'), 10);
+        selectDesign(d);
+      });
+    });
+
+    // Logo finish switcher
+    document.querySelectorAll('#logo-select-group .popup-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#logo-select-group .popup-toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const finish = btn.getAttribute('data-logo');
+        currentLogoFinish = finish;
+
+        const logoSrc = finish === 'gold' ? './assets/ap_logo_gold.png' : './assets/ap_logo_maroon.png';
+        const simLogo = document.getElementById('sim-card-logo');
+        if (simLogo) simLogo.src = logoSrc;
+
+        document.querySelectorAll('.logo-target').forEach(img => {
+          img.src = logoSrc;
+        });
+      });
+    });
+
+    // Camera zoom switcher
+    document.querySelectorAll('#camera-select-group .popup-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#camera-select-group .popup-toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const zoomClass = btn.getAttribute('data-zoom');
+        currentZoomStyle = zoomClass;
+
+        const stage = document.getElementById('live-sim-stage');
+        if (stage && isSimUnsealed) {
+          stage.classList.remove('stage-zoom-majestic', 'stage-zoom-regal', 'stage-zoom-float');
+          stage.classList.add(zoomClass);
+        }
+      });
+    });
+
+    // Trigger Simulator Unseal with Whole-Page Zoom-Out
+    window.triggerSimUnseal = function() {
+      if (isSimUnsealed) return;
+      isSimUnsealed = true;
+
+      const stage = document.getElementById('live-sim-stage');
+      const sealWrapper = document.getElementById('sim-seal-wrapper');
+      const sealStamp = document.getElementById('sim-seal-stamp');
+      const sealPrompt = document.getElementById('sim-seal-prompt');
+      const ribbon = document.getElementById('sim-ribbon');
+      const gateLeft = document.getElementById('sim-gate-left');
+      const gateRight = document.getElementById('sim-gate-right');
+      const card = document.getElementById('live-sim-card');
+
+      // 1. Seal cracks & breaks
+      if (sealStamp) {
+        sealStamp.style.transform = 'scale(1.18) rotate(8deg)';
+        setTimeout(() => {
+          sealStamp.style.transform = 'scale(0) rotate(-16deg)';
+          sealStamp.style.opacity = '0';
+        }, 120);
+      }
+      if (sealPrompt) sealPrompt.style.display = 'none';
+
+      // 2. Whole Stage / Camera Zoom Out Pullback Animation!
+      setTimeout(() => {
+        if (stage) {
+          stage.classList.remove('stage-camera-focused');
+          stage.classList.add(currentZoomStyle, 'stage-unsealed');
+        }
+      }, 150);
+
+      // 3. Ribbon fades
+      setTimeout(() => {
+        if (ribbon) {
+          ribbon.style.opacity = '0';
+          ribbon.style.transform = 'translateY(-50%) scaleY(0.8)';
+        }
+        if (sealWrapper) sealWrapper.style.display = 'none';
+      }, 250);
+
+      // 4. Gate doors swing open in 3D
+      setTimeout(() => {
+        if (gateLeft) gateLeft.style.transform = 'rotateY(-125deg)';
+        if (gateRight) gateRight.style.transform = 'rotateY(125deg)';
+      }, 350);
+
+      // 5. Pop-up Card Elevates Forward and Cutout Zooms Out!
+      setTimeout(() => {
+        if (card) {
+          card.style.transform = 'translateY(-36px) scale(1.06)';
+          card.style.boxShadow = '0 30px 75px rgba(117, 82, 27, 0.35)';
+        }
+        const simCutout = document.getElementById('sim-hands-cutout');
+        if (simCutout) {
+          simCutout.style.transition = 'transform 1.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s ease';
+          simCutout.style.transform = 'scale(1.0)';
+          simCutout.style.opacity = '1';
+        }
+      }, 380);
+    };
+
+    // Reset Simulator
+    window.resetSimEnvelope = function() {
+      isSimUnsealed = false;
+
+      const stage = document.getElementById('live-sim-stage');
+      const sealWrapper = document.getElementById('sim-seal-wrapper');
+      const sealStamp = document.getElementById('sim-seal-stamp');
+      const sealPrompt = document.getElementById('sim-seal-prompt');
+      const ribbon = document.getElementById('sim-ribbon');
+      const gateLeft = document.getElementById('sim-gate-left');
+      const gateRight = document.getElementById('sim-gate-right');
+      const card = document.getElementById('live-sim-card');
+
+      if (stage) {
+        stage.classList.remove('stage-zoom-majestic', 'stage-zoom-regal', 'stage-zoom-float', 'stage-unsealed');
+        stage.classList.add('stage-camera-focused');
+      }
+      if (card) {
+        card.style.transform = '';
+        card.style.boxShadow = '';
+      }
+      const simCutout = document.getElementById('sim-hands-cutout');
+      if (simCutout) {
+        simCutout.style.transition = 'none';
+        simCutout.style.transform = 'scale(1.42)';
+      }
+      if (gateLeft) gateLeft.style.transform = 'rotateY(0deg)';
+      if (gateRight) gateRight.style.transform = 'rotateY(0deg)';
+      if (ribbon) {
+        ribbon.style.display = 'block';
+        ribbon.style.opacity = '1';
+        ribbon.style.transform = 'translateY(-50%) scaleY(1)';
+      }
+      if (sealWrapper) sealWrapper.style.display = 'flex';
+      if (sealStamp) {
+        sealStamp.style.transform = 'scale(1)';
+        sealStamp.style.opacity = '1';
+      }
+      if (sealPrompt) sealPrompt.style.display = 'block';
+    };
+
+    // Default to Design 3: Modern Botanical Editorial
+    selectDesign(3);
+</script>
 </body>
 
 </html>

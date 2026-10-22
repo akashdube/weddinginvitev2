@@ -236,6 +236,16 @@
     startIndianMelody();
   }
 
+  window.prepareAudioUnlock = function () {
+    if (!htmlAudio) {
+      setupHtmlAudio();
+    }
+    initAudioContext();
+    if (audioContext && audioContext.state === 'suspended') {
+      audioContext.resume().catch(() => {});
+    }
+  };
+
   window.startAmbientMusic = function () {
     if (isPlaying) return;
     isPlaying = true;

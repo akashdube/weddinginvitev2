@@ -1,6 +1,6 @@
 /**
  * Royal Wedding Fireworks & Celebrate Button Engine
- * Pranshi & Akash (#APforever)
+ * Akash & Pranshi (#APforever)
  * Multi-Rocket Salvo with Vivid, High-Intensity Blast Strictly Contained within Page Ratio
  */
 

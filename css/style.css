@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Pranshi & Akash Wedding Invitation (#APforever)
+   Akash & Pranshi Wedding Invitation (#APforever)
    Design System: Modern Botanical Editorial
    ========================================================================== */
 
@@ -25,7 +25,7 @@
   /* Typography */
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-script: 'Great Vibes', cursive;
+  --font-script: 'Alex Brush', 'Great Vibes', cursive;
   --font-hindi: 'Noto Serif Devanagari', serif;
 
   /* Shadows & Glassmorphism */
@@ -309,7 +309,7 @@ body {
 }
 
 .couple-name {
-  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-family: 'Alex Brush', 'Great Vibes', cursive;
   font-size: clamp(3.2rem, 10vw, 4.2rem);
   font-weight: 400;
   color: #1a1a1a;
@@ -318,6 +318,11 @@ body {
   letter-spacing: 0.02em;
   padding: 2px 0;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.couple-name.name-akash,
+.name-akash {
+  font-family: 'Alex Brush', 'Pinyon Script', cursive;
 }
 
 .ampersand {
@@ -541,6 +546,7 @@ body {
   z-index: 1;
 }
 
+.tab-pills-wrapper[data-active-tab="tab-tilak"] .tab-slider-indicator,
 .tab-pills-wrapper[data-active-tab="tab-haldi"] .tab-slider-indicator {
   transform: translateX(0);
 }
@@ -1030,6 +1036,20 @@ footer {
   color: var(--color-text-muted);
   line-height: 1.4;
   display: block;
+}
+
+.milestone-highlight-note {
+  display: block;
+  margin-top: 6px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, rgba(253, 243, 223, 0.9) 0%, rgba(255, 250, 240, 0.95) 100%);
+  border-left: 3px solid var(--color-gold);
+  border-radius: 6px;
+  font-size: 0.81rem !important;
+  color: #6a4d19 !important;
+  line-height: 1.45 !important;
+  box-shadow: 0 1px 4px rgba(194, 157, 89, 0.12);
+  font-weight: 500;
 }
 
 /* Per-Milestone Attire Halo Palette (Option 3) */

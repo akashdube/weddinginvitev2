@@ -1,11 +1,11 @@
 /**
- * Pranshi & Akash Wedding Countdown (#APforever)
- * Target Date: November 20, 2026, 17:00:00 IST
+ * Akash & Pranshi Wedding Countdown (#APforever)
+ * Target Date: November 20, 2026, 00:00:00 AM IST
  */
 
 (function () {
-  // Wedding ceremony: 20 Nov 2026, 17:00 IST
-  const targetDate = new Date('2026-11-20T17:00:00+05:30').getTime();
+  // Wedding day countdown: 20 Nov 2026, 00:00:00 AM IST
+  const targetDate = new Date('2026-11-20T00:00:00+05:30').getTime();
 
   const daysEl = document.getElementById('cd-days');
   const hoursEl = document.getElementById('cd-hours');

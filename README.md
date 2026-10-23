@@ -1,6 +1,6 @@
-# Pranshi & Akash Wedding Invitation Website (#APforever) 🌸💍
+# Akash & Pranshi Wedding Invitation Website (#APforever) 🌸💍
 
-A bespoke, lightweight, mobile-first, interactive wedding invitation website crafted for **Pranshi & Akash**, ready for instant zero-cost hosting on **GitHub Pages**.
+A bespoke, lightweight, mobile-first, interactive wedding invitation website crafted for **Akash & Pranshi**, ready for instant zero-cost hosting on **GitHub Pages**.
 
 ---
 
@@ -13,12 +13,12 @@ A bespoke, lightweight, mobile-first, interactive wedding invitation website cra
 * **Auspicious Lord Ganesha Blessing:**
   * Embossed gold Lord Ganesha crest with sacred Hindi shloka: **॥ श्री गणेशाय नमः ॥**
 * **Couple Typography & Live Countdown:**
-  * Couple display: **Pranshi & Akash** • **#APforever**
+  * Couple display: **Akash & Pranshi** • **#APforever**
   * Dynamic live countdown clock targeting **20th November 2026**.
   * 1-Tap **"Add to Google Calendar"** button.
 * **Interactive Event Itinerary Tabs (No Sangeet):**
-  * **Day 1:** Haldi & Mehendi Ceremony (Wednesday, 18 Nov 2026 at Pranshi's Residence, Govindnagar) with festive attire palette swatches and Google Maps navigation.
-  * **Day 2:** The Wedding (Friday, 20 Nov 2026 at HB Klyde Premier, Near Aryabhatta International School, Zero Point, Rampur Road, Moradabad, Uttar Pradesh 244001) with Google Maps navigation.
+  * **Day 1:** Tilak Ceremony (Thursday, 12 Nov 2026 at Akash's Residence, Lucknow) with royal ethnic attire palette and Google Maps navigation.
+  * **Day 2:** The Wedding (Friday, 20 Nov 2026: 9:00 AM Baraat Nikasi, followed by Evening Celebrations at HB Klyde Premier) with Google Maps navigation.
 * **Digital "Shower Blessings" Guestbook:**
   * Friends and family can write heartfelt messages.
   * Tapping **"Shower Blessings"** bursts an explosion of golden petals and celebratory confetti across the mobile screen!
@@ -39,7 +39,7 @@ Open your terminal in this folder (`c:\Users\akash\Desktop\wedding_invite2.0`) a
 ```bash
 git init
 git add .
-git commit -m "Pranshi & Akash Wedding Invitation (#APforever)"
+git commit -m "Akash & Pranshi Wedding Invitation (#APforever)"
 git branch -M main
 git remote add origin https://github.com/YOUR_GITHUB_USERNAME/wedding_invite.git
 git push -u origin main

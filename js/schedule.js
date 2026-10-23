@@ -1,5 +1,5 @@
 /**
- * Pranshi & Akash Wedding (#APforever)
+ * Akash & Pranshi Wedding (#APforever)
  * Schedule Tabs, Maps & Calendar Integration
  */
 
@@ -44,9 +44,9 @@
     calendarBtn.addEventListener('click', (e) => {
       e.preventDefault();
       
-      const title = encodeURIComponent("Pranshi & Akash's Wedding Celebration (#APforever)");
+      const title = encodeURIComponent("Akash & Pranshi's Wedding Celebration (#APforever)");
       const details = encodeURIComponent(
-        "Join us to celebrate the wedding of Pranshi & Akash!\n\nVenue: HB Klyde Premier, Near Aryabhatta International School, Zero Point, Rampur Road, Moradabad, Uttar Pradesh 244001\nHashtag: #APforever"
+        "Join us to celebrate the wedding of Akash & Pranshi!\n\nVenue: HB Klyde Premier, Near Aryabhatta International School, Zero Point, Rampur Road, Moradabad, Uttar Pradesh 244001\nHashtag: #APforever"
       );
       const location = encodeURIComponent("HB Klyde Premier, Near Aryabhatta International School, Zero Point, Rampur Road, Moradabad, Uttar Pradesh 244001");
       const startDate = "20261120T113000Z"; // 17:00 IST is 11:30 UTC
@@ -60,14 +60,14 @@
 
   // Google Maps Deep Links
   window.openDirections = function (venueKey) {
-    let query = '';
-    if (venueKey === 'haldi') {
-      query = encodeURIComponent("Govindnagar, Moradabad, Uttar Pradesh");
+    if (venueKey === 'tilak' || venueKey === 'haldi') {
+      window.open('https://maps.app.goo.gl/4yZPakUAgVM8VHVY6', '_blank');
+      return;
     } else if (venueKey === 'wedding') {
-      query = encodeURIComponent("HB Klyde Premier, Near Aryabhatta International School, Zero Point, Rampur Road, Moradabad, Uttar Pradesh 244001");
+      const query = encodeURIComponent("HB Klyde Premier, Near Aryabhatta International School, Zero Point, Rampur Road, Moradabad, Uttar Pradesh 244001");
+      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
+      window.open(mapsUrl, '_blank');
     }
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
-    window.open(mapsUrl, '_blank');
   };
 
   // Copy Address with Toast Notification
@@ -92,7 +92,7 @@
       e.preventDefault();
       const currentUrl = window.location.href;
       const shareMessage = encodeURIComponent(
-        `🌸 *Pranshi & Akash are Getting Married!* 💍\n\nWith the heavenly blessings of our elders, we cordially invite you to celebrate our wedding festivities (#APforever).\n\n🗓️ *Dates:* 18th & 20th November 2026\n📍 *City:* Moradabad, UP\n\n✨ *Tap to open our interactive 3D wedding invitation:* \n${currentUrl}`
+        `🌸 *Akash & Pranshi are Getting Married!* 💍\n\nWith the heavenly blessings of our elders, we cordially invite you to celebrate our wedding festivities (#APforever).\n\n🗓️ *Dates:* 12th & 20th November 2026\n📍 *City:* Moradabad, UP\n\n✨ *Tap to open our interactive 3D wedding invitation:* \n${currentUrl}`
       );
       window.open(`https://api.whatsapp.com/send?text=${shareMessage}`, '_blank');
     });

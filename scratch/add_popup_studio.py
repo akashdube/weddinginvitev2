@@ -74,9 +74,9 @@ studio_html = '''  <!-- ========================================================
             </div>
             <div class="divine-footer">
               <div class="divine-names-wrap">
-                <span class="divine-name">Pranshi</span>
+                <span class="divine-name name-akash">Akash</span>
                 <span class="divine-amp">&amp;</span>
-                <span class="divine-name">Akash</span>
+                <span class="divine-name name-pranshi">Pranshi</span>
               </div>
               <div class="divine-sub-badge">
                 <span>✦</span>
@@ -120,9 +120,9 @@ studio_html = '''  <!-- ========================================================
             </div>
             <div class="divine-footer">
               <div class="divine-names-wrap">
-                <span class="divine-name">Pranshi</span>
+                <span class="divine-name name-akash">Akash</span>
                 <span class="divine-amp">&amp;</span>
-                <span class="divine-name">Akash</span>
+                <span class="divine-name name-pranshi">Pranshi</span>
               </div>
               <div class="divine-sub-badge">
                 <span>✦</span>
@@ -165,7 +165,7 @@ studio_html = '''  <!-- ========================================================
             </div>
             <div class="divine-footer">
               <div class="divine-names-wrap">
-                <span class="divine-name">PRANSHI &amp; AKASH</span>
+                <span class="divine-name name-akash">AKASH &amp; PRANSHI</span>
               </div>
               <div class="divine-sub-badge">
                 <span>✦</span>
@@ -208,9 +208,9 @@ studio_html = '''  <!-- ========================================================
             </div>
             <div class="divine-footer">
               <div class="divine-names-wrap">
-                <span class="divine-name">Pranshi</span>
+                <span class="divine-name name-akash">Akash</span>
                 <span class="divine-amp">&amp;</span>
-                <span class="divine-name">Akash</span>
+                <span class="divine-name name-pranshi">Pranshi</span>
               </div>
               <div class="divine-sub-badge">
                 <span>✦</span>
@@ -253,9 +253,9 @@ studio_html = '''  <!-- ========================================================
             </div>
             <div class="divine-footer">
               <div class="divine-names-wrap">
-                <span class="divine-name">Pranshi</span>
+                <span class="divine-name name-akash">Akash</span>
                 <span class="divine-amp">&amp;</span>
-                <span class="divine-name">Akash</span>
+                <span class="divine-name name-pranshi">Pranshi</span>
               </div>
               <div class="divine-sub-badge">
                 <span>✦</span>
@@ -298,9 +298,9 @@ studio_html = '''  <!-- ========================================================
             </div>
             <div class="divine-footer">
               <div class="divine-names-wrap">
-                <span class="divine-name">Pranshi</span>
+                <span class="divine-name name-akash">Akash</span>
                 <span class="divine-amp">&amp;</span>
-                <span class="divine-name">Akash</span>
+                <span class="divine-name name-pranshi">Pranshi</span>
               </div>
               <div class="divine-sub-badge">
                 <span>✦</span>
@@ -343,7 +343,7 @@ studio_html = '''  <!-- ========================================================
             </div>
             <div class="divine-footer">
               <div class="divine-names-wrap">
-                <span class="divine-name" style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:700;">Pranshi &amp; Akash</span>
+                <span class="divine-name" style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:700;">Akash &amp; Pranshi</span>
               </div>
               <div class="divine-sub-badge">
                 <span>✦</span>
@@ -407,9 +407,9 @@ studio_html = '''  <!-- ========================================================
               </div>
               <div class="divine-footer">
                 <div class="divine-names-wrap">
-                  <span class="divine-name" id="sim-card-bride">Pranshi</span>
+                  <span class="divine-name name-akash" id="sim-card-groom">Akash</span>
                   <span class="divine-amp">&amp;</span>
-                  <span class="divine-name" id="sim-card-groom">Akash</span>
+                  <span class="divine-name name-pranshi" id="sim-card-bride">Pranshi</span>
                 </div>
                 <div class="divine-sub-badge" id="sim-card-badge">
                   <span>✦</span>
@@ -492,56 +492,56 @@ script_code = '''
         themeClass: 'theme-jharokha',
         name: 'Design 1 (Royal Jharokha Arch)',
         shloka: '॥ श्री गणेशाय नमः ॥',
-        bride: 'Pranshi',
         groom: 'Akash',
+        bride: 'Pranshi',
         badge: '✦ #APforever • 18 & 20 Nov 2026'
       },
       2: {
         themeClass: 'theme-pichwai',
         name: 'Design 2 (Sacred Pichwai & Silk Scroll)',
         shloka: '॥ अखंड सौभाग्यवती भव ॥',
-        bride: 'Pranshi',
         groom: 'Akash',
+        bride: 'Pranshi',
         badge: '✦ #APforever • Sacred Bond'
       },
       3: {
         themeClass: 'theme-botanical',
         name: 'Design 3 (Modern Botanical Editorial)',
         shloka: '॥ शुभ मुहूर्त • कल्याणम् ॥',
-        bride: 'PRANSHI & AKASH',
-        groom: '',
+        groom: 'AKASH & PRANSHI',
+        bride: '',
         badge: '✦ #APforever • Editorial Edition'
       },
       4: {
         themeClass: 'theme-sanctum',
         name: 'Design 4 (Swarna Mandir Golden Sanctum)',
         shloka: '॥ ॐ नमः शिवाय ॥',
-        bride: 'Pranshi',
         groom: 'Akash',
+        bride: 'Pranshi',
         badge: '✦ #APforever • Golden Aura'
       },
       5: {
         themeClass: 'theme-lotus',
         name: 'Design 5 (Botanical Pavilion & Lotus)',
         shloka: '॥ प्रेम परिणय सूत्र ॥',
-        bride: 'Pranshi',
         groom: 'Akash',
+        bride: 'Pranshi',
         badge: '✦ #APforever • Lotus Blossom'
       },
       6: {
         themeClass: 'theme-mehendi',
         name: 'Design 6 (Royal Mehendi & Alta)',
         shloka: '॥ शुभ विवाह • मंगलम् ॥',
-        bride: 'Pranshi',
         groom: 'Akash',
+        bride: 'Pranshi',
         badge: '✦ #APforever • Bridal Alta & Henna'
       },
       7: {
         themeClass: 'theme-couture',
         name: 'Design 7 (Couture Frosted Glass)',
         shloka: '॥ SACRED UNION • 2026 ॥',
-        bride: 'Pranshi & Akash',
-        groom: '',
+        groom: 'Akash & Pranshi',
+        bride: '',
         badge: '✦ #APforever • Couture Glass'
       }
     };

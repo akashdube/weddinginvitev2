@@ -1,5 +1,5 @@
 /**
- * Pranshi & Akash Wedding (#APforever)
+ * Akash & Pranshi Wedding (#APforever)
  * Style 3: Royal Gatefold Palace Doors & Full-Screen Immersion
  * Orchestrated with GSAP 60fps Animation Engine
  */

@@ -513,11 +513,17 @@
       }, step.delay);
     });
 
-    // Button micro-recoil pulse
-    btn.style.transform = 'translateY(2px) scale(0.96)';
-    setTimeout(() => {
-      btn.style.transform = '';
-    }, 180);
+    // Single smooth click-and-return animation directly back to resting position
+    btn.classList.remove('animate-celebrate-click');
+    void btn.offsetWidth; // Reflow to guarantee fluid re-triggers
+    btn.classList.add('animate-celebrate-click');
+    if (btn.blur) btn.blur();
+
+    const onAnimEnd = () => {
+      btn.classList.remove('animate-celebrate-click');
+      btn.removeEventListener('animationend', onAnimEnd);
+    };
+    btn.addEventListener('animationend', onAnimEnd, { once: true });
 
     // Safe Staggered Haptic Vibration on mobile devices
     if (navigator.vibrate) {

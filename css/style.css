@@ -53,7 +53,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: 17.5px;
 }
 
 body {
@@ -338,7 +338,7 @@ body {
 .invite-prose {
   color: var(--color-text-muted);
   font-size: 0.95rem;
-  max-width: 320px;
+  max-width: 360px;
   margin: 0 auto 22px;
   line-height: 1.6;
 }
@@ -933,6 +933,66 @@ footer {
   max-width: 220px;
   width: 100%;
   height: auto;
+}
+
+/* Footer Compliments Box */
+.compliments-box {
+  margin: 16px auto 6px;
+  max-width: 380px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 18px rgba(194, 157, 89, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.compliments-title {
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  font-weight: 700;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.compliments-title strong {
+  font-weight: 700;
+}
+
+.compliments-title::before,
+.compliments-title::after {
+  content: '';
+  height: 1.5px;
+  width: 24px;
+  background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+}
+
+.compliments-names {
+  font-family: var(--font-serif);
+  font-size: 1.24rem;
+  font-weight: 700;
+  color: #1a2a1e;
+  margin-bottom: 5px;
+  letter-spacing: 0.02em;
+  -webkit-text-stroke: 0.25px currentColor;
+}
+
+.compliments-names strong {
+  font-weight: 700;
+}
+
+.compliments-address {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  line-height: 1.45;
 }
 
 .footer-bottom-flourish {

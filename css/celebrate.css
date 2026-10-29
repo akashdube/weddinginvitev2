@@ -31,17 +31,43 @@
   gap: 10px;
   text-decoration: none;
   overflow: hidden;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, filter 0.3s ease;
+  transition: box-shadow 0.3s ease, filter 0.3s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  transform: translateY(0);
 }
 
 .btn-celebrate:hover {
-  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.btn-celebrate:focus,
+.btn-celebrate:focus-visible {
+  outline: none;
 }
 
 .btn-celebrate:active {
-  transform: translateY(1px) scale(0.97);
+  transform: translateY(2px) scale(0.96);
+}
+
+/* Single Smooth Click Animation: presses down, rebounds softly, and cleanly returns directly to resting place */
+.btn-celebrate.animate-celebrate-click {
+  animation: celebratePressReturn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes celebratePressReturn {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  28% {
+    transform: translateY(2.5px) scale(0.96);
+  }
+  65% {
+    transform: translateY(-0.8px) scale(1.012);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Shimmer Light Reflection Sweep */
@@ -99,7 +125,26 @@
 }
 
 .btn-celebrate:hover .celebrate-icon {
-  transform: scale(1.22) rotate(-6deg);
+  transform: scale(1.15) rotate(-6deg);
+}
+
+.btn-celebrate.animate-celebrate-click .celebrate-icon {
+  animation: celebrateIconPulse 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes celebrateIconPulse {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  28% {
+    transform: scale(1.22) rotate(-10deg);
+  }
+  65% {
+    transform: scale(1.06) rotate(3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 .btn-celebrate .celebrate-label {
@@ -282,3 +327,13 @@
   margin-top: 2px;
   text-align: center;
 }
+
+@media (max-width: 420px) {
+  .btn-celebrate {
+    font-size: 0.84rem;
+    padding: 13px 16px;
+    gap: 8px;
+    white-space: nowrap;
+  }
+}
+

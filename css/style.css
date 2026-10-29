@@ -938,8 +938,9 @@ footer {
 /* Footer Compliments Box */
 .compliments-box {
   margin: 16px auto 6px;
-  max-width: 380px;
-  padding: 14px 18px;
+  max-width: 440px;
+  width: 100%;
+  padding: 14px 14px;
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid var(--color-border-gold);
   border-radius: var(--radius-md);
@@ -977,11 +978,12 @@ footer {
 
 .compliments-names {
   font-family: var(--font-serif);
-  font-size: 1.24rem;
+  font-size: clamp(0.96rem, 4.2vw, 1.14rem);
   font-weight: 700;
   color: #1a2a1e;
   margin-bottom: 5px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
   -webkit-text-stroke: 0.25px currentColor;
 }
 

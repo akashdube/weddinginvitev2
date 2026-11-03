@@ -56,7 +56,6 @@ function doGet(e) {
       const name = row[mapping.colName - 1];
       const text = row[mapping.colBlessing - 1];
       const approved = (mapping.colApproved <= row.length) ? row[mapping.colApproved - 1] : false;
-      const likes = (mapping.colLikes <= row.length) ? (Number(row[mapping.colLikes - 1]) || 0) : 0;
       const id = (mapping.colId && mapping.colId <= row.length && row[mapping.colId - 1])
         ? String(row[mapping.colId - 1])
         : (timestamp instanceof Date ? timestamp.toISOString() : `wish_${rowIndex}`);
@@ -70,8 +69,6 @@ function doGet(e) {
           row: rowIndex,
           name: String(name).trim(),
           text: String(text).trim(),
-          likes: likes,
-          likedBy: [],
           time: formatRelativeTime(timestamp)
         });
       }
@@ -87,7 +84,7 @@ function doGet(e) {
 }
 
 // ----------------------------------------------------------------------------
-// POST REQUEST: Handles Submissions & Likes
+// POST REQUEST: Handles Submissions
 // ----------------------------------------------------------------------------
 function doPost(e) {
   try {
@@ -106,35 +103,6 @@ function doPost(e) {
     const sheet = getTargetSheet();
     const mapping = getColumnMapping(sheet, true); // true ensures 'Approved' column exists
 
-    // CASE 1: Like count increment
-    if (payload.action === 'like') {
-      const rowToUpdate = parseInt(payload.row, 10);
-      const newLikes = parseInt(payload.likes, 10) || 0;
-
-      if (rowToUpdate && rowToUpdate >= 2 && rowToUpdate <= sheet.getLastRow()) {
-        sheet.getRange(rowToUpdate, mapping.colLikes).setValue(newLikes);
-        return jsonResponse({ success: true, row: rowToUpdate, likes: newLikes });
-      }
-
-      // Fallback search by ID
-      if (payload.id && mapping.colId) {
-        const lastRow = sheet.getLastRow();
-        if (lastRow > 1) {
-          const ids = sheet.getRange(2, mapping.colId, lastRow - 1, 1).getValues();
-          for (let i = 0; i < ids.length; i++) {
-            if (String(ids[i][0]) === String(payload.id)) {
-              const targetRow = i + 2;
-              sheet.getRange(targetRow, mapping.colLikes).setValue(newLikes);
-              return jsonResponse({ success: true, row: targetRow, likes: newLikes });
-            }
-          }
-        }
-      }
-
-      return jsonResponse({ success: false, message: "Row not found for like" });
-    }
-
-    // CASE 2: New Blessing Submission
     const name = (payload.name || "").trim();
     const text = (payload.text || "").trim();
 
@@ -151,8 +119,6 @@ function doPost(e) {
     newRowData[mapping.colName - 1] = name;
     newRowData[mapping.colBlessing - 1] = text;
     newRowData[mapping.colApproved - 1] = false; // Initially UNAPPROVED (unchecked)
-    if (mapping.colLikes) newRowData[mapping.colLikes - 1] = 0;
-    if (mapping.colLikedBy) newRowData[mapping.colLikedBy - 1] = "[]";
     if (mapping.colId) newRowData[mapping.colId - 1] = uniqueId;
 
     // Append the row cleanly
@@ -319,10 +285,8 @@ function getColumnMapping(sheet, autoCreateApproved) {
     colName: 2,
     colBlessing: 3,
     colApproved: 0,
-    colLikes: 0,
-    colLikedBy: 0,
     colId: 0,
-    maxCol: 6
+    maxCol: 5
   };
 
   const lastCol = Math.max(sheet.getLastColumn(), 1);
@@ -336,14 +300,8 @@ function getColumnMapping(sheet, autoCreateApproved) {
     else if (val.includes("name") || val.includes("guest") || val.includes("author")) mapping.colName = c + 1;
     else if (val.includes("bless") || val.includes("mess") || val.includes("text") || val.includes("wish")) mapping.colBlessing = c + 1;
     else if (val.includes("approv") || val.includes("tick") || val.includes("show") || val.includes("status")) mapping.colApproved = c + 1;
-    else if (val.includes("likedby") || val.includes("liked_by") || val.includes("by")) mapping.colLikedBy = c + 1;
-    else if (val.includes("like")) mapping.colLikes = c + 1;
     else if (val === "id") mapping.colId = c + 1;
   }
-
-  // Fallbacks if not named
-  if (!mapping.colLikes) mapping.colLikes = 4;
-  if (!mapping.colId) mapping.colId = Math.max(lastCol + 1, 6);
 
   // If Approved column is missing, create it!
   if (!mapping.colApproved) {
@@ -358,7 +316,6 @@ function getColumnMapping(sheet, autoCreateApproved) {
         const checkboxRange = sheet.getRange(2, mapping.colApproved, lastRow - 1, 1);
         const rule = SpreadsheetApp.newDataValidation().requireCheckbox().build();
         checkboxRange.setDataValidation(rule);
-        // By default, leave existing unchecked
         checkboxRange.setValue(false);
       }
     } else {
@@ -366,7 +323,7 @@ function getColumnMapping(sheet, autoCreateApproved) {
     }
   }
 
-  mapping.maxCol = Math.max(mapping.colTimestamp, mapping.colName, mapping.colBlessing, mapping.colApproved, mapping.colLikes, mapping.colId, lastCol);
+  mapping.maxCol = Math.max(mapping.colTimestamp, mapping.colName, mapping.colBlessing, mapping.colApproved, mapping.colId || 0, lastCol);
   return mapping;
 }
 

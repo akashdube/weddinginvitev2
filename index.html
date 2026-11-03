@@ -467,10 +467,20 @@
             <input type="text" id="guest-name" class="input-field" placeholder="Your Name" required />
             <textarea id="guest-message" class="textarea-field"
               placeholder="Share your heartfelt blessing or warm message for the couple..." required></textarea>
-            <button type="submit" class="btn-shower">
+            <button type="submit" class="btn-shower" id="btn-shower-submit">
               <span>🌸 Shower Blessings on Akash & Pranshi</span>
             </button>
           </form>
+
+          <!-- Blessing Submission Confirmation Notice (Pending Moderation) -->
+          <div class="blessing-success-banner" id="blessing-success-banner" style="display: none;" role="status">
+            <div class="success-banner-badge">🌸 Sent with Love</div>
+            <h4 class="success-banner-title">Thank you for your blessings!</h4>
+            <p class="success-banner-text" id="success-banner-text">
+              Your heartfelt blessing has been received and will appear on the wall once reviewed by Akash &amp; Pranshi.
+            </p>
+            <button type="button" class="btn-dismiss-banner" id="btn-dismiss-banner">Write another blessing</button>
+          </div>
 
           <!-- Wishes Stream -->
           <div class="wishes-stream" id="wishes-stream">
@@ -545,7 +555,7 @@
   <script src="./js/countdown.js?v=2.2"></script>
   <script src="./js/schedule.js?v=2.4"></script>
   <script src="./js/celebrate.js?v=2.0"></script>
-  <script src="./js/guestbook.js?v=2.2"></script>
+  <script src="./js/guestbook.js?v=3.0"></script>
 
 </body>
 

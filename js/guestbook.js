@@ -1,6 +1,13 @@
 /**
  * Akash & Pranshi Wedding (#APforever)
- * Live Google Sheets Guestbook Integration with LocalStorage Fallback
+ * Live Google Sheets Guestbook with Moderation Workflow
+ * 
+ * Flow:
+ * 1. Guest writes blessing & submits.
+ * 2. Blessing is saved to Google Sheet with Approved = false (hidden from website).
+ * 3. Couple receives instant email notification with a 1-click link to Google Sheet.
+ * 4. Couple ticks the "Approved" checkbox in Google Sheets.
+ * 5. Ticked blessings appear on the website; unticked ones stay hidden.
  */
 
 (function () {
@@ -8,10 +15,13 @@
   const nameInput = document.getElementById('guest-name');
   const messageInput = document.getElementById('guest-message');
   const wishesStream = document.getElementById('wishes-stream');
+  const successBanner = document.getElementById('blessing-success-banner');
+  const successBannerText = document.getElementById('success-banner-text');
+  const dismissBannerBtn = document.getElementById('btn-dismiss-banner');
 
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyl_rw3ZBiOi4Ef860vagzPjrpvvLZPjZJNLHK_Gs6VSqdwSCjT_98acq4LJOBpHUu_aw/exec';
-  const STORAGE_WISHES_KEY = 'ap_wedding_wishes_v3';
-  const STORAGE_LIKES_KEY = 'ap_wedding_user_likes_v3';
+  const STORAGE_WISHES_KEY = 'ap_wedding_wishes_v4';
+  const STORAGE_LIKES_KEY = 'ap_wedding_user_likes_v4';
 
   function getLocalWishes() {
     try {
@@ -43,7 +53,7 @@
     } catch (e) {}
   }
 
-  // Render wishes in the UI
+  // Render approved wishes in the UI
   function renderWishes(wishes) {
     if (!wishesStream) return;
     const userLikes = getUserLikes();
@@ -86,7 +96,7 @@
     });
   }
 
-  // Toggle Like / Unlike
+  // Toggle Like / Unlike for approved wish
   function toggleLike(wish, heartBtn, allWishes) {
     let userLikes = getUserLikes();
     const wishId = wish.id;
@@ -115,8 +125,8 @@
     saveLocalWishes(allWishes);
     saveUserLikes(userLikes);
 
-    // Sync Like to Google Sheets in background
-    if (wish.row) {
+    // Sync Like count to Google Sheets in background
+    if (wish.row || wish.id) {
       try {
         fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
@@ -125,6 +135,7 @@
           body: JSON.stringify({
             action: 'like',
             row: wish.row,
+            id: wish.id,
             likes: wish.likes
           })
         }).catch(() => {});
@@ -132,13 +143,13 @@
     }
   }
 
-  // Load Wishes from Google Sheets (with local fallback)
+  // Load ONLY Approved Wishes from Google Sheets (with local fallback)
   function fetchWishesFromGoogleSheet() {
-    // Show local cached wishes immediately for instant mobile loading
+    // Show cached approved wishes immediately for instant mobile loading
     const local = getLocalWishes();
     renderWishes(local);
 
-    // Fetch fresh live wishes from Google Sheets
+    // Fetch live approved wishes from Google Sheets
     fetch(GOOGLE_SCRIPT_URL)
       .then((res) => res.json())
       .then((remoteWishes) => {
@@ -149,7 +160,6 @@
       })
       .catch((err) => {
         console.log('Google Sheets sync notice:', err);
-        // Remains seamlessly functional with local storage
       });
   }
 
@@ -162,43 +172,64 @@
 
       if (!name || !text) return;
 
-      const newWish = {
-        id: Date.now(),
-        name: name,
-        text: text,
-        time: "Just now",
-        likes: 0
-      };
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>🌸 Submitting your blessing...</span>';
+      }
 
-      // 1. Optimistic immediate UI update
-      const currentWishes = getLocalWishes();
-      currentWishes.unshift(newWish);
-      saveLocalWishes(currentWishes);
-      renderWishes(currentWishes);
-
-      // 2. Trigger celebratory petal shower
+      // 1. Festive petal shower for instant celebratory delight
       if (window.showerBlessingsPetals) {
         window.showerBlessingsPetals();
       }
 
+      // 2. Clear inputs immediately
       nameInput.value = '';
       messageInput.value = '';
 
-      // 3. Post to Google Sheets
+      // 3. Post to Google Sheets (Saved with Approved = false)
       fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({
+          action: 'submit',
           name: name,
           text: text
         })
-      }).then(() => {
-        // Refresh sheet data after 2 seconds
-        setTimeout(fetchWishesFromGoogleSheet, 2000);
-      }).catch((err) => {
-        console.warn('Google Sheets write notice:', err);
+      })
+      .then(() => {
+        showModerationNotice(name);
+      })
+      .catch((err) => {
+        console.warn('Google Sheets submission notice:', err);
+        // Even if an opaque redirect triggers catch in some browsers, show the notice
+        showModerationNotice(name);
+      })
+      .finally(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+        }
       });
+    });
+  }
+
+  function showModerationNotice(guestName) {
+    if (successBanner) {
+      if (successBannerText) {
+        successBannerText.innerHTML = `Thank you, <strong>${escapeHtml(guestName)}</strong>! Your warm wishes have been sent to Akash &amp; Pranshi and will appear on the wall once reviewed with love.`;
+      }
+      successBanner.style.display = 'block';
+      successBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  if (dismissBannerBtn && successBanner) {
+    dismissBannerBtn.addEventListener('click', () => {
+      successBanner.style.display = 'none';
+      if (nameInput) nameInput.focus();
     });
   }
 
@@ -210,4 +241,7 @@
 
   // Initial load
   fetchWishesFromGoogleSheet();
+
+  // Periodically check for newly approved wishes every 60 seconds
+  setInterval(fetchWishesFromGoogleSheet, 60000);
 })();

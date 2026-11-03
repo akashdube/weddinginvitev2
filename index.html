@@ -131,7 +131,8 @@
 
           <!-- Inside Royal Invitation Card (Revealed as palace doors open, then expands into full screen) -->
           <!-- Inside Royal Invitation Card (Floats Upwards upon unsealing) -->
-          <div class="envelope-invitation-card" id="envelope-card" style="padding: 0; overflow: hidden; background: transparent; border: none; opacity: 0; visibility: hidden;">
+          <div class="envelope-invitation-card" id="envelope-card"
+            style="padding: 0; overflow: hidden; background: transparent; border: none; opacity: 0; visibility: hidden;">
             <div class="divine-popup-card theme-botanical" id="active-divine-card">
               <!-- Matching Royal Theme Frame with Corner Flourishes -->
               <div class="divine-card-frame">
@@ -142,13 +143,15 @@
 
                 <!-- Center AP Monogram Logo: Positioned above and between the joining hands -->
                 <div class="divine-ap-logo-wrap framed-logo">
-                  <img src="./assets/ap_logo_brown.png" alt="AP Logo" class="divine-ap-logo-img" id="divine-ap-logo-img" />
+                  <img src="./assets/ap_logo_brown.png" alt="AP Logo" class="divine-ap-logo-img"
+                    id="divine-ap-logo-img" />
                 </div>
 
                 <!-- Sacred Artwork: Both hands originate flush from the left and right frame lines -->
                 <div class="divine-cutout-wrap framed-hands" id="divine-cutout-wrap">
                   <div class="divine-cutout-aura"></div>
-                  <img src="./assets/shiva_parvati_vivah_hands.png?v=3.0" alt="Shiva Parvati Vivah Divine Hands Union" class="divine-hands-cutout" id="divine-hands-cutout" />
+                  <img src="./assets/shiva_parvati_vivah_hands.png?v=3.0" alt="Shiva Parvati Vivah Divine Hands Union"
+                    class="divine-hands-cutout" id="divine-hands-cutout" />
                 </div>
 
                 <!-- Bottom Footer: Couple Names -->
@@ -297,7 +300,8 @@
         <!-- Action Buttons Grid -->
         <div class="cta-actions-group">
           <!-- Celebrate Our Union Button (Multi-Rocket Salvo Celebration) -->
-          <button class="btn-celebrate celebrate-theme-3" id="btn-celebrate" title="Click to launch celebration fireworks!">
+          <button class="btn-celebrate celebrate-theme-3" id="btn-celebrate"
+            title="Click to launch celebration fireworks!">
             <span class="celebrate-icon">🌺</span>
             <span class="celebrate-label">Click here to Celebrate Our Union</span>
           </button>
@@ -350,7 +354,8 @@
               <span class="milestone-time">06:00 PM</span>
               <div class="milestone-content">
                 <strong>Tilak Ceremony</strong>
-                <span>Sacred tilak rituals, auspicious blessings, and familial honor to sanctify the auspicious bond</span>
+                <span>Sacred tilak rituals, auspicious blessings, and familial honor to sanctify the auspicious
+                  bond</span>
                 <div class="milestone-attire-row">
                   <span class="milestone-attire-label">🟡 Attire: Royal Traditional / Festive Ethnic</span>
                   <div class="milestone-swatch-discs">
@@ -374,7 +379,8 @@
           <div class="ceremony-venue-box">
             <div class="venue-header-row">
               <span class="venue-name">📍 Akash's Residence</span>
-              <button class="btn-copy-address" onclick="copyAddress('House No. 238, Sparsh Paradise, Phase II, Rahimabad, Sarojini Nagar, Lucknow, Uttar Pradesh')">📋
+              <button class="btn-copy-address"
+                onclick="copyAddress('House No. 238, Sparsh Paradise, Phase II, Rahimabad, Sarojini Nagar, Lucknow, Uttar Pradesh')">📋
                 Copy</button>
             </div>
             House No. 238, Sparsh Paradise, Phase II,<br>
@@ -401,7 +407,8 @@
               <div class="milestone-content">
                 <strong>Baraat Nikasi</strong>
                 <span class="milestone-highlight-note">
-                  📌 <em>Please note: The baraat will set out from our residence on Friday, 20 November 2026, at 9:00 AM. Your timely presence is kindly requested.</em>
+                  📌 <em>Please note: The baraat will set out from our residence on Friday, 20 November 2026, at 9:00
+                    AM. Your timely presence is kindly requested.</em>
                 </span>
               </div>
             </div>
@@ -545,7 +552,30 @@
   <script src="./js/countdown.js?v=2.2"></script>
   <script src="./js/schedule.js?v=2.4"></script>
   <script src="./js/celebrate.js?v=2.0"></script>
-  <script src="./js/guestbook.js?v=2.2"></script>
+  <!-- Modal: Enter Guest Name for Liking -->
+  <div class="blessing-modal-backdrop" id="like-name-modal" style="display: none;" role="dialog" aria-modal="true"
+    aria-labelledby="like-name-title">
+    <div class="blessing-modal-card">
+      <button type="button" class="blessing-modal-close" id="like-name-modal-close"
+        aria-label="Close dialog">&times;</button>
+      <div class="blessing-modal-icon">🌸</div>
+      <h3 class="blessing-modal-title" id="like-name-title">Shower Your Love</h3>
+      <p class="blessing-modal-desc">Please share your name so Akash &amp; Pranshi know who liked this blessing:</p>
+      <form id="like-name-form">
+        <input type="text" id="like-guest-name-input" class="input-field" placeholder="Your Name (e.g. Priya Sharma)"
+          required maxlength="40" autocomplete="name" />
+        <div class="blessing-modal-actions">
+          <button type="submit" class="btn-shower btn-modal-confirm">
+            <span>❤️ Shower Love</span>
+          </button>
+          <button type="button" class="btn-modal-cancel" id="like-name-modal-cancel">Cancel</button>
+        </div>
+        <button type="button" class="btn-modal-anon" id="like-name-modal-anon">Like anonymously</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="./js/guestbook.js?v=2.4"></script>
 
 </body>
 

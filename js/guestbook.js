@@ -19,8 +19,7 @@
   let hideBannerTimer = null;
 
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyl_rw3ZBiOi4Ef860vagzPjrpvvLZPjZJNLHK_Gs6VSqdwSCjT_98acq4LJOBpHUu_aw/exec';
-  const STORAGE_WISHES_KEY = 'ap_wedding_wishes_v4';
-  const STORAGE_LIKES_KEY = 'ap_wedding_user_likes_v4';
+  const STORAGE_WISHES_KEY = 'ap_wedding_wishes_v5';
 
   function getLocalWishes() {
     try {
@@ -37,25 +36,9 @@
     } catch (e) {}
   }
 
-  function getUserLikes() {
-    try {
-      const stored = localStorage.getItem(STORAGE_LIKES_KEY);
-      return stored ? JSON.parse(stored) : [];
-    } catch (e) {
-      return [];
-    }
-  }
-
-  function saveUserLikes(likes) {
-    try {
-      localStorage.setItem(STORAGE_LIKES_KEY, JSON.stringify(likes));
-    } catch (e) {}
-  }
-
   // Render approved wishes in the UI
   function renderWishes(wishes) {
     if (!wishesStream) return;
-    const userLikes = getUserLikes();
     wishesStream.innerHTML = '';
 
     if (!wishes || wishes.length === 0) {
@@ -70,7 +53,6 @@
     }
 
     wishes.forEach((w) => {
-      const isLiked = userLikes.includes(w.id);
       const card = document.createElement('div');
       card.className = 'wish-item';
       card.innerHTML = `
@@ -79,72 +61,15 @@
           <span class="wish-time">${w.time || 'Recently'}</span>
         </div>
         <p class="wish-text">${escapeHtml(w.text)}</p>
-        <button class="wish-heart-btn ${isLiked ? 'liked' : ''}" data-id="${w.id}">
-          <span class="heart-icon">${isLiked ? '❤️' : '🤍'}</span>
-          <span class="like-count">${w.likes || 0}</span>
-          <span class="like-text">${isLiked ? 'Liked' : 'Like'}</span>
-        </button>
       `;
-
-      const heartBtn = card.querySelector('.wish-heart-btn');
-      heartBtn.addEventListener('click', () => {
-        toggleLike(w, heartBtn, wishes);
-      });
 
       wishesStream.appendChild(card);
     });
   }
 
-  // Toggle Like / Unlike for approved wish
-  function toggleLike(wish, heartBtn, allWishes) {
-    let userLikes = getUserLikes();
-    const wishId = wish.id;
-
-    if (userLikes.includes(wishId)) {
-      // UNLIKE
-      userLikes = userLikes.filter((id) => id !== wishId);
-      wish.likes = Math.max(0, (wish.likes || 1) - 1);
-      heartBtn.classList.remove('liked');
-      heartBtn.querySelector('.heart-icon').textContent = '🤍';
-      heartBtn.querySelector('.like-text').textContent = 'Like';
-    } else {
-      // LIKE
-      userLikes.push(wishId);
-      wish.likes = (wish.likes || 0) + 1;
-      heartBtn.classList.add('liked');
-      heartBtn.querySelector('.heart-icon').textContent = '❤️';
-      heartBtn.querySelector('.like-text').textContent = 'Liked';
-
-      if (window.showerBlessingsPetals) {
-        window.showerBlessingsPetals();
-      }
-    }
-
-    heartBtn.querySelector('.like-count').textContent = wish.likes;
-    saveLocalWishes(allWishes);
-    saveUserLikes(userLikes);
-
-    // Sync Like count to Google Sheets in background
-    if (wish.row || wish.id) {
-      try {
-        fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({
-            action: 'like',
-            row: wish.row,
-            id: wish.id,
-            likes: wish.likes
-          })
-        }).catch(() => {});
-      } catch (e) {}
-    }
-  }
-
   // Load ONLY Approved Wishes from Google Sheets (with local fallback)
   function fetchWishesFromGoogleSheet() {
-    // Show cached approved wishes immediately for instant mobile loading
+    // Show cached approved wishes immediately for instant loading
     const local = getLocalWishes();
     renderWishes(local);
 
@@ -199,12 +124,11 @@
         })
       })
       .then(() => {
-        showModerationNotice(name);
+        showModerationNotice();
       })
       .catch((err) => {
         console.warn('Google Sheets submission notice:', err);
-        // Even if an opaque redirect triggers catch in some browsers, show the notice
-        showModerationNotice(name);
+        showModerationNotice();
       })
       .finally(() => {
         if (submitBtn) {

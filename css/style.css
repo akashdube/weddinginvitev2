@@ -847,7 +847,6 @@ body {
   justify-content: center;
   gap: 8px;
 }
-}
 
 /* Live Wish Cards List */
 .wishes-stream {
@@ -888,42 +887,10 @@ body {
 }
 
 .wish-text {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: #3b423d;
-  line-height: 1.5;
-  margin-bottom: 10px;
-}
-
-.wish-heart-btn {
-  background: #fdfbf7;
-  border: 1px solid rgba(234, 197, 200, 0.8);
-  color: #8c424a;
-  padding: 5px 12px;
-  border-radius: var(--radius-pill);
-  font-size: 0.78rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.25s ease;
-}
-
-.wish-heart-btn:hover {
-  background: rgba(234, 197, 200, 0.35);
-  transform: scale(1.03);
-}
-
-.wish-heart-btn.liked {
-  background: #b54a55;
-  color: #ffffff;
-  border-color: #b54a55;
-  box-shadow: 0 3px 10px rgba(181, 74, 85, 0.3);
-}
-
-.like-text {
-  font-size: 0.75rem;
-  font-weight: 500;
+  line-height: 1.55;
+  margin-bottom: 0;
 }
 
 /* Empty Wishes State */

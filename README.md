@@ -25,7 +25,7 @@ A bespoke, lightweight, mobile-first, interactive wedding invitation website cra
   * **Moderation Workflow:** Blessings are initially hidden and saved to Google Sheets with an unchecked checkbox.
   * **Email Notifications:** The couple receives an instant email alert when a blessing is received with a 1-click button to open the sheet.
   * **1-Click Approval:** Ticking the checkbox in Google Sheets instantly publishes the blessing to the website! Unticked ones remain completely private.
-  * Real-time wish cards with tap-to-like heart counters preserved in browser `localStorage`. (See [Google Sheets Backend Guide](./google-sheets-backend/README.md))
+  * Real-time wish cards dynamically loaded from Google Sheets. (See [Google Sheets Backend Guide](./google-sheets-backend/README.md))
 * **Atmospheric Polish:**
   * Real-time drifting rose petals and eucalyptus leaves canvas animation.
   * Floating frosted-glass audio pill (`♫ Flute`) with acoustic ambient Indian classical flute melody.

@@ -16,8 +16,7 @@
   const messageInput = document.getElementById('guest-message');
   const wishesStream = document.getElementById('wishes-stream');
   const successBanner = document.getElementById('blessing-success-banner');
-  const successBannerText = document.getElementById('success-banner-text');
-  const dismissBannerBtn = document.getElementById('btn-dismiss-banner');
+  let hideBannerTimer = null;
 
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyl_rw3ZBiOi4Ef860vagzPjrpvvLZPjZJNLHK_Gs6VSqdwSCjT_98acq4LJOBpHUu_aw/exec';
   const STORAGE_WISHES_KEY = 'ap_wedding_wishes_v4';
@@ -216,20 +215,28 @@
     });
   }
 
-  function showModerationNotice(guestName) {
+  function showModerationNotice() {
     if (successBanner) {
-      if (successBannerText) {
-        successBannerText.innerHTML = `Thank you, <strong>${escapeHtml(guestName)}</strong>! Your warm wishes have been sent to Akash &amp; Pranshi and will appear on the wall once reviewed with love.`;
-      }
       successBanner.style.display = 'block';
       successBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // Automatically auto-dismiss after 6 seconds
+      if (hideBannerTimer) clearTimeout(hideBannerTimer);
+      hideBannerTimer = setTimeout(() => {
+        if (successBanner) successBanner.style.display = 'none';
+      }, 6000);
     }
   }
 
-  if (dismissBannerBtn && successBanner) {
-    dismissBannerBtn.addEventListener('click', () => {
-      successBanner.style.display = 'none';
-      if (nameInput) nameInput.focus();
+  // Hide notice when guest begins typing again
+  if (nameInput) {
+    nameInput.addEventListener('input', () => {
+      if (successBanner) successBanner.style.display = 'none';
+    });
+  }
+  if (messageInput) {
+    messageInput.addEventListener('input', () => {
+      if (successBanner) successBanner.style.display = 'none';
     });
   }
 

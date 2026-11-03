@@ -813,22 +813,22 @@ body {
   box-shadow: none !important;
 }
 
-/* Blessing Moderation Confirmation Banner */
+/* Blessing Confirmation Notice */
 .blessing-success-banner {
   background: #fdfbf7;
   border: 1.5px solid #dfbe7d;
   border-radius: var(--radius-md);
-  padding: 22px 20px;
-  margin-bottom: 24px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
   text-align: center;
-  box-shadow: 0 6px 20px rgba(194, 157, 89, 0.12);
-  animation: bannerSlideDown 0.4s ease-out forwards;
+  box-shadow: 0 4px 16px rgba(194, 157, 89, 0.12);
+  animation: bannerSlideDown 0.35s ease-out forwards;
 }
 
 @keyframes bannerSlideDown {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;
@@ -836,53 +836,17 @@ body {
   }
 }
 
-.success-banner-badge {
-  display: inline-block;
-  background: rgba(194, 157, 89, 0.15);
-  color: #8c6a2b;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-
 .success-banner-title {
   font-family: var(--font-serif);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: #202b23;
-  margin-bottom: 6px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
-
-.success-banner-text {
-  font-size: 0.88rem;
-  color: #4a544c;
-  line-height: 1.55;
-  margin-bottom: 14px;
-  max-width: 480px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.btn-dismiss-banner {
-  background: transparent;
-  border: 1px solid #c29d59;
-  color: #8c6a2b;
-  padding: 6px 18px;
-  border-radius: var(--radius-pill);
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.btn-dismiss-banner:hover {
-  background: #c29d59;
-  color: #ffffff;
 }
 
 /* Live Wish Cards List */

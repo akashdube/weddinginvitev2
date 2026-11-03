@@ -4,19 +4,21 @@
  * Google Apps Script Web App
  * ============================================================================
  * 
- * Workflow implemented:
+ * Workflow:
  * 1. Guest writes a blessing on website and clicks submit.
  * 2. Blessing is saved in Google Sheet with Approved = FALSE (hidden from website).
- * 3. An instant email is sent to Akash & Pranshi notifying them of the new blessing.
- * 4. Open the Sheet and tick the checkbox in the "Approved" column.
+ * 3. An instant email is sent to Akash & Pranshi with 1-click sheet link.
+ * 4. Open the Sheet and tick the checkbox (✓) in the "Approved" column.
  * 5. Ticked blessings appear on the website. Unticked ones stay hidden.
  * 
- * Instructions:
- * 1. Open your Google Sheet for the wedding blessings.
- * 2. Go to: Extensions > Apps Script.
+ * Setup Instructions:
+ * 1. Open your Google Sheet for wedding blessings.
+ * 2. In top menu, click: Extensions > Apps Script.
  * 3. Replace all existing code with this file.
- * 4. Update NOTIFICATION_EMAILS below (optional - defaults to your Google account).
- * 5. Click "Deploy" > "Manage deployments" > Edit (pencil) > New version > Deploy.
+ * 4. In toolbar function dropdown, select "testEmailNotification" and click "▷ Run".
+ *    -> Click "Review permissions" -> Choose Google account -> "Advanced" -> "Allow".
+ *    -> Check your Gmail inbox: you will receive a test blessing notification!
+ * 5. Click "Deploy" > "Manage deployments" > Edit (pencil icon) > Version: "New version" > "Deploy".
  * ============================================================================
  */
 
@@ -24,22 +26,11 @@
 // CONFIGURATION
 // ----------------------------------------------------------------------------
 
-// Enter email address(es) to receive notifications when a guest submits a blessing.
-// If left empty (""), it defaults to the Google account owner who deployed this script.
-// To notify multiple emails, separate with a comma (e.g. "akash@example.com, pranshi@example.com").
+// Your notification email address(es). Multiple emails can be separated by comma.
 const NOTIFICATION_EMAILS = "akashdubey5450@gmail.com";
 
-// Name of the tab/sheet where blessings are stored.
-// If this tab does not exist, the script will use the first active tab.
+// Tab name (falls back to the first sheet if tab is not found)
 const SHEET_NAME = "Blessings";
-
-// Column positions (1-based index)
-const COL_TIMESTAMP = 1; // Column A: Timestamp
-const COL_NAME = 2;      // Column B: Guest Name
-const COL_BLESSING = 3;  // Column C: Blessing / Message
-const COL_APPROVED = 4;  // Column D: Approved (Checkbox: TRUE / FALSE)
-const COL_LIKES = 5;     // Column E: Likes count
-const COL_ID = 6;        // Column F: Unique ID
 
 // ----------------------------------------------------------------------------
 // GET REQUEST: Returns ONLY Approved (Ticked) Blessings to Website
@@ -50,7 +41,6 @@ function doGet(e) {
     const lastRow = sheet.getLastRow();
 
     if (lastRow <= 1) {
-      // Empty sheet or only header
       return jsonResponse([]);
     }
 
@@ -60,18 +50,18 @@ function doGet(e) {
 
     for (let i = 0; i < data.length; i++) {
       const row = data[i];
-      const rowIndex = i + 2; // 1-based sheet row number
+      const rowIndex = i + 2;
 
       const timestamp = row[mapping.colTimestamp - 1];
       const name = row[mapping.colName - 1];
       const text = row[mapping.colBlessing - 1];
-      const approved = row[mapping.colApproved - 1];
-      const likes = row[mapping.colLikes - 1] || 0;
-      const id = (mapping.colId <= row.length && row[mapping.colId - 1]) 
-        ? row[mapping.colId - 1] 
+      const approved = (mapping.colApproved <= row.length) ? row[mapping.colApproved - 1] : false;
+      const likes = (mapping.colLikes <= row.length) ? (Number(row[mapping.colLikes - 1]) || 0) : 0;
+      const id = (mapping.colId && mapping.colId <= row.length && row[mapping.colId - 1])
+        ? String(row[mapping.colId - 1])
         : (timestamp instanceof Date ? timestamp.toISOString() : `wish_${rowIndex}`);
 
-      // CHECKBOX CHECK: Only include if Approved is true
+      // STRICT CHECKBOX FILTER: Only include if explicitly ticked (TRUE)
       const isApproved = (approved === true || String(approved).trim().toUpperCase() === "TRUE");
 
       if (isApproved && name && text) {
@@ -80,7 +70,8 @@ function doGet(e) {
           row: rowIndex,
           name: String(name).trim(),
           text: String(text).trim(),
-          likes: Number(likes) || 0,
+          likes: likes,
+          likedBy: [],
           time: formatRelativeTime(timestamp)
         });
       }
@@ -96,7 +87,7 @@ function doGet(e) {
 }
 
 // ----------------------------------------------------------------------------
-// POST REQUEST: Handles New Blessing Submissions & Likes
+// POST REQUEST: Handles Submissions & Likes
 // ----------------------------------------------------------------------------
 function doPost(e) {
   try {
@@ -113,9 +104,9 @@ function doPost(e) {
     }
 
     const sheet = getTargetSheet();
-    const mapping = getColumnMapping(sheet);
+    const mapping = getColumnMapping(sheet, true); // true ensures 'Approved' column exists
 
-    // CASE 1: Toggle / Increment Like count
+    // CASE 1: Like count increment
     if (payload.action === 'like') {
       const rowToUpdate = parseInt(payload.row, 10);
       const newLikes = parseInt(payload.likes, 10) || 0;
@@ -125,8 +116,8 @@ function doPost(e) {
         return jsonResponse({ success: true, row: rowToUpdate, likes: newLikes });
       }
 
-      // Fallback: match by ID
-      if (payload.id && mapping.colId <= sheet.getLastColumn()) {
+      // Fallback search by ID
+      if (payload.id && mapping.colId) {
         const lastRow = sheet.getLastRow();
         if (lastRow > 1) {
           const ids = sheet.getRange(2, mapping.colId, lastRow - 1, 1).getValues();
@@ -153,16 +144,25 @@ function doPost(e) {
 
     const now = new Date();
     const uniqueId = `ap_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
-    const lastRow = sheet.getLastRow();
-    const newRowIndex = lastRow + 1;
+    const totalCols = Math.max(sheet.getLastColumn(), mapping.maxCol);
+    const newRowData = new Array(totalCols).fill("");
 
-    // Append row: [Timestamp, Name, Blessing, Approved = FALSE, Likes = 0, ID]
-    sheet.appendRow([now, name, text, false, 0, uniqueId]);
+    newRowData[mapping.colTimestamp - 1] = now;
+    newRowData[mapping.colName - 1] = name;
+    newRowData[mapping.colBlessing - 1] = text;
+    newRowData[mapping.colApproved - 1] = false; // Initially UNAPPROVED (unchecked)
+    if (mapping.colLikes) newRowData[mapping.colLikes - 1] = 0;
+    if (mapping.colLikedBy) newRowData[mapping.colLikedBy - 1] = "[]";
+    if (mapping.colId) newRowData[mapping.colId - 1] = uniqueId;
 
-    // Format new row
+    // Append the row cleanly
+    sheet.appendRow(newRowData);
+    const newRowIndex = sheet.getLastRow();
+
+    // Format timestamp nicely
     sheet.getRange(newRowIndex, mapping.colTimestamp).setNumberFormat("yyyy-mm-dd hh:mm:ss");
 
-    // Insert interactive Checkbox into the Approved cell (starts UNCHECKED)
+    // Add interactive Checkbox to the Approved column cell
     const approvedCell = sheet.getRange(newRowIndex, mapping.colApproved);
     const checkboxRule = SpreadsheetApp.newDataValidation().requireCheckbox().build();
     approvedCell.setDataValidation(checkboxRule);
@@ -173,7 +173,7 @@ function doPost(e) {
 
     return jsonResponse({
       success: true,
-      message: "Blessing saved! Pending review.",
+      message: "Blessing saved! Waiting for approval.",
       row: newRowIndex,
       id: uniqueId
     });
@@ -184,24 +184,35 @@ function doPost(e) {
 }
 
 // ----------------------------------------------------------------------------
-// EMAIL NOTIFICATION: Sends formatted email to the couple
+// EMAIL NOTIFICATION
 // ----------------------------------------------------------------------------
 function sendModerationNotification(name, text, rowIndex) {
   try {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     const sheetUrl = ss.getUrl();
 
-    // Determine recipient
-    let recipient = (typeof NOTIFICATION_EMAILS === 'string' && NOTIFICATION_EMAILS.trim().length > 0)
-      ? NOTIFICATION_EMAILS.trim()
-      : Session.getEffectiveUser().getEmail();
-
-    if (!recipient) {
-      recipient = ss.getOwner() ? ss.getOwner().getEmail() : "";
+    // Build recipient list (configured email + effective user + sheet owner)
+    const emails = [];
+    if (NOTIFICATION_EMAILS && NOTIFICATION_EMAILS.trim()) {
+      NOTIFICATION_EMAILS.split(',').forEach(e => {
+        const clean = e.trim();
+        if (clean && !emails.includes(clean)) emails.push(clean);
+      });
     }
 
+    const effectiveUser = Session.getEffectiveUser().getEmail();
+    if (effectiveUser && !emails.includes(effectiveUser)) {
+      emails.push(effectiveUser);
+    }
+
+    const ownerEmail = ss.getOwner() ? ss.getOwner().getEmail() : "";
+    if (ownerEmail && !emails.includes(ownerEmail)) {
+      emails.push(ownerEmail);
+    }
+
+    const recipient = emails.join(", ");
     if (!recipient) {
-      Logger.log("No email recipient configured.");
+      Logger.log("No recipient email found.");
       return;
     }
 
@@ -256,62 +267,107 @@ function sendModerationNotification(name, text, rowIndex) {
       subject: subject,
       htmlBody: htmlBody
     });
+    Logger.log("Notification email successfully sent to: " + recipient);
   } catch (err) {
     Logger.log("Email notification notice: " + err.toString());
   }
 }
 
 // ----------------------------------------------------------------------------
-// SETUP HELPER: One-click sheet initializer & formatter
+// TEST FUNCTION: Authorizes Gmail & tests email delivery in 5 seconds
 // ----------------------------------------------------------------------------
-/**
- * Run this function ONCE from Apps Script editor (select 'setupSheet' and click 'Run').
- * It formats columns, freezes headers, and inserts checkboxes for all rows!
- */
+function testEmailNotification() {
+  sendModerationNotification("Akash (Test)", "Wishing Akash & Pranshi eternal love and happiness! #APforever", 2);
+  Logger.log("Test email sent! Please check your Gmail inbox.");
+}
+
+// ----------------------------------------------------------------------------
+// SETUP HELPER: Formats headers and inserts checkboxes for all rows
+// ----------------------------------------------------------------------------
 function setupSheet() {
   const sheet = getTargetSheet();
-  const headers = ["Timestamp", "Guest Name", "Blessing", "Approved", "Likes", "ID"];
-  
-  // Set header row
-  sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
-  
-  // Header styling: Royal forest green with gold/ivory text
-  const headerRange = sheet.getRange(1, 1, 1, headers.length);
+  const mapping = getColumnMapping(sheet, true);
+
+  // Format headers
+  const lastCol = sheet.getLastColumn();
+  const headerRange = sheet.getRange(1, 1, 1, lastCol);
   headerRange.setBackground("#2e4334");
   headerRange.setFontColor("#f5ede2");
   headerRange.setFontWeight("bold");
   headerRange.setFontSize(10);
   headerRange.setHorizontalAlignment("center");
-  headerRange.setVerticalAlignment("middle");
   sheet.setRowHeight(1, 32);
-
-  // Column widths
-  sheet.setColumnWidth(1, 150); // Timestamp
-  sheet.setColumnWidth(2, 160); // Name
-  sheet.setColumnWidth(3, 380); // Blessing
-  sheet.setColumnWidth(4, 100); // Approved
-  sheet.setColumnWidth(5, 80);  // Likes
-  sheet.setColumnWidth(6, 140); // ID
-
   sheet.setFrozenRows(1);
 
-  // Add checkboxes to existing rows
+  // Add checkboxes to the Approved column for all data rows
   const lastRow = sheet.getLastRow();
   if (lastRow > 1) {
-    const checkboxRange = sheet.getRange(2, 4, lastRow - 1, 1);
+    const approvedRange = sheet.getRange(2, mapping.colApproved, lastRow - 1, 1);
     const rule = SpreadsheetApp.newDataValidation().requireCheckbox().build();
-    checkboxRange.setDataValidation(rule);
+    approvedRange.setDataValidation(rule);
   }
 
-  Logger.log("Sheet setup completed successfully!");
+  Logger.log("Sheet setup completed successfully! Approved column is at column " + mapping.colApproved);
 }
 
 // ----------------------------------------------------------------------------
-// TEST HELPER: Test email delivery directly from Apps Script
+// COLUMN AUTO-MAPPING
 // ----------------------------------------------------------------------------
-function testEmailNotification() {
-  sendModerationNotification("Rohan Sharma (Test Guest)", "Wishing Akash & Pranshi eternal love, joy, and laughter together! #APforever", 2);
-  Logger.log("Test email sent!");
+function getColumnMapping(sheet, autoCreateApproved) {
+  const mapping = {
+    colTimestamp: 1,
+    colName: 2,
+    colBlessing: 3,
+    colApproved: 0,
+    colLikes: 0,
+    colLikedBy: 0,
+    colId: 0,
+    maxCol: 6
+  };
+
+  const lastCol = Math.max(sheet.getLastColumn(), 1);
+  const headerValues = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+
+  for (let c = 0; c < headerValues.length; c++) {
+    const val = String(headerValues[c] || "").trim().toLowerCase();
+    if (!val) continue;
+
+    if (val.includes("time") || val.includes("date")) mapping.colTimestamp = c + 1;
+    else if (val.includes("name") || val.includes("guest") || val.includes("author")) mapping.colName = c + 1;
+    else if (val.includes("bless") || val.includes("mess") || val.includes("text") || val.includes("wish")) mapping.colBlessing = c + 1;
+    else if (val.includes("approv") || val.includes("tick") || val.includes("show") || val.includes("status")) mapping.colApproved = c + 1;
+    else if (val.includes("likedby") || val.includes("liked_by") || val.includes("by")) mapping.colLikedBy = c + 1;
+    else if (val.includes("like")) mapping.colLikes = c + 1;
+    else if (val === "id") mapping.colId = c + 1;
+  }
+
+  // Fallbacks if not named
+  if (!mapping.colLikes) mapping.colLikes = 4;
+  if (!mapping.colId) mapping.colId = Math.max(lastCol + 1, 6);
+
+  // If Approved column is missing, create it!
+  if (!mapping.colApproved) {
+    if (autoCreateApproved) {
+      mapping.colApproved = lastCol + 1;
+      sheet.getRange(1, mapping.colApproved).setValue("Approved");
+      sheet.getRange(1, mapping.colApproved).setBackground("#2e4334").setFontColor("#f5ede2").setFontWeight("bold");
+      sheet.setColumnWidth(mapping.colApproved, 100);
+
+      const lastRow = sheet.getLastRow();
+      if (lastRow > 1) {
+        const checkboxRange = sheet.getRange(2, mapping.colApproved, lastRow - 1, 1);
+        const rule = SpreadsheetApp.newDataValidation().requireCheckbox().build();
+        checkboxRange.setDataValidation(rule);
+        // By default, leave existing unchecked
+        checkboxRange.setValue(false);
+      }
+    } else {
+      mapping.colApproved = lastCol + 1;
+    }
+  }
+
+  mapping.maxCol = Math.max(mapping.colTimestamp, mapping.colName, mapping.colBlessing, mapping.colApproved, mapping.colLikes, mapping.colId, lastCol);
+  return mapping;
 }
 
 // ----------------------------------------------------------------------------
@@ -324,34 +380,6 @@ function getTargetSheet() {
     sheet = ss.getActiveSheet() || ss.getSheets()[0];
   }
   return sheet;
-}
-
-function getColumnMapping(sheet) {
-  const mapping = {
-    colTimestamp: COL_TIMESTAMP,
-    colName: COL_NAME,
-    colBlessing: COL_BLESSING,
-    colApproved: COL_APPROVED,
-    colLikes: COL_LIKES,
-    colId: COL_ID
-  };
-
-  if (sheet.getLastRow() < 1) return mapping;
-
-  const headerValues = sheet.getRange(1, 1, 1, Math.max(sheet.getLastColumn(), 6)).getValues()[0];
-  for (let c = 0; c < headerValues.length; c++) {
-    const val = String(headerValues[c] || "").trim().toLowerCase();
-    if (!val) continue;
-
-    if (val.includes("time") || val.includes("date")) mapping.colTimestamp = c + 1;
-    else if (val.includes("name") || val.includes("guest") || val.includes("author")) mapping.colName = c + 1;
-    else if (val.includes("bless") || val.includes("mess") || val.includes("text") || val.includes("wish")) mapping.colBlessing = c + 1;
-    else if (val.includes("approv") || val.includes("tick") || val.includes("show") || val.includes("publish")) mapping.colApproved = c + 1;
-    else if (val.includes("like") && !val.includes("by")) mapping.colLikes = c + 1;
-    else if (val === "id") mapping.colId = c + 1;
-  }
-
-  return mapping;
 }
 
 function formatRelativeTime(dateVal) {
@@ -389,4 +417,3 @@ function jsonResponse(data) {
   return ContentService.createTextOutput(JSON.stringify(data))
     .setMimeType(ContentService.MimeType.JSON);
 }
-

@@ -67,3 +67,4 @@ This directory contains the Google Apps Script code to enable the 5-step moderat
    - Refresh the website.
    - The ticked blessing now appears proudly on your blessing wall!
    - Any blessing with an unticked checkbox remains completely hidden.
+

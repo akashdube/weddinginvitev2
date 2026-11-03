@@ -883,6 +883,259 @@ body {
   font-weight: 500;
 }
 
+/* Wish Card Footer & Liked By List */
+.wish-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.wish-liked-by {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  background: rgba(234, 197, 200, 0.22);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.wish-liked-by:hover {
+  background: rgba(234, 197, 200, 0.42);
+  transform: translateY(-1px);
+}
+
+.liked-by-text {
+  font-size: 0.78rem;
+  color: #59615b;
+}
+
+.liker-name {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.btn-more-likers {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #8c424a;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+}
+
+/* Guest Identity Bar */
+.guest-identity-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--color-primary);
+  background: #fbf8f3;
+  border: 1px dashed rgba(194, 157, 89, 0.5);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+  margin-bottom: 16px;
+}
+
+.identity-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.identity-text strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.btn-change-identity {
+  background: none;
+  border: none;
+  color: var(--color-gold-dark);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.btn-change-identity:hover {
+  color: var(--color-primary);
+}
+
+/* Modals: Name Prompt & View Likers */
+.blessing-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 25, 20, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 16px;
+  animation: modalFadeIn 0.22s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.blessing-modal-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-gold);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+  width: 100%;
+  max-width: 380px;
+  padding: 26px 22px;
+  position: relative;
+  text-align: center;
+  animation: modalZoomIn 0.22s ease-out;
+}
+
+@keyframes modalZoomIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.blessing-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  transition: all 0.2s ease;
+}
+
+.blessing-modal-close:hover {
+  color: var(--color-primary);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.blessing-modal-icon {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+
+.blessing-modal-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  color: var(--color-primary);
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.blessing-modal-desc {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin-bottom: 18px;
+  line-height: 1.45;
+}
+
+.blessing-modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.btn-modal-confirm {
+  flex: 1;
+  padding: 12px 16px;
+}
+
+.btn-modal-cancel,
+.btn-modal-close-action {
+  padding: 12px 18px;
+  border: 1px solid var(--color-border);
+  background: #fbf9f6;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-modal-close-action {
+  width: 100%;
+}
+
+.btn-modal-cancel:hover,
+.btn-modal-close-action:hover {
+  background: #f0ece6;
+  color: var(--color-text);
+}
+
+.btn-modal-anon {
+  display: inline-block;
+  background: none;
+  border: none;
+  margin-top: 12px;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: var(--font-sans);
+}
+
+.btn-modal-anon:hover {
+  color: var(--color-primary);
+}
+
+.blessing-likers-list {
+  max-height: 240px;
+  overflow-y: auto;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 14px 0 6px 0;
+  padding-right: 4px;
+}
+
+.blessing-liker-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #fdfaf6;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.blessing-liker-empty {
+  font-weight: normal;
+  color: var(--color-text-muted);
+  justify-content: center;
+}
+
+.blessing-liker-icon {
+  font-size: 0.95rem;
+}
+
 /* Empty Wishes State */
 .empty-wishes-state {
   text-align: center;
